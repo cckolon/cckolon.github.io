@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/media/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/media/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/media/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/media/favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F69Q33WE13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-F69Q33WE13');
+    </script>
+  </head>
+  <body>
+    <h1>Blog</h1>
+    {% include navigation.html %}
+    <hr>
+    <h2>{{ page.title }}</h2>
+    <h3>{{ page.author }}</h3>
+    <p><a href = "/2022/12/10/stablepoetry.html">Back to Blog</a></p>
+    {% for l in page.lines %}
+        <div class = "gallery-block">
+            <p class = "poem-text">{{ l }}</p>
+            <img src="/assets/media/diffusion/{{ page.path }}/{{ forloop.index }}.png" class="center-image">
+        </div>
+    {% endfor %}
+    {{ content }}
+  </body>
+</html>

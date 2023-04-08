@@ -1,0 +1,54 @@
+body {
+    background-color: white;
+    font-family: 'Lora', serif;
+    margin: auto;
+    max-width: 700px;
+    min-width: 217px;
+}
+
+h1 {
+    font-size: 22px;
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+}
+
+h2 {
+    text-align: center;
+    margin: 2px 0px 2px 0px;
+    font-size: 16px;
+    font-weight: bolder;
+    font-style: italic;
+}
+h3 {
+    margin: 0px 0px 0px 0px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+ul {
+    margin: 0cm 0cm 0cm 0cm;
+    font-size: 13px;
+}
+
+ol {
+    list-style-type:decimal;
+    margin: 0cm .25in 0cm 0cm;
+    font-size: 13px;
+}
+
+p {
+    margin: 0px 0cm 0px 0cm;
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 920px) {
+    body {
+        max-width: 500px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    body {
+        max-width: 350px;
+    }
+}
