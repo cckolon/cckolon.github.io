@@ -22,3 +22,5 @@ I'm on Twitter as [@CarlKolon](https://twitter.com/CarlKolon).
 I'm on Github as [cckolon](https://github.com/cckolon).
 
 My cat is on Instagram as [@rockminsterfullerene](https://www.instagram.com/rockminsterfullerene/).
+
+My wife, Jackie, is a 4th year medical student at [UCSF](https://www.ucsf.edu/), and will start her internal medicine residency there this summer.
