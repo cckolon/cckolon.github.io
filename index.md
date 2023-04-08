@@ -13,7 +13,7 @@ I've done a lot of math work at the Naval Academy. [You can read about it here](
 
 ![contact](assets/media/contact.png)
 
-[This is my public key.](assets/media/publickey.asc)
+[This is my public key.](/assets/media/publickey.asc)
 
 I'm on LinkedIn as [Carl Kolon](https://www.linkedin.com/in/carl-kolon-18243a209)
 
