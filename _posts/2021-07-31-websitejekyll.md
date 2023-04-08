@@ -6,8 +6,6 @@ image: /assets/media/jekylllogo.png
 description: Using Jekyll to save myself time when blogging.
 ---
 
-
-
 I have a confession to make. <!--more-->
 
 Until yesterday, I was writing this entire website manually, in HTML and CSS.
@@ -18,7 +16,7 @@ I realized that this wouldn't work when I created my second article on this blog
 
 ![My main blog page. Gross!](/assets/media/yuck.png){: .center-image}
 
-I have used Wordpress in the past (although it was a while ago), but I was still hesitant to use it, or something similar. A whole new software and formatting setup would make it difficult to migrate my content over. Using semi-free commercial software is annoying, because you never know when a feature you need will be hidden behind a paywall. Plus, I didn't want to screw around with [finding a theme I liked](https://wordpress.com/themes). I want to control those things manually, so that if something irks me about my site, I can fix it (at least in theory). 
+I have used Wordpress in the past (although it was a while ago), but I was still hesitant to use it, or something similar. A whole new software and formatting setup would make it difficult to migrate my content over. Using semi-free commercial software is annoying, because you never know when a feature you need will be hidden behind a paywall. Plus, I didn't want to screw around with [finding a theme I liked](https://wordpress.com/themes). I want to control those things manually, so that if something irks me about my site, I can fix it (at least in theory).
 
 So I went looking for new blog software. The following features were non-negotiable for me:
 
@@ -127,7 +125,6 @@ Before I started taking advantage of Jekyll's features, I just wanted to make my
 * research.html
 
 {% endhighlight %}
-
 
 I made index a markdown file so that I could play with the markdown implementation. The rest of the files I just copied over. For index, I rewrote the main page in markdown. I attached a front matter snippet with YAML which included some information about the page (its title and layout).
 

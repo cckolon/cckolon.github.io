@@ -3,15 +3,14 @@ layout: post
 title: Cycling Efficiency
 excerpt_separator: <!--more-->
 image: /assets/media/cycling/acceleration-graph.png
+description: A Javascript applet to calculate the effect of gear shifts on your bicycle.
 ---
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js"></script>
 <script type="text/javascript" language="javascript" src="/assets/scripts/bike.js"></script>
 
-
-
-Norfolk is a pretty bike friendly city. I recently got a [Trek FX 3 Disc](https://www.trekbikes.com/us/en_US/bikes/hybrid-bikes/fitness-bikes/fx/fx-3-disc/p/28474/) to ride around, and I've become familiar with some of the trails. A few of my favorite spots are the [Elizabeth River Trail](https://elizabethrivertrail.org/), [Back Bay](https://www.fws.gov/refuge/back-bay), and the [Great Dismal Swamp canal trail](https://www.cityofchesapeake.net/government/city-departments/departments/parks-recreation-tourism/parks/dismal_swamp_trail.htm). 
+Norfolk is a pretty bike friendly city. I recently got a [Trek FX 3 Disc](https://www.trekbikes.com/us/en_US/bikes/hybrid-bikes/fitness-bikes/fx/fx-3-disc/p/28474/) to ride around, and I've become familiar with some of the trails. A few of my favorite spots are the [Elizabeth River Trail](https://elizabethrivertrail.org/), [Back Bay](https://www.fws.gov/refuge/back-bay), and the [Great Dismal Swamp canal trail](https://www.cityofchesapeake.net/government/city-departments/departments/parks-recreation-tourism/parks/dismal_swamp_trail.htm).
 
 While cycling, I sometimes ask myself: what gear should I be in when accelerating, and what gear should I stay in while cycling at a certain speed? I wanted to use some math and simulation to explore this question. I was heavily inspired by [Steve Gribble's wattage to speed graph](https://www.gribble.org/cycling/power_v_speed.html), but wanted to also look at how gear shifts affect the speed and power of the bike.
 

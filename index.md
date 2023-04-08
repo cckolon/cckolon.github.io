@@ -5,8 +5,6 @@ image: /assets/media/sobc.jpg
 description: Welcome to my site!
 ---
 
-*** This site hosted with Github Pages ***
-
 I'm a Submarine Officer in the US Navy, currently working in Norfolk, Virginia. At the US Naval Academy, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Math. This is my personal website. Obviously, nothing posted here represents the opinions of the Navy or DoD.
 
 ![In San Francisco](/assets/media/goldengate.jpg){: .center-image}
