@@ -42,7 +42,7 @@ Submarines once!
 
 <figure>
 <p><img src="/assets/media/navy/sub_selects.jpg" alt="Sub Selects"></p>
-  <figcaption>Playing cribbage, eating submarine sandwiches, and miming periscopes with my fellow submarine selects, Sam Haber and Eryn Culton, and submarine-qualified Plebe Tyler McGill.</figcaption>
+  <figcaption>Playing cribbage, eating submarine sandwiches, and miming periscopes with my fellow submarine selects, Sam Haber and Eryn Culton, and submarine-qualified Plebe Tyler McGill. Fall 2017.</figcaption>
 </figure>
 
 <figure>
@@ -92,7 +92,7 @@ Submarines once!
 
 <figure>
 <p><img src="/assets/media/navy/christening.jpg" alt="Christening"></p>
-  <figcaption>Christening PCU New Jersey with fellow JOs Mike Ross, J.B. Loomis, and Adam Kendrix. Fall 2021.</figcaption>
+  <figcaption>Christening PCU New Jersey with fellow JOs Michael Ross, J.B. Loomis, and Adam Kendrix. Fall 2021.</figcaption>
 </figure>
 
 <figure>
