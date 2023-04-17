@@ -47,7 +47,7 @@ Submarines once!
 
 <figure>
 <p><img src="/assets/media/navy/100_night.jpg" alt="100s Night"></p>
-  <figcaption>Acting like a Plebe one more time on ‘100s Night.’ Winter 2018.</figcaption>
+  <figcaption>Acting like a Plebe one more time on "100s Night." Winter 2018.</figcaption>
 </figure>
 
 <figure>
@@ -82,27 +82,27 @@ Submarines once!
 
 <figure>
 <p><img src="/assets/media/navy/jwr_wardroom.jpg" alt="John Warner"></p>
-  <figcaption>With the wardroom of USS John Warner, stuck on the pier before our 2020 deployment. I’m 5th from the left. Spring 2020.</figcaption>
+  <figcaption>With the wardroom of USS JOHN WARNER, stuck on the pier before our 2020 deployment. I’m 5th from the left. Spring 2020.</figcaption>
 </figure>
 
 <figure>
 <p><img src="/assets/media/navy/fish.jpg" alt="Fish"></p>
-  <figcaption>Being awarded my fish underway on USS John Warner. Awarding them is the CO, Will Wiley. Fall 2020.</figcaption>
+  <figcaption>Being awarded my fish underway on USS JOHN WARNER. Awarding them is the CO, Will Wiley. Fall 2020.</figcaption>
 </figure>
 
 <figure>
 <p><img src="/assets/media/navy/christening.jpg" alt="Christening"></p>
-  <figcaption>Christening PCU New Jersey with fellow JOs Michael Ross, J.B. Loomis, and Adam Kendrix. Fall 2021.</figcaption>
+  <figcaption>Christening PCU NEW JERSEY with fellow JOs Michael Ross, J.B. Loomis, and Adam Kendrix. Fall 2021.</figcaption>
 </figure>
 
 <figure>
 <p><img src="/assets/media/navy/cno.jpg" alt="JOOY"></p>
-  <figcaption>With my fellow submarine Junior Officers of the Year, and the Chief of Naval Operations. Spring 2022.</figcaption>
+  <figcaption>With the other submarine Junior Officers of the Year, and the Chief of Naval Operations. Spring 2022.</figcaption>
 </figure>
 
 <figure>
 <p><img src="/assets/media/navy/jwr_visit.jpg" alt="John Warner"></p>
-  <figcaption>Visiting USS John Warner a few years after I left. The ship was anchored near the Naval Academy, in Annapolis, and Jackie and I rode out to see it. Fall 2022.</figcaption>
+  <figcaption>Visiting USS JOHN WARNER a few years after I left. The ship was anchored near the Naval Academy, in Annapolis, and Jackie and I rode out to see it. Fall 2022.</figcaption>
 </figure>
 
 <figure>
