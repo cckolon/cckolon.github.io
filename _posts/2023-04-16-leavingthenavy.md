@@ -101,11 +101,6 @@ Submarines once!
 </figure>
 
 <figure>
-<p><img src="/assets/media/navy/pentagon.jpg" alt="Pentagon"></p>
-  <figcaption>At the Pentagon with Jackie. Spring 2022.</figcaption>
-</figure>
-
-<figure>
 <p><img src="/assets/media/navy/jwr_visit.jpg" alt="John Warner"></p>
   <figcaption>Visiting USS John Warner a few years after I left. The ship was anchored near the Naval Academy, in Annapolis, and Jackie and I rode out to see it. Fall 2022.</figcaption>
 </figure>
