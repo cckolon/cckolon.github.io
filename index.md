@@ -1,15 +1,15 @@
 ---
 layout: default
 title: Carl Kolon
-image: /assets/media/sobc.jpg
+image: /assets/media/goldengate.jpg
 description: Welcome to my site!
 ---
 
-I'm a Submarine Officer in the US Navy, currently working in Norfolk, Virginia. At the US Naval Academy, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Math. This is my personal website. Obviously, nothing posted here represents the opinions of the Navy or DoD.
+I'm a Software Engineer Intern at [Vannevar Labs](https://www.vannevarlabs.com/), currently working in San Francisco. For 5 years I was a Submarine Officer in the US Navy. At the US Naval Academy, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Math. This is my personal website.
 
 ![In San Francisco](/assets/media/goldengate.jpg){: .center-image}
 
-I've done a lot of math work at the Naval Academy. [You can read about it here](research.html). The main topic of my research is the stability of mathematical swarm models.
+I did a lot of math work at the Naval Academy. [You can read about it here](research.html). The main topic of my research is the stability of mathematical swarm models.
 
 ![contact](assets/media/contact.png)
 
@@ -23,4 +23,4 @@ I'm on Github as [cckolon](https://github.com/cckolon).
 
 My cat is on Instagram as [@rockminsterfullerene](https://www.instagram.com/rockminsterfullerene/).
 
-My wife, Jackie, is a 4th year medical student at [UCSF](https://www.ucsf.edu/), and will start her internal medicine residency there this summer.
+My wife, Jackie, is an internal medicine resident at [UCSF](https://www.ucsf.edu/).
