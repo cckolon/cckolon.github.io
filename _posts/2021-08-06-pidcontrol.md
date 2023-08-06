@@ -42,7 +42,7 @@ Pitch and roll error (the distance from desired values) would be calculated firs
 
 The algorithm worked okay, but there were some issues. Sometimes, there would be persistent errors, where real pitch or roll would never reach the ordered value. Also, the submarine tended to [oscillate around the desired pitch or roll](https://en.wikipedia.org/wiki/Hunting_oscillation), which looks unrealistic and a little sickening.
 
-![Hunting in proportional control](/assets/media/pinstability.gif){: .center-image}
+![Hunting in proportional control](/assets/media/pinstability.gif)
 
 The submarine is acting similarly to a [damped harmonic oscillator](https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator), damped by the angular friction of the physics engine. It would be possible (I think) to vary the torque magnitude to eliminate the oscillations ([critically damp](https://en.wikipedia.org/wiki/Damping) the system), but this gives us no control over the submarine's pitch rate: we would have to choose the rate that gave us a damping ratio of 1. 
 
@@ -58,11 +58,11 @@ To try and control oscillations, I could apply another feedback signal based on 
 
 This largely eliminated the oscillations, but it led to a weirder problem. When pitching and rolling simultaneously, the submarine could suddenly become unstable.
 
-![Damped Instability](/assets/media/subinstability.gif){: .center-image}
+![Damped Instability](/assets/media/subinstability.gif)
 
 Even if it was remaining inside of its normal limits, sometimes the submarine would fail to reach the desired angle, even after a prolonged period. You can see this by the discrepancy between the red (ordered angle) and white (actual angle) needles on the left. 
 
-![Offset](/assets/media/suboffset.gif){: .center-image}
+![Offset](/assets/media/suboffset.gif)
 
 So I couldn't use this method. I just couldn't trust it! At this point, I faced two options. There was the mathematical way of solving this problem: figure out what is actually going on, and spend a lot of time trying to solve it elegantly. There is also the engineering way: use a well-studied method that will probably work.
 
@@ -76,7 +76,7 @@ A PID controller tries to minimize an *error function*, \\(e(t)\\). The insight 
 * If the car starts to ascend a hill, its speed will start to decrease. Seeing this, the controller should preemptively open the throttle in order to prevent the speed from dropping too much. This action is driven by the derivative response: the rate of change of error. It is also called *anticipatory control*.
 * As the car continues up the hill, there may be a steady-state error, since it takes more engine power to maintain the same speed. Over time, the controller should see that the current speed is insufficient, and open throttles farther to compensate. This action is driven by the integral response: the "area under the curve" of the error.
 
-![Cruise Control on a Hill](/assets/media/hillcontrol.png){: .center-image}
+![Cruise Control on a Hill](/assets/media/hillcontrol.png)
 
 In this case, \\(e(t)\\) is a simple function: the desired speed minus the actual speed. The *control function* \\(u(t)\\) is the position of the throttle. The control function is calculated from the error function by the following equation:
 \\[u(t) = K_p e(t) + K_i \int_0^t e(\tau) \mathrm{d}\tau + K_d e'(t)\\]
@@ -127,7 +127,7 @@ K_d &= 2\end{aligned}$$
 
 Finally, I had control. No crazy overshoots or instability.
 
-![PID Control](/assets/media/stablepid.gif){: .center-image}
+![PID Control](/assets/media/stablepid.gif)
 
 ## The Math
 
@@ -147,7 +147,7 @@ $$\alpha = - I_R^{-1}\left(\omega\times I_R\omega\right)$$
 
 For a rotating body, [there can be angular acceleration even without any torque](https://en.wikipedia.org/wiki/Precession#:~:text=Torque%2Dfree%20precession%20implies%20that,vector%20changes%20orientation%20with%20time.)! This is one of the key differences between angular and linear motion. Don't believe me? [Check this out](https://en.wikipedia.org/wiki/Tennis_racket_theorem).
 
-![Tennis Racket Theorem](/assets/media/tennisracket.gif){: .center-image}
+![Tennis Racket Theorem](/assets/media/tennisracket.gif)
 
 \\(I_R\\) can be diagonalized into a matrix \\(\Lambda\\) by a rotation matrix \\(Q\\). The columns of \\(Q\\) are the *principal axes* of the body, and the diagonal entries of \\(\Lambda\\) are its *principal moments*.
 
@@ -176,7 +176,7 @@ Unity uses [quaternions](https://en.wikipedia.org/wiki/Quaternion) for rotation,
 
 This was my submarine's inertia tensor and rotation:
 
-![Inertia](/assets/media/inertia.png){: .center-image}
+![Inertia](/assets/media/inertia.png)
 
 You might notice that the inertia tensor rotation is really close to the identity (zero) rotation. In other words, the x, y, and z axes were almost the submarine's principal axes. This kind of makes sense, since the submarine has a lot of symmetry about those axes (although the sail is problematic).
 
@@ -227,4 +227,4 @@ void AnglePID()
 
 And now, finally, I can move the submarine around and feel good about it.
 
-![Nirvana](/assets/media/nirvana.gif){: .center-image}
+![Nirvana](/assets/media/nirvana.gif)

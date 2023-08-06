@@ -37,15 +37,15 @@ How does assigning a watchbill fit the criteria listed above? Let's look at an e
 
 Suppose we have to assign Alice, Bob, and Charlie on a watchbill covering 4 days. 
 
-![Blank Watchbill](/assets/media/watchbill/blank.png){: .center-image}
+![Blank Watchbill](/assets/media/watchbill/blank.png)
 
 We can assign our vector \\(\mathbf{x} = \left(x_{a1},x_{a2},\ldots\right)\\), where each \\(x\\) is a zero (not assigned) or a one (assigned).
 
-![Watchbill Variables](/assets/media/watchbill/variables.png){: .center-image}
+![Watchbill Variables](/assets/media/watchbill/variables.png)
 
 Suppose that we assign each element of \\(\mathbf{x}\\) randomly. We might get something like this:
 
-![Random Assignments](/assets/media/watchbill/random.png){: .center-image}
+![Random Assignments](/assets/media/watchbill/random.png)
 
 This is not a good watchbill, for a few reasons. On day 1, both Alice and Bob are assigned, which is unnecessary. Bob is on duty every single day. Charlie is never assigned.
 
@@ -125,7 +125,7 @@ for n, name in enumerate(self.all_watchstanders):
 
 I wrote a function called `solve_model` which would generate a `CpSolver` object with a solution satisfying the constraints. This would spit out a schedule which worked.
 
-![A basic schedule](/assets/media/watchbill/basicsolution.png){: .center-image}
+![A basic schedule](/assets/media/watchbill/basicsolution.png)
 
 This satisfies the constraints which we have set above. Namely:
 - Only one watchstander is assigned per day.
@@ -138,7 +138,7 @@ This only deals with the basic issues of scheduling, though, and a human could e
 
 Suppose that Bob cannot work day 2, and Alice cannot work day 4 (maybe Alice has a doctor's appointment, and Bob is getting married). To keep track of issues like this, I created another matrix called `schedule_conflicts`. `schedule_conflicts[i][j]` is `True` if watchstander `i` cannot stand watch on day `j`, and `False` otherwise. In our case, `schedule_conflicts` would look like this.
 
-![Conflict Matrix](/assets/media/watchbill/conflictmatrix.png){: .center-image}
+![Conflict Matrix](/assets/media/watchbill/conflictmatrix.png)
 
 For every schedule conflict, I added a constraint into the model to prevent the worker from working that day.
 
@@ -158,7 +158,7 @@ I made a similar matrix, called `locked_in_days` for days on which I required th
 
 After applying this constraint, the program might return something like the following solution.
 
-![Solution With Conflicts](/assets/media/watchbill/solutionwconflicts.png){: .center-image}
+![Solution With Conflicts](/assets/media/watchbill/solutionwconflicts.png)
 
 Looks pretty good. But what if day 4 is a day off?
 
@@ -166,7 +166,7 @@ Looks pretty good. But what if day 4 is a day off?
 
 If day 4 is a holiday, this watchbill is pretty unfair. Charlie gets screwed because he stands two full duty days, and he stands duty on a less favorable day (a holiday, which he would otherwise get off). In this case, the following watchbill would be fairer.
 
-![Fairer Solution](/assets/media/watchbill/fairersolution.png){: .center-image}
+![Fairer Solution](/assets/media/watchbill/fairersolution.png)
 
 Why? What makes this fairer? How can we teach the computer to optimize the "fairness" of the watchbill? To answer these questions, I defined a value that I called the *badness* of each schedule. Badness is defined for each watchstander. It is the sum of the *badness weights* of each duty day that watchstander stands. I defined the following badness weights:
 
@@ -204,11 +204,11 @@ self.model.Minimize(worst_deal)
 
 The following diagram shows why Schedule 2 would minimize `worst_deal` in this case. The green dots represent each watchstander's badness score, on a number line.
 
-![Minimizing the worst deal](/assets/media/watchbill/worstdeal.png){: .center-image}
+![Minimizing the worst deal](/assets/media/watchbill/worstdeal.png)
 
 In this simple case, this objective function is good enough. In other watchbills, though, it could cause problems. Compare the following two badness score spreads:
 
-![The problem with selecting according to worst_deal](/assets/media/watchbill/worstdealproblem.png){: .center-image}
+![The problem with selecting according to worst_deal](/assets/media/watchbill/worstdealproblem.png)
 
 According to the `worst_deal` objective function, these schedules are equally fair. In fact, though, schedule 4 is far preferable. Look at the variances.
 
@@ -243,7 +243,7 @@ self.model.Minimize(deal_spread)
 
 Even this is not perfect, though. Consider the following two schedules.
 
-![The problem with deal_spread](/assets/media/watchbill/dealspreadproblem.png){: .center-image}
+![The problem with deal_spread](/assets/media/watchbill/dealspreadproblem.png)
 
 Again, both of these schedules have the same value of `deal_spread`, but schedule 6 is clearly fairer than schedule 5. 
 

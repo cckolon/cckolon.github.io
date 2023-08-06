@@ -26,15 +26,23 @@ th,td{
 
 ul {
     list-style-type:disc;
-    margin: 0cm .25in 0cm 0cm;
 }
 
 ol {
     list-style-type:decimal;
-    margin: 0cm .25in 0cm 0cm;}
+}
 
-p {
+li {
     margin: 5pt 0cm 5pt 0cm;
+}
+
+p, .left-img{
+    margin: 5pt 0cm 5pt 0cm;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
 div {
@@ -55,6 +63,16 @@ img {
     width: auto;
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+.center
+{
+    margin: 0 auto;
+    display: block;
+    text-align: center;
 }
 
 blockquote {
@@ -62,16 +80,6 @@ blockquote {
     border-left: 2px solid rgb(56, 56, 56);
     margin: 1.5em 10px;
     padding: 0.5em 10px;
-    quotes: "\201C""\201D""\2018""\2019";
-}
-
-blockquote:before {
-    color: #ccc;
-    content: open-quote;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
 }
 
 blockquote p {
@@ -92,24 +100,31 @@ input {
     width: 9em;
 }
 
-figure {
+.img-caption {
+    text-align: center;
+    font-size: .9em;
+    font-weight: 500;
+    color: darkslategray;
+}
+
+.fim {
     margin: 1em auto;
     position: relative;
     display: inline-block;
     text-align: center;
 }
 
-figure p {
+.fim p {
     display: block;
     margin: 0;
     margin-block: 0;
 }
 
-figure p img {
+.fim p img {
     display: block;
 }
 
-figcaption {
+.fim figcaption {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -212,13 +227,6 @@ pre {
     color: green;
     font-weight: bold;
   }
-
-.center-image
-{
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-}
 
 .poem-text
 {

@@ -11,7 +11,7 @@ And it is so fun. Honestly, if I shoot and kill a sub in *Cold Waters* and they 
 
 So, when I went to design torpedo guidance in my own game, I knew it was high stakes. Even more than *Cold Waters*, I want this game to be about the interactions between submarines and torpedos. I want incoming torpedos to be smart, devious weapons which you have to be really skilled to evade. I want to replicate the sense of accomplishment that I get when I send a torpedo into the bottom in *Cold Waters*.
 
-![Dodging A Torpedo](/assets/media/dodge.png){: .center-image}
+![Dodging A Torpedo](/assets/media/dodge.png)
 
 Guiding torpedos in real life is very hard. Most of the challenges involve the technical oolies of underwater navigation, target detection, mechanical engineering... I don't want to open that can of worms. For me, the torpedo always knows where it is, and if the target is close enough, it knows exactly where the target is. The torpedo's speed and turn rate are restricted. The torpedo runs for a set amount of time, and then explodes (failure). If it hits the target, it explodes too (success).
 
@@ -37,7 +37,7 @@ When varying the guidance algorithms of different torpedos, I only changed the `
 
 Below is a simplified flowchart of how the torpedo logic works.
 
-![Torpedo Logic](/assets/media/torpedologic.svg){: .center-image}
+![Torpedo Logic](/assets/media/torpedologic.svg)
 
 ## Naive Control
 
@@ -85,7 +85,7 @@ After calculating the collision point, the torpedo simply aims at it. There are 
 
 There are still disadvantages, though. If the target maneuvers, the collision point may move many times faster, which, at least in theory, could cause the torpedo to miss.
 
-![Circular Evasion](/assets/media/circleevasion.svg){: .center-image}
+![Circular Evasion](/assets/media/circleevasion.svg)
 
 This is the `HuntTarget` subroutine for lead control.
 
@@ -122,7 +122,7 @@ $$\overrightarrow{R}_i=\overrightarrow{R}_T+\overrightarrow{V}_Tt_{go}+\frac12\o
 
 Where \\(\overrightarrow{a}_T\\) is the acceleration of the target. Now, if the submarine were turning in a circle, the constant acceleration towards the center would push the intercept point inward, allowing the torpedo to close the distance. More generally, the torpedo would adjust its intercept point in the direction of the maneuver once the target began maneuvering, rather than waiting for the target's speed to change appreciably.
 
-![Solving the circular acceleration problem](/assets/media/circleacceleration.svg){: .center-image}
+![Solving the circular acceleration problem](/assets/media/circleacceleration.svg)
 
 There is a problem associated with this method; if \\(t_{go}\\) is too large, \\(\overrightarrow{a}\_Tt\_{go}^2\\) could become huge, causing the acceleration term to dominate the value of \\(\overrightarrow{R}\_i\\). This would usually happen if the torpedo was far from the target, since this would lead to a large value of \\(t\_{go}\\). To mitigate this problem, I set a *terminal distance* of 1000 yards. If the torpedo was outside of the terminal distance, \\(t\_{go}^2\\) was likely to be large and the acceleration was likely to change before the torpedo caught up with the target, so the torpedo would disregard the acceleration term and lead the target normally. Once closing inside the terminal distance, it would begin to use acceleration to refine its solution.
 
@@ -173,7 +173,7 @@ The intercept approach seemed like a good solution to me, but I was curious abou
 
 As a Naval Officer, I found PN very intuitive. A classic danger sign of an imminent collision is known as CBDR ([constant bearing, decreasing range](https://en.wikipedia.org/wiki/Constant_bearing,_decreasing_range)). On submarines, we often refer to CBDR as "zero bearing rate", or a "trace standing up". Essentially, if another ship remains down the same bearing to your ship, and your range is decreasing, you are on a collision course. PN takes advantage of this principle by trying to *create* a CBDR situation.
 
-![CBDR](/assets/media/cbdr.svg){: .center-image}
+![CBDR](/assets/media/cbdr.svg)
 
 If the target's bearing is drawing left, the PN torpedo turns left. If the bearing rate is drawing right, the PN torpedo turns right. Mathematically, if we call the bearing to the target \\(\lambda\\), and the torpedo's heading \\(\gamma\\), we use the following guidance law:
 
@@ -183,7 +183,7 @@ Where the dots refer to the time derivatives of each angle, and \\(N\\) is a gai
 
 In the image below, you can see the principle of the method. The torpedo's bearing to the submarine is initially drawing right, indicating that the submarine will pass in front of the torpedo. To compensate, the torpedo turns right, until the submarine's bearing is constant, creating a CBDR situation and therefore a collision course.
 
-![PN in 2D](/assets/media/2dpn.svg){: .center-image}
+![PN in 2D](/assets/media/2dpn.svg)
 
 My first implementation of PN was a 2-dimensional version. I would calculate the bearing to the target, and the next expected bearing to the target (based on current speed of the torpedo and the target). I would subtract these to find the bearing drift, and add a torque about the y (up) axis proportional to the difference. Finally, in order to keep the torpedo upright and at the correct depth, I would apply a torque proportional to:
 
@@ -223,7 +223,7 @@ In the picture below, we have the vector from the projectile (torpedo) to the ta
 
 $$\overrightarrow{V}_{T/P} = \overrightarrow{V}_T-\overrightarrow{V}_P$$
 
-![Calculating VTP](/assets/media/vtp.svg){: .center-image}
+![Calculating VTP](/assets/media/vtp.svg)
 
 Since \\(\overrightarrow{V}\_T\\) and \\(\overrightarrow{V}\_P\\) do not change unless the projectile or target maneuvers, \\(\overrightarrow{V}\_{T/P}\\) remains the same as well. We can calculate the relative position vector \\(\overrightarrow{R}\_{T/P}(t)\\) for any time in the future, assuming that the target does not maneuver, by using the equation:
 
@@ -231,11 +231,11 @@ $$\overrightarrow{R}_{T/P}(t) = \overrightarrow{R}_{T/P}(0) + \overrightarrow{V}
 
 Where \\(t\\) is some time in the future.
 
-![The trajectory of the submarine over time, relative to the torpedo](/assets/media/misstrajectory.svg){: .center-image}
+![The trajectory of the submarine over time, relative to the torpedo](/assets/media/misstrajectory.svg)
 
 Clearly, in this case, the submarine will pass behind the torpedo. In other words, the torpedo will miss the submarine by passing in front of it. The vector by which the torpedo misses is called the *Zero Effort Miss* (ZEM).
 
-![Zero Effort Miss](/assets/media/zemexample.svg){: .center-image}
+![Zero Effort Miss](/assets/media/zemexample.svg)
 
 In particular, we are interested in the *orthogonal ZEM*. This is the ZEM vector in the plane orthogonal to \\(\overrightarrow{R}_{T/P}\\).
 

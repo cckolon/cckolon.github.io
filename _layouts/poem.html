@@ -34,7 +34,7 @@
     {% for l in page.lines %}
         <div class = "gallery-block">
             <p class = "poem-text">{{ l }}</p>
-            <img src="/assets/media/diffusion/{{ page.path }}/{{ forloop.index }}.png" class="center-image">
+            <img src="/assets/media/diffusion/{{ page.path }}/{{ forloop.index }}.png">
         </div>
     {% endfor %}
     {{ content }}

@@ -14,9 +14,9 @@ While I was messing around with DALL-E, though, I read about [Stable Diffusion](
 
 At first, I just screwed around. I used the model to generate some outlandish images, using prompts like "Saul Goodman on a submarine".
 
-![saul 1](/assets/media/diffusion/saul1.png){: .center-image}
+![saul 1](/assets/media/diffusion/saul1.png)
 
-![saul 2](/assets/media/diffusion/saul2.png){: .center-image}
+![saul 2](/assets/media/diffusion/saul2.png)
 
 But then I started thinking about how I could use this tool - a machine doing something traditionally human - and take it a step further. I decided to use Stable Diffusion to illustrate poetry.
 

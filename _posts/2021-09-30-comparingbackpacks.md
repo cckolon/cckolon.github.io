@@ -12,7 +12,7 @@ Once I went through the relatively easy phases of lightening my bag (bring small
 
 So I went window shopping on the REI site. One of the site's many cool features is the detailed table of technical specs for each pack. Here's a picture of a typical backpack info table (this one for the [Trail 40 Pack](https://www.rei.com/product/168485/rei-co-op-trail-40-pack-mens)).
 
-![Tech Specs](/assets/media/techspecs.png){: .center-image}
+![Tech Specs](/assets/media/techspecs.png)
 
 So comparing weight on REI is pretty easy. Even better, REI gives an accurate volume measurement of each pack, in cubic inches! Really cool.
 
@@ -112,11 +112,11 @@ for url in backpackurls:
 
 This part really made me feel cool. Look at the automation!
 
-![Scrapin'](/assets/media/scrapin.gif){: .center-image}
+![Scrapin'](/assets/media/scrapin.gif)
 
 To put a little damper on my enthusiasm, I realized after a day or so that REI had blocked me...
 
-![Denied](/assets/media/reidenied.png){: .center-image}
+![Denied](/assets/media/reidenied.png)
 
 ## Displaying the Data
 
@@ -170,7 +170,7 @@ From this chart, we can see that stuff sacks and child carriers are in a fairly 
 
 The chart above gives us a pretty good image of what a more "efficient" backpack is. The lower (lighter) and farther to the right (bigger) a backpack is, the better. It would be cool, though, if we could come up with a numerical rating of the "efficiency" of a backpack. The most intuitive way is to divide the volume of the backpack by its weight. Borrowing from physics, I call this its *specific volume*. A higher specific volume means a more efficient pack. Here's a chart.
 
-<iframe id="igraph" src="/assets/media/specificvolume.html" height="570" width="100%"></iframe>{: .center-image}
+<iframe id="igraph" class="center" src="/assets/media/specificvolume.html" height="570" width="100%"></iframe>{: .center}
 
 Rating each backpack by its specific volume makes a lot of sense, and you can see how easy it becomes to pick out the truly great backpacks. Up at the top, we have packs with very high volume to weight ratio. Here are four outstanding ones. 
 
@@ -232,7 +232,7 @@ fig.add_trace(go.Scatter(name='Regression Results', x=backpacks["log(c)"], y=bac
 fig.write_html("loglog.html")
 {% endhighlight %}
 
-<iframe id="igraph" src="/assets/media/loglog.html" height="570" width="100%"></iframe>{: .center-image}
+<iframe id="igraph" class="center" src="/assets/media/loglog.html" height="570" width="100%"></iframe>
 
 This regression gives us the following values of \\(n\\) and \\(a\\):
 
@@ -253,13 +253,13 @@ fig.add_trace(go.Scatter(name='Regression Results', x=backpacks["Capacity (cu. i
 fig.write_html("hausdorff.html")
 {% endhighlight %}
 
-<iframe id="igraph" src="/assets/media/hausdorff.html" height="570" width="100%"></iframe>{: .center-image}
+<iframe id="igraph" class="center" src="/assets/media/hausdorff.html" height="570" width="100%"></iframe>
 
 ...okay, so that line is barely curved, which basically tells us that we might as well have been using specific volume this entire time. Still, it was a fun exercise. To take it one step further, we can design a new metric, similar to specific volume, which is resistant to the biases of specific volume. I call it the *Backpack Rating Factor* (BRF).
 
 $$\text{BRF} = \frac{ac^n}w$$
 
-<iframe id="igraph" src="/assets/media/brf.html" height="570" width="100%"></iframe>{: .center-image}
+<iframe id="igraph" class="center" src="/assets/media/brf.html" height="570" width="100%"></iframe>
 
 This graph shows us that the [Flash 18](https://www.rei.com/product/185563/rei-co-op-flash-18-print-pack) is the ultimate champion. After staring at backpacks for so long, though, I decided to stick with my [Kelty](https://www.kelty.com/redwing-50/) for now.
 

@@ -9,7 +9,7 @@ description: Detailed modeling of the aerodynamics of a shell on a ballistic tra
 Imagine a cannon, firing a shell into the air. What path will the shell follow? How far will it travel? How long will it remain airborne? Below is woodcut by Walther Hermann Ryff, a 16th century mathematician, examining this question. At the time, [most theorists thought](https://en.wikipedia.org/wiki/Theory_of_impetus) that cannonballs traveled in straight-line segments and circular arcs, stitched together.
 <!--more-->
 
-![](/assets/media/projectiles/ryff.jpg){: .center-image}
+![A Ryff illustration of a cannonball](/assets/media/projectiles/ryff.jpg)
 
 Nowadays, we know better. There is a simple, Newtonian treatment of projectile motion which we learn in high school or early college level physics. The problem has clear analytical solutions which you'll probably recognize: projectiles travel in parabolas, there is a closed-form range and hang time equation, which you may know, etc. It reminds me of some other early physics topics, which contain a simplifying assumption which makes the problem manageable.
 
@@ -53,7 +53,7 @@ $$\begin{align}
 
 You can plot this parametrically, and sure enough, it is a neat parabola. 
 
-<iframe src="https://www.desmos.com/calculator/ypxfi1uf4i" width="400" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>{: .center-image}
+<iframe class="center" src="https://www.desmos.com/calculator/ypxfi1uf4i" width="400" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
 
 If you play with the launch angle (\\(a\\) here, since \\(\theta\\) is used to plot polar graphs) you can see that an angle of 45° produces the maximum range. If you want to prove this, you can derive the range equation.
 
@@ -78,13 +78,13 @@ x\left(\frac{2v_0\sin\theta}g\right) &=\frac{2v_0^2\sin\theta\cos\theta}{g}\\
 
 This formula tells us a couple interesting things. First of all, the range of the projectile is indeed maximized when \\(\theta = 45^\circ\\), because \\(\sin(2\theta)=1\\), its maximum value. It also tells us that there are always two angles which give us the same range. Try varying the launch angle in the plot below.
 
-<iframe src="https://www.desmos.com/calculator/ewwjjnxnwb" width="400" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>{: .center-image}
+<iframe src="https://www.desmos.com/calculator/ewwjjnxnwb" class="center" width="400" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
 
 The second insight is particularly useful, and was used in World War II to great effect. It allowed a tactic called "[time on target](https://en.wikipedia.org/wiki/Time_on_target)," where artillery guns would first fire a high shot, and then a low shot after a specified time. Since they would travel the same range, but in different times, both shells would strike the target simultaneously.
 
 If the cannon is able to vary the launch speed, as well as the launch angle, there can be a greater number of simultaneous shots, limited only by the gun's ability to reload. See the below image from the wikimedia commons.
 
-![/assets/media/projectiles/MRSI](https://upload.wikimedia.org/wikipedia/commons/e/e3/MRSI_animation_SMIL.svg){: .center-image}
+![/assets/media/projectiles/MRSI](https://upload.wikimedia.org/wikipedia/commons/e/e3/MRSI_animation_SMIL.svg)
 
 This concept is now known as [multiple round simultaneous impact](https://en.wikipedia.org/wiki/Artillery#Multiple_round_simultaneous_impact), or MRSI. The best modern guns can fire up to six MRSI rounds [(link to brochure)](https://www.baesystems.com/en-media/uploadFile/20210609192210/1434555671252.pdf) at close range.
 
@@ -120,7 +120,7 @@ There are a few to choose from, but the long-time favorite of the US and several
 
 A common shell fired by the M198 howitzer is the [M107 projectile](https://www.gd-ots.com/munitions/artillery/155m-m107/). Even though it's since been superseded by [better projectiles](https://www.baesystems.com/en/product/shell-155mm-how-he-l15), it's still seen a fair amount of use, especially in training and testing. Here's a photo from page 3-77 of [Army TM 43-0001-28](https://books.google.com/books?id=tHk-AAAAYAAJ&printsec=frontcover#v=onepage&q&f=false).
 
-![](/assets/media/projectiles/m107.png){: .center-image}
+![](/assets/media/projectiles/m107.png)
 
 Here is some data which will be important:
 
@@ -131,17 +131,17 @@ Here is some data which will be important:
 
 There's some data out there about the aerodynamics of the M107 shell, including [this paper](https://apps.dtic.mil/sti/pdfs/ADA369710.pdf) by Garner et al., which directs the reader to a [detailed analysis of the similarly-shaped M101 projectile](https://apps.dtic.mil/sti/pdfs/AD0454925.pdf) by MacAllister and Krial. If you go to figure 7 of the paper, you can find this diagram:
 
-![](/assets/media/projectiles/drag_coefficient.png){: .center-image}
+![](/assets/media/projectiles/drag_coefficient.png)
 
 In case it is too tough to read (the scan quality is terrible), the x-axis is the *Mach number*, the ratio of projectile speed to the speed of sound, and the y-axis is the zero-yaw drag coefficient \\(c_{d0}\\), which is equal to \\(c_d\\) if the projectile is parallel to its flight path.
 
 You can see that the graph is really nonlinear; this is the second transition. At speeds below the speed of sound, the projectile has a mostly-constant \\(c_{d0}\\) of around 0.13. In the transonic range (near mach 1) the \\(c_{d0}\\) rises sharply to almost 0.4, before lowering again at higher Mach numbers. This is due to [wave drag](https://en.wikipedia.org/wiki/Wave_drag). At Mach numbers near 1, the compression effects of air become significant, and shockwaves form. Shockwaves cause large amounts of drag due to the sudden change in pressure along the wave front. The drag coefficient is actually *greater* at Mach 1 than at higher speed, since at Mach 1 the shock wave is perfectly normal (perpendicular) to the flight path, and exerts the most slowing pressure. Look at the shapes of the following shock waves at different Mach numbers to see what I'm talking about (source: [James and Carros, Experimental Investigation of the Zero-Lift Drag of a Fin-Stabilized Body of Fineness Ratio 10 at Mach Numbers Between 0.6 and 10](http://www.rasaero.com/dloads/NACA%20RM%20A53D02.pdf)).
 
-![](/assets/media/projectiles/mach_comparison.gif){: .center-image}
+![](/assets/media/projectiles/mach_comparison.gif)
 
 To use this data in calculation, I used scipy's [linear interpolation](https://www.geeksforgeeks.org/how-to-implement-linear-interpolation-in-python/) function, and selected some points from the graph to plot. Here's what my drag coefficient curve looked like.
 
-![](/assets/media/projectiles/drag_coefficient_interpolation.png){: .center-image}
+![](/assets/media/projectiles/drag_coefficient_interpolation.png)
 
 ## Air Properties
 
@@ -168,7 +168,7 @@ What properties, exactly? Atmospheric density will be necessary, since it factor
 
 Atmospheric pressure and temperature vary with height in a strange way, since the atmosphere is unevenly heated by sunlight. Here's a graph made by NASA in the sixties:
 
-![](/assets/media/projectiles/atmospheric_properties_nasa.jpg){: .center-image}
+![](/assets/media/projectiles/atmospheric_properties_nasa.jpg)
 
 There is [a formula](https://en.wikipedia.org/wiki/Barometric_formula) for atmospheric pressure within the troposphere (the lowest portion of the atmosphere), but this relies on atmospheric temperature lowering linearly as height increases. From the graph above, we can see that this isn't true, even at the relatively low heights to which our projectiles will travel. Instead, I used values from [this table](https://www.engineeringtoolbox.com/elevation-speed-sound-air-d_1534.html) for both temperature and pressure, and interpolated. I converted the temperatures to Kelvin, and the pressures to Pascals, to keep everything in SI units.
 
@@ -183,11 +183,11 @@ Where \\(c\\) is the speed of sound, \\(\gamma\\) is the [heat capacity ratio](h
 
 Here's my version of NASA's graph, up to 32 km, which looks pretty much the same.
 
-![](/assets/media/projectiles/parameters_by_altitude.png){: .center-image}
+![](/assets/media/projectiles/parameters_by_altitude.png)
 
 To see how the drag force will respond to altitude and speed, we can substitute these values into the drag equation, and draw a 2-d contour plot.
 
-![](/assets/media/projectiles/drag_by_alt_speed.png){: .center-image}
+![](/assets/media/projectiles/drag_by_alt_speed.png)
 
 You can really see the "sound barrier" here, where drag sharply increases with shell speed. We'll come back to this diagram later, when analyzing each shell's trajectory.
 
@@ -210,17 +210,17 @@ $$F_d=\frac12\rho v^2c_dA$$
 
 This differential equation is not analytically solvable (especially considering how drag depends on speed and altitude), but we can solve it numerically, which I did with scipy's [solve_ivp](https://danielmuellerkomorowska.com/2021/02/16/differential-equations-with-scipy-odeint-or-solve_ivp/) function. Here's an example of how the trajectories look, compared to the ideal, frictionless parabolas.
 
-![](/assets/media/projectiles/all_comparisons.png){: .center-image}
+![](/assets/media/projectiles/all_comparisons.png)
 
 Clearly, drag makes a huge difference here. To see how big a difference, we can plot the ranges with drag and without drag over the entire span of launch angles.
 
-![](/assets/media/projectiles/comparing_effects_drag.png){: .center-image}
+![](/assets/media/projectiles/comparing_effects_drag.png)
 
 We can learn a few things from this angle/range plot. On the left edge of the graph, at low launch angles, the expected ranges with and without drag are much closer than on the right. This makes sense, since a shell fired at a low angle travels a shorter distance in the air, so less energy is lost to drag. It's also worth noting that the maximum range estimate given by the drag model is much closer to the real maximum range of the M198 howitzer, which is listed publicly as [18,100 m](https://www.military.com/equipment/m198-howitzer#:~:text=The%20M198%20has%20a%20sustained,97%2Dpound%20M549%20RAP%20rounds) when firing the M107 projectile.
 
 What this graph doesn't tell us, though, is what happens to the shells as they fly through the air: their speed, where they lose the most energy, etc. For this, I decided to display some trajectories on the speed/altitude graph.
 
-![](/assets/media/projectiles/trajectory_overlays.png){: .center-image}
+![](/assets/media/projectiles/trajectory_overlays.png)
 
 One of the really interesting things to gain from this graph is the final speed of each projectile. The 5° projectile loses very little energy, because it travels a very short distance, but the 20° projectile has the lowest final speed, which means that it has lost the most energy to air resistance. It is a sort of compromise: it has traveled far enough to lose significant energy to air resistance, but not high enough to escape the high-drag regions.
 
@@ -230,17 +230,17 @@ It's also interesting to note that all projectiles spend a fair amount of their 
 
 Now that we have much better estimations of speed and range over a flight path, we can reexamine the time-on-target idea. When I started writing this, I was hoping that it would allow three or more shots to hit the same target without varying the initial shell speed. This is possible for certain niche values of speed, mass, and range. Here's an example:
 
-![](/assets/media/projectiles/three_elevations.png){: .center-image}
+![](/assets/media/projectiles/three_elevations.png)
 
 This isn't practical, though. The shells are launched too close together, and the hang times are too similar. For most ranges and launch speeds, it doesn't work.
 
 We can use the simulation data to generate a practical graph for MRSI when varying launch speeds, though. See the following contour plot. Red lines are flight time contours, and black lines are range contours.
 
-![](/assets/media/projectiles/time_and_range.png){: .center-image}
+![](/assets/media/projectiles/time_and_range.png)
 
 The M198 can reload up to 4 times in one minute (once every 15 seconds). Suppose you wanted to hit a target 5000 yards away. You can highlight speed/angle combinations which would hit the desired target, and shoot all of them, as long as they are 15 seconds or greater apart.
 
-![](/assets/media/projectiles/5kyd_time_range.png){: .center-image}
+![](/assets/media/projectiles/5kyd_time_range.png)
 
 Following this plan, we could hit the target with 6 simultaneous shots!
 
@@ -255,7 +255,7 @@ Following this plan, we could hit the target with 6 simultaneous shots!
 
 All shots would arrive at time +85s. Here's a plot.
 
-![](/assets/media/projectiles/six_trajectories.png){: .center-image}
+![](/assets/media/projectiles/six_trajectories.png)
 
 ## Conclusion
 

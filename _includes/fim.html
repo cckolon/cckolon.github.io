@@ -1,0 +1,8 @@
+<div class="center">
+  <figure class="fim">
+    <p>
+      <img src="{{ include.url }}" alt="{% assign alt_text = include.alt | default: include.cap %}">
+    </p>
+    <figcaption>{{ include.cap | markdownify}}</figcaption>
+  </figure>
+</div>
