@@ -45,8 +45,7 @@ Submarines once!
 
 {% include fim.html url="/assets/media/navy/jwr_wardroom.jpg" cap="With the wardroom of USS JOHN WARNER, stuck on the pier before our 2020 deployment. I’m 5th from the left. Spring 2020." %}
 
-{% include fim.html url="/assets/media/navy/fish.jpg" cap="Being awarded my fish (and a medal) underway on USS JOHN WARNER. Awarding them is the CO, Will Wiley. Fall 2020.</figcaption>
-</figure>" %}
+{% include fim.html url="/assets/media/navy/fish.jpg" cap="Being awarded my fish (and a medal) underway on USS JOHN WARNER. Awarding them is the CO, Will Wiley. Fall 2020." %}
 
 {% include fim.html url="/assets/media/navy/christening.jpg" cap="Christening PCU NEW JERSEY with fellow JOs Michael Ross, J.B. Loomis, and Adam Kendrix. Fall 2021." %}
 

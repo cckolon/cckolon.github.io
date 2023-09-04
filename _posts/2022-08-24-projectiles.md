@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Target So Fine, we Hit It Six Times
+title: A Target So Fine, We Hit It Six Times
 excerpt_separator: <!--more-->
 image: /assets/media/projectiles/ryff.jpg
 description: Detailed modeling of the aerodynamics of a shell on a ballistic trajectory.
