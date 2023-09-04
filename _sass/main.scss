@@ -87,8 +87,8 @@ blockquote p {
 }
 
 iframe {
-    width: 560px;
-    height: 315px;
+    width: 800px;
+    height: 450px;
 }
 
 sup {
@@ -134,7 +134,7 @@ input {
     background: linear-gradient(to top, hsla(230, 40%, 5%, 0.95), hsla(230, 40%, 5%, 0));
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 850px) {
 pre {
     margin: 0pt 0% 0pt 0%;
     background-color:#FFFFDD;
@@ -157,7 +157,7 @@ iframe {
 }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 850px) {
 pre {
     margin: 10pt 10% 10pt 10%;
     background-color:#FFFFDD;

@@ -256,7 +256,7 @@ The Navy has known about this problem since the introduction of straight-line TM
 
 ![A submarine sonar shack](/assets/media/tma/sonar_shack.png)
 
-A submarine sonar shack, manned 24/7 while at sea. Among other tasks, these Sailors look for zigs. [^7]
+A submarine sonar shack, manned 24/7 while at sea. Among other tasks, these Sailors look for zigs.[^7]
 {: .img-caption}
 
 [^7]: US Navy via [Amick. *How Submarine Sonarmen Tirelessly Hunt For Enemies They Can’t Even See.* (2020). The Drive.](https://www.thedrive.com/the-war-zone/35603/veteran-submariner-on-how-sonar-crews-tirelessly-hunt-enemies-they-cant-even-see)
@@ -309,10 +309,7 @@ My basic idea was to use a RNN to translate bearing time steps to range time ste
 
 ![A simple TMA RNN](/assets/media/tma/simple_rnn.png)
 
-Original image.
-{: .img-caption}
-
-A simple model of a TMA RNN. The network is unfolded on the right to show how data flows between time steps. *U*, *V*, and *W* are combinations of weights and biases which are applied to process input, process output, and retain context respectively, while *h* is the system's *hidden state*, a vector which stores information up to the current time step.
+A simple model of a TMA RNN. The network is unfolded on the right to show how data flows between time steps. *U*, *V*, and *W* are combinations of weights and biases which are applied to process input, process output, and retain context respectively, while *h* is the system's *hidden state*, a vector which stores information up to the current time step. Original image.
 {: .img-caption}
 
 In reality, I chose a more complex model. Bearing alone isn't enough, I needed the friendly ship's speed as well. I split bearing up into relative bearing and true bearing-rate. This way, I could preserve all necessary information while also making the problem rotationally invariant; it shouldn't matter which way North is.
