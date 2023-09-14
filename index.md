@@ -5,7 +5,7 @@ image: /assets/media/goldengate.jpg
 description: Welcome to my site!
 ---
 
-I'm a Software Engineer Intern at [Vannevar Labs](https://www.vannevarlabs.com/). I live in San Francisco. For 5 years I was a Submarine Officer in the US Navy. Before that, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Mathematics at the US Naval Academy. This is my personal website.
+I'm a Software Engineer at [Vannevar Labs](https://www.vannevarlabs.com/). I live in San Francisco. For 5 years I was a Submarine Officer in the US Navy. Before that, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Mathematics at the US Naval Academy. This is my personal website.
 
 ![In San Francisco](/assets/media/goldengate.jpg)
 
