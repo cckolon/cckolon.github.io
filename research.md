@@ -11,7 +11,7 @@ A preprint of my most recent paper, submitted to the [Journal of Differential Eq
 
 My Trident Paper: [Stability of Nonlinear Swarms on Flat and Curved Surfaces](https://apps.dtic.mil/sti/citations/AD1054413)
 
-My Honors Paper: [Limit Behavior of Swarms of Coupled Agents](assets/media/KolonHonorsPaper.pdf)
+My Honors Paper: [Limit Behavior of Swarms of Coupled Agents](/assets/media/KolonHonorsPaper.pdf)
 
 My collaboration with the Naval Research Lab: [The Dynamics of Interacting Swarms](https://apps.dtic.mil/sti/citations/trecms/AD1049505)
 
@@ -48,14 +48,14 @@ $$R=\sum_{i=1}^Nr_i$$
 
 Expected limit behavior is pictured below:
 
-![Typical limit behavior of the parabolic potential model](assets/media/circularlimit.gif)
+![Typical limit behavior of the parabolic potential model](/assets/media/circularlimit.gif)
 
 Typical limit behavior of the parabolic potential model.
 {: .img-caption}
 
 Over the course of a year, we proved several new results about the stability of this system. We were fortunate to observe some behavior that has never been seen before.
 
-![Previously unobserved limit behavior in the parabolic potential model.](assets/media/weirdlimit.gif)
+![Previously unobserved limit behavior in the parabolic potential model.](/assets/media/weirdlimit.gif)
 
 Previously unobserved limit behavior in the parabolic potential model.
 {: .img-caption}

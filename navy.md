@@ -7,13 +7,13 @@ description: A summary of my time as a Submarine Officer in the US Navy.
 
 Between 2018 and 2023, I spent 5 years as a [Submarine Officer](https://www.navy.com/careers/nupoc-submarine-officer) in the US Navy. I spent that time trying to become an officer that enlisted Sailors deserved.
 
-<div class="outer"><div class="block"><img width="450" height="300" src="assets/media/lastonefastone.jpg" alt="The 2017 Army-Navy Game, with my roommates."></div>
+<div class="outer"><div class="block"><img width="450" height="300" src="/assets/media/lastonefastone.jpg" alt="The 2017 Army-Navy Game, with my roommates."></div>
 
-<div class="block"><img width="200" height="300" src="assets/media/grad.jpg" alt="Graduating from the Naval Academy."></div>
+<div class="block"><img width="200" height="300" src="/assets/media/grad.jpg" alt="Graduating from the Naval Academy."></div>
 
 <div class = "block"><img width = "225" height = "300" src="/assets/media/christening.jpg" alt="Christening PCU New Jersey"></div>
 
-<div class="block"><img width="400" height="300" src="assets/media/jwr.jpg" alt="A port call in Spain with my division of Nuclear Mechanics."></div></div>
+<div class="block"><img width="400" height="300" src="/assets/media/jwr.jpg" alt="A port call in Spain with my division of Nuclear Mechanics."></div></div>
 
 In 2014, I accepted an appointment to the [US Naval Academy](https://www.usna.edu/homepage.php) in Annapolis, MD. I spent 4 years there, where I majored in Math. I graduated with distinction in 2018, commissioning as an Ensign in the US Navy.
 

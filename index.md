@@ -11,7 +11,7 @@ I'm a Software Engineer at [Vannevar Labs](https://www.vannevarlabs.com/). I liv
 
 I did a lot of math work at the Naval Academy. [You can read about it here](/research). The main topic of my research is the stability of mathematical swarm models. Currently, I'm interested in software and machine learning, especially automatic ways to prove stability and control nonlinear systems. [Check my blog to see what I'm up to](/blog).
 
-![contact](assets/media/contact.png){: .left-img}
+![contact](/assets/media/contact.png){: .left-img}
 
 [This is my public key.](/assets/media/publickey.asc)
 
