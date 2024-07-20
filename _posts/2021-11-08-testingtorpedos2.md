@@ -5,7 +5,7 @@ excerpt_separator: <!--more-->
 image: /assets/media/multihits.png
 description: Testing different guidance algorithms against each other in Unity.
 ---
-A while back I wrote [an article about torpedo guidance strategy](/2021/08/31/testingtorpedos1.html) in a submarine game. The concept was to compare five different methods of torpedo control, and to implement each in C#. In this follow-up, I test each one and compare them, to see which is most effective. <!--more-->
+A while back I wrote [an article about torpedo guidance strategy](/2021/08/31/testingtorpedos1) in a submarine game. The concept was to compare five different methods of torpedo control, and to implement each in C#. In this follow-up, I test each one and compare them, to see which is most effective. <!--more-->
 
 You can read the article linked above if you're interested in the specifics of each guidance method, but I'll recap them briefly here:
 - Naive control: the torpedo turns so that it is pointing at its target.

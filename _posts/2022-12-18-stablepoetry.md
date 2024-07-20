@@ -24,7 +24,7 @@ I followed [this tutorial](https://huggingface.co/blog/stable_diffusion) to run 
 
 I wrote a simple Python script, based off of the Hugging Face tutorial, to run Stable Diffusion iteratively on each line of a poem from a text file. My first poem was "Birches" by Robert Frost, and I picked it on purpose because of its descriptive imagery. Stable Diffusion is trained on image-description pairs from the [LAION-5B](https://laion.ai/blog/laion-5b/) dataset, so I was interested to see how the code interpreted a prompt that was not an image description. For example, what image would Stable Diffusion associate with the line "As the stir cracks and crazes their enamel"?
 
-[You can see the entire poem here](/poetry/birches1.html). Here are a few things I noticed.
+[You can see the entire poem here](/poetry/birches1). Here are a few things I noticed.
 
 The style of the images is inconsistent. Sometimes, Stable Diffusion generates an image that looks like a photograph. Other times, it imitates a painting or cartoon. See the following two lines:
 
@@ -77,7 +77,7 @@ I thought the results were interesting, but each line was disjointed from the la
 
 The most important variable here is the `strength`, a number between 0 and 1. The higher it is, the more Stable Diffusion will be influenced by the prompt, and the less by the image. For example, a strength of zero would return the same image as the input, and a strength of 1 would completely disregard the input image. Most online examples use a value between 0.6 and 0.8. After some experimentation, I settled on 0.75. I ran "Birches" through the model again, but this time, I would use each line as the input image for the next line, hoping to get some continuity.
 
-[You can see the results here.](/poetry/birches2.html)
+[You can see the results here.](/poetry/birches2)
 
 The images follow from each other now. See the following few consecutive lines:
 
@@ -110,14 +110,14 @@ Unfortunately, this still didn't really accomplish what I wanted. There is a sim
     <img src="/assets/media/diffusion/birches2/13.png" class="center-image">
 </div>
 
-I tried this with a few other poems, with varying success. Different poems have different levels of imagery in each line, and some of them don't quite have enough for Stable Diffusion to latch on to. I generated [a series of illustrations](http://localhost:4000/poetry/ozymandias.html) for Percy Bysshe Shelley's "Ozymandias" and was disappointed that the model could not interpret the Egyptian context until late in the poem. The following image isn't really "of" anything.
+I tried this with a few other poems, with varying success. Different poems have different levels of imagery in each line, and some of them don't quite have enough for Stable Diffusion to latch on to. I generated [a series of illustrations](http://localhost:4000/poetry/ozymandias) for Percy Bysshe Shelley's "Ozymandias" and was disappointed that the model could not interpret the Egyptian context until late in the poem. The following image isn't really "of" anything.
 
 <div class = "gallery-block">
     <p class = "poem-text">Half sunk a shattered visage lies, whose frown,</p>
     <img src="/assets/media/diffusion/ozymandias/4.png" class="center-image">
 </div>
 
-The model had no problem with [John Gillespie Magee's "High Flight"](/poetry/highflight.html), though, and each image is fairly similar. See the following images from the beginning and end of the poem.
+The model had no problem with [John Gillespie Magee's "High Flight"](/poetry/highflight), though, and each image is fairly similar. See the following images from the beginning and end of the poem.
 
 <div class = "gallery-block">
     <p class = "poem-text">Oh! I have slipped the surly bonds of Earth</p>
@@ -131,7 +131,7 @@ The model had no problem with [John Gillespie Magee's "High Flight"](/poetry/hig
 
 These images still didn't really accomplish what I wanted, though. They did not get a sense of the big picture: the images were not always about what the poem was about. I had settled on one illustration per line, mostly because online prompts for Stable Diffusion and DALL-E tended to be the same length, but I felt like one line did not give the model enough information to illustrate the poem. I figured that maybe feeding the model a stanza at a time, instead of a line, would give clearer image.
 
-For a longer poem to try this on, I used Henry Wadsworth Longfellow's "Paul Revere's Ride". I used the same linking strategy as before, generating images based on previous images. [You can see the results here](/poetry/paulrevere1.html). I liked this better. You can clearly see the imagery and scene discribed in each stanza. See the large moon rising and the soldiers rowing in the below image.
+For a longer poem to try this on, I used Henry Wadsworth Longfellow's "Paul Revere's Ride". I used the same linking strategy as before, generating images based on previous images. [You can see the results here](/poetry/paulrevere1). I liked this better. You can clearly see the imagery and scene discribed in each stanza. See the large moon rising and the soldiers rowing in the below image.
 
 <div class="gallery-block">
     <p class="poem-text">Then he said “Good night!” and with muffled oar<br>
@@ -173,7 +173,7 @@ I also felt like the style was much more consistent in this version. All the ima
     <img src="/assets/media/diffusion/paulrevere1/10.png" class="center-image">
 </div>
 
-Because the style was so similar, I decided to relax the association between images and generate the poem again with a strength of 1 (in other words, with each image unlinked from the last) the same way I had generated the original "Birches" imagery. [You can see it here](/poetry/paulrevere2.html). While the images aren't as consistently good, I think the best illustrations are lurking in this last implementation. In the following image, you can clearly see the Somerset, and the prickly masts and rigging which are described in the passage.
+Because the style was so similar, I decided to relax the association between images and generate the poem again with a strength of 1 (in other words, with each image unlinked from the last) the same way I had generated the original "Birches" imagery. [You can see it here](/poetry/paulrevere2). While the images aren't as consistently good, I think the best illustrations are lurking in this last implementation. In the following image, you can clearly see the Somerset, and the prickly masts and rigging which are described in the passage.
 
 <div class="gallery-block">
     <p class="poem-text">Then he said “Good night!” and with muffled oar<br>

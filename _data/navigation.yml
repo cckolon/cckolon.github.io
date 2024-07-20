@@ -1,10 +1,10 @@
 - name: Home
   link: /
 - name: Blog
-  link: /blog.html
+  link: /blog
 - name: Research
-  link: /research.html
+  link: /research
 - name: Navy
-  link: /navy.html
+  link: /navy
 - name: Resume
   link: /resume.pdf
