@@ -21,3 +21,13 @@ Generating a random function seems easy at first thought, but it is hard to do s
 
 $$\frac 3+\log(()$$
 
+There are some syntactical rules that we have to respect. To force this, we could try to generate random strings and only save the ones that are meaningful. The obvious problem with this is that it would be wasteful; much time would be used generating meaningless strings which will not be saved. It would be preferable to generate functions and already know that they are syntactically correct.
+
+### Functions as Trees
+
+If you are familiar with computer algebra systems, you may know that programs usually represent functions internally as _binary-unary trees_. A tree is a type of mathematical network (or graph) in which there is exactly one path from any node to any other.
+
+![Binary-Unary Trees](/assets/media/integration/trees.png)
+
+Binary-Unary Trees[^2]
+{: .img-caption}
