@@ -25,9 +25,54 @@ There are some syntactical rules that we have to respect. To force this, we coul
 
 ### Functions as Trees
 
-If you are familiar with computer algebra systems, you may know that programs usually represent functions internally as _binary-unary trees_. A tree is a type of mathematical network (or graph) in which there is exactly one path from any node to any other.
+If you are familiar with computer algebra systems, you may know that programs usually represent functions internally as _binary-unary trees_, also known as _Motzkin trees_ - a network of nodes, each of which has 0, 1, or 2 children.
 
 ![Binary-Unary Trees](/assets/media/integration/trees.png)
 
-Binary-Unary Trees[^2]
+Examples of binary-unary trees [^sedgewick2013].
 {: .img-caption}
+
+[^sedgewick2013]: [Sedgewick and Flajolet. An Introduction to the Analysis of Algorithms. (2013). Course Notes Chapter 5.](https://aofa.cs.princeton.edu/online/slides/AAqa5.pdf)
+
+To translate functions to binary-unary trees, we can split the functions by their operators. Here's an example:
+
+![Decomposing a binary-unary tree](/assets/media/integration/binary_unary_decomp.png)
+
+You can see from this example that there are three types of nodes:
+
+- _Leaves_: these are nodes with no children, and they correspond to constants and variables (like $$3$$ or $$x$$).
+- _Unary Nodes_: nodes with one child, corresponding to unary operators (like $$\sin$$ or $$\arctan$$).
+- _Binary Nodes_: nodes with two children, corresponding to binary operators (like $$\times$$ or $$+$$).
+
+![Labeling binary nodes, unary nodes, and leaves](/assets/media/integration/binary_unary_label.png)
+
+This is [exactly how parsers work](https://itnext.io/writing-a-mathematical-expression-parser-35b0b78f869e) in graphing calculators and computer algebra systems.
+
+### Generating Trees Randomly
+
+The tree representation of functions makes it easy to ensure that a function is syntactically correct. All we have to do is generate a random binary-unary tree, and populate the nodes randomly. Even this, though, is not trivial. From the paper:
+
+> However, sampling uniformly expressions with n internal nodes is not a simple task. Naive algorithms (such as recursive methods or techniques using fixed probabilities for nodes to be leaves, unary, or binary) tend to favour deep trees over broad trees, or left-leaning over right leaning trees.
+
+This is a non-trivial problem, and doing it efficiently is both well-studied [^alonso1994] and a topic of current research [^lescanne2024]. Since the trees I wanted to generate aren't very large, I opted for the fairly simple algorithm presented by Lample and Charton.
+
+Some vocabulary that will help with this part:
+
+- Subtree: a part of a tree that is itself a tree.
+
+![A subtree](/assets/media/integration/subtree.png)
+
+- Internal node: a node that is _not_ a leaf. In other words, a binary or unary node.
+
+![Highlighting internal nodes](/assets/media/integration/internal%20nodes.png)
+
+To use the algorithm, we need to be able to calculate two numbers:
+
+- $$D(e, n)$$: the number of subtrees with $$n$$ internal nodes that can be generated from $$e$$ starting nodes.
+- $$P(L(e, n)=(k, a))$$: the probability that the next internal node is in position $$k$$ with $$a$$ children.
+
+We can get a recursive expression for $$D(e, n)$$. To figure out the base cases, we know that it is not possible to have 
+
+[^alonso1994]: [Alonso. Uniform generation of a Motzkin word. (1994). Theoretical Computer Science. 134-2: 529-536.](https://www.sciencedirect.com/science/article/pii/0304397594000867)
+
+[^lescanne2024]: [Lescanne. Holonomic equations and efficient random generation of binary trees. (2024). ArXiv: 2205.11982.](https://arxiv.org/abs/2205.11982)
