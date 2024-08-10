@@ -70,7 +70,7 @@ $ jrnl -contains dataclasses
 2023-12-25 02:54:41 PM Use @python dataclasses to quickly create class constructors.
 ```
 
-This is pretty good - on par with other notetaking apps - but it can still be hard to retrieve the notes I want. In an app like Obsidian, I have a whole GUI which previews and lays out my notes, making it easier to retrieve information that I'm looking for. In jrnl, all I have is the command line. I would have to know ahead of time the exact wording or tags I used if I want to find a specific piece of information.
+This is pretty good - on par with other note apps - but it can still be hard to retrieve the notes I want. In an app like Obsidian, I have a whole GUI which previews and lays out my notes, making it easier to retrieve information that I'm looking for. In jrnl, all I have is the command line. I would have to know ahead of time the exact wording or tags I used if I want to find a specific piece of information.
 
 I had already decided I was done with Obsidian (and similar apps) precisely *because* I had to organize my notes when writing and saving them. I wanted to just take my thoughts (about anything) and throw them in a big bucket. To retrieve the notes effectively, I needed a better search strategy.
 

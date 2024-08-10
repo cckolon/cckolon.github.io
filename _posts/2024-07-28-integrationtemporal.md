@@ -17,7 +17,9 @@ The hard part, actually, was generating and integrating the functions in the fir
 
 ## Quick Links
 
-- [I only care about math](#a-method-to-generate-random-functions)
+- [I only care about math](#generating-random-functions)
+
+- [I only care about parallel Python code](#python-parallelism)
 
 - [I only care about cluster computing]
 
@@ -25,7 +27,7 @@ The hard part, actually, was generating and integrating the functions in the fir
 
 ## Generating Random Functions
 
-Generating a random function seems easy at first thought, but it is hard to do so fairly. A naive approach might be to generate a string of symbols randomly, but not every combination of mathematical symbols is meaningful. For example, the following string has no meaning:
+To start creating my dataset, I needed to generate a lot of functions randomly. Generating a random function seems easy at first thought, but it is hard to do so fairly. A naive approach might be to generate a string of symbols randomly, but not every combination of mathematical symbols is meaningful. For example, the following string has no meaning:
 
 $$\frac 3+\log(()$$
 
@@ -104,7 +106,9 @@ As we saw in the example, we need to make random decisions when we are generatin
 
 In each step of the algorithm, we can reduce the random choices to a single sample: given $$n$$ remaining internal nodes and $$e$$ empty nodes, assign the first $$k$$ nodes as leaves, and assign the next node as either a unary or binary node. The paper summarizes the probability of each choice as:
 
-> $$P(L(e, n)=(k,a))$$ is the probability that the next internal node is in position $$k$$ and has arity $$a$$.
+> $$P(L(e, n)=(k,a))$$ is the probability that the next internal node is in position $$k$$ and has arity[^arity] $$a$$.
+
+[^arity]: Here "arity" is the same thing as node degree; a unary node has arity 1, and a binary node has arity 2. [More on this concept](https://en.wikipedia.org/wiki/Arity).
 
 To calculate this probability, we can enumerate all the possible trees. If the next node is unary, we are assigning one internal node, so $$n-1$$ remain. We are assigning $$k$$ leaves, using up one empty node, and creating another, so the remaining empty nodes are $$e-k$$.
 
@@ -143,6 +147,11 @@ Together, these form a recursive expression for $$D(e,n)$$. You can even calcula
 A table of the first 10 values of $$D(e,n)$$.
 {: .img-caption}
 
+![How the addition works.](/assets/media/integration/addition_spreadsheet.png)
+
+How the addition works.
+{: .img-caption}
+
 To prevent this calculation taking up too much time, we can [memoize](https://whatthefuck.is/memoization) the function by caching its results (this combo, recursion and memoization, is usually called [Dynamic Programming](https://stackoverflow.blog/2022/01/31/the-complete-beginners-guide-to-dynamic-programming/)).
 
 Now that we have a way to calculate $$D(e,n)$$, we can define:
@@ -155,6 +164,89 @@ $$P(L(e,n)=(k,\text{binary})) = \frac{D(e-k+1, n-1)}{D(e,n)}$$
 
 ### Implementing in Python
 
-[Here's a link](https://github.com/cckolon/intclass/blob/main/data_generation/generate_functions.py) to the python module where I did this. I used [Sympy](https://www.sympy.org/en/index.html), a python CAS, to simplify the functions. To handle memoization, I used the [functools `@cache` decorator](https://docs.python.org/3/library/functools.html#functools.cache).
+[Here's a link](https://github.com/cckolon/intclass/blob/main/data_generation/generate_functions.py) to the Python module where I did this. I used [Sympy](https://www.sympy.org/en/index.html), a Python CAS, to simplify the functions. To handle memoization, I used the [functools `@cache` decorator](https://docs.Python.org/3/library/functools.html#functools.cache).
 
-##
+## Calculating Integrals Efficiently
+
+Now that I had a big list of random functions, I needed to integrate them symbolically and save them for use in the training set. I decided on a [SQLite](https://www.sqlite.org/index.html) table with the following three columns:
+
+- _Integrand_: The function to be integrated.
+- _Integral_: Either the result of integration, or `NULL` if the integration was not successful.
+- _Success_: True if integration succeeded, false otherwise.
+
+To do the actual integration, I used Sympy again. Sympy is really special - a free and open-source computer algebra library written in pure Python. The following block of code can integrate lots of really complex functions!
+
+```python
+import sympy as sp
+
+def integrate_function(f: str) -> str:
+    integral = sp.integrate(f, sp.symbols('x'))
+    return str(integral)
+```
+
+Sympy does have some weaknesses, though. Python isn't the most performant language (though [it's getting better!](https://www.youtube.com/watch?v=wyty6sFMWI0)), so integrating with Sympy can be slow. Integration also hangs sometimes (this behavior is common to most computer algebra systems).
+
+To solve the performance issue, I wanted to perform integrations in parallel. To solve the hanging issue, I wanted to implement a timeout (something also done by the authors of the paper).
+
+### Python Parallelism
+
+Implementing parallelism in Python is tricky, because of the [Global Interpreter Lock](https://docs.Python.org/3/c-api/init.html#thread-state-and-the-global-interpreter-lock), or GIL. The GIL exists because the Python interpreter is not fully [thread-safe](https://en.wikipedia.org/wiki/Thread_safety). Essentially it means that only one thread can access Python objects at one time. There are [lots of opinions](https://news.ycombinator.com/item?id=36915511) about the GIL, but [PEP 703](https://peps.python.org/pep-0703/) says it best:
+
+> The GIL is a major obstacle to concurrency.
+
+Because of this, Python has multiple built-in approaches to concurrency - some which simulate parallelism, and some which actually achieve it at a cost. When writing parallel Python code, understanding the differences between these approaches can help you understand what will _actually_ speed your code up.
+
+- [`threading`](https://docs.python.org/3/library/threading.html) is a module which allows multiple [threads](https://en.wikipedia.org/wiki/Thread_(computing)) to execute tasks concurrently within the same interpreter. If code is I/O-bound (that is, it spends most of its time waiting for external events, like networking or APIs to other code), threading is well-suited, since threads won't often try to access the same objects at once. If, on the other hand, the long-running tasks involve manipulating Python objects or are CPU-bound, the GIL will prevent simultaneous
+- [`asyncio`](https://docs.python.org/3/library/asyncio.html) is a module which allows _simulated concurrency_ on the same thread. Tasks run in an [event loop](https://en.wikipedia.org/wiki/Event_loop), and when one task is waiting for network or disk operations, the interpreter switches to another task and works on it. Again, this is good for I/O-bound code (it's great for web servers). It also is simpler than multithreading and more intuitive for people with async experience in other languages ([like JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)). A common cliche is that you should "use asyncio when you can, and use threading when you must." Unfortunately it suffers from a similar limitation to threading: if one task is executing Python code it will block the event loop.
+- [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) is a different approach where multiple Python interpreters are spawned in different [processes](https://en.wikipedia.org/wiki/Process_(computing)). This allows _true concurrency_ because each process has its own GIL. The processes generally run on separate CPU cores, so the number of processes is limited by your hardware, and [sharing state between processes](https://docs.python.org/3/library/multiprocessing.html#sharing-state-between-processes) is [tricky](https://peps.python.org/pep-0703/#multiprocessing).
+
+In this case, the long-running tasks were all happening in Sympy, a pure-Python program, and had no I/O component. This led me to believe that threading or asyncio would not speed things up meaningfully. Multiprocessing, on the other hand, could make things much faster. My desktop computer has 16 cores, so potentially I could speed the program up 16 times! To run the processes, I used [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html), which provides some high-level tools to run processes without needing to worry too much about cleanup. Here's a basic sketch of how to do this:
+
+```python
+def integrate_functions_parallel(functions: list[str]) -> list[str]:
+    with ProcessPoolExecutor() as executor:
+        results = list(
+            executor.map(
+                integrate_function,
+                functions,
+            )
+        )
+        return results
+```
+
+### Time's Up!
+
+This solves the parallelism issue, but it does nothing about the hanging issue. If a function takes a long time to integrate, it can clog up the whole process! Over time, I was worried that almost all of the computer's time would be wasted on slow integrals (which would probably never compute).
+
+![In this example, slow integrals dominate over fast ones, even though there are many more fast ones.](/assets/media/integration/fast_and_slow_processes.png)
+
+In this example, slow integrals dominate over fast ones, even though there are many more fast ones.
+{: .img-caption}
+
+So I chose to make processes time out with the [wrapt timeout decorator](https://pypi.org/project/wrapt-timeout-decorator/). Because I was concerned about integration processes hogging all the computation time, I used the [signals strategy](https://pypi.org/project/wrapt-timeout-decorator/#signals-strategy). The timeout would raise an exception if any process took longer than a specified time. If this happened, I would catch the exception and count the integration as failed.
+
+```python
+@timeout(INTEGRATION_TIMEOUT, use_signals=True)
+def integrate(f: str) -> str:
+    integral = sp.integrate(f, sp.symbols(INTEGRATION_VARIABLE_NAME))
+    if integral.has(sp.Integral):
+        raise IncompleteIntegralException(
+            f"Could not fully integrate {f}"
+        )
+    return str(integral)
+
+def integrate_function_with_timeout(f: str, timeout: int) -> tuple:
+    start_time = time()
+    try:
+        integral = integrate(f)
+        return (f, integral, True)
+    except Exception as e:  # incomplete integration can raise a lot of exceptions, so I used the general catch here
+        return (f, None, False)
+```
+
+### Pesky Processes
+
+When I ran these functions, though, I was surprised to see that performance barely went up! 
+
+
+## References and Footnotes

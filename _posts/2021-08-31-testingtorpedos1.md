@@ -15,7 +15,8 @@ So, when I went to design torpedo guidance in my own game, I knew it was high st
 
 Guiding torpedos in real life is very hard. Most of the challenges involve the technical oolies of underwater navigation, target detection, mechanical engineering... I don't want to open that can of worms. For me, the torpedo always knows where it is, and if the target is close enough, it knows exactly where the target is. The torpedo's speed and turn rate are restricted. The torpedo runs for a set amount of time, and then explodes (failure). If it hits the target, it explodes too (success).
 
-I will test a few algorithms. There are a few criteria which we can use to decide which is the best. 
+I will test a few algorithms. There are a few criteria which we can use to decide which is the best.
+
 * An algorithm which succeeds more often is better.
 * An algorithm which succeeds in less time is better.
 * An algorithm which succeeds at the same rate with lower speed is better.
@@ -298,4 +299,4 @@ void HuntTarget()
 
 ## Testing The Results
 
-I compared the accuracy of each algorithm under different conditions, and the results were surprising! I'll write about the results, and the details of my test methods, next week.
+I compared the accuracy of each algorithm under different conditions, and the results were surprising! I'll write about the results, and the details of my test methods, in a later article.
