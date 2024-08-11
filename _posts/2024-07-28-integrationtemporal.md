@@ -391,7 +391,7 @@ While only one worker would run on each computer, each worker would run a number
 The cluster in action[^censor-foot]!
 {: .img-caption}
 
-[^censor-foot]: I censored Jackie's foot in the background.
+[^censor-foot]: I censored Jackie's foot in the background, if you're wondering about the mosaic.
 
 Eventually I decided to suspend the worker on Shasta; running all 4 cores at 100% was too much for the [passive cooling case](https://flirc.tv/collections/case/products/raspberry-pi-5-case) I bought. Maybe someday I'll invest in a [fan](https://www.raspberrypi.com/products/raspberry-pi-5-case/)...
 
@@ -400,6 +400,22 @@ Eventually I decided to suspend the worker on Shasta; running all 4 cores at 100
 A little toasty...
 {: .img-caption}
 
-This setup generated functions at about three times the speed, enough to generate a dataset good enough to fine-tune a model on.
+This setup generated functions at about three times the speed, enough to generate a pretty huge dataset.
+
+## Making the Machine Learn
+
+I didn't do anything groundbreaking here, but I'll summarize:
+
+- I fine-tuned [MathBERT](https://huggingface.co/tbs17/MathBERT) using [this guide](https://huggingface.co/docs/transformers/en/tasks/sequence_classification).
+- I did the training on my desktop, running [PyTorch](https://pytorch.org/) with [CUDA](https://developer.nvidia.com/cuda-toolkit) on a [4080](https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4080-family/).
+- I trained the model for 3 epochs with a learning rate of $$10^{-5}$$, but stopped early on the first signs of [overfitting](https://www.ibm.com/topics/overfitting).
+- Accuracy on the validation set was about 95%.
+- [My code is here](https://github.com/cckolon/intclass/blob/main/ml_modules/training.py), feel free to check it out!
+
+## What I Learned
+
+This was a fun project! Even though it wasn't for work, it felt like "real engineering". Dealing with unreliable and hanging processes was really fun, and challenged my assumptions about what happens when a process raises an exception. While I do some parallel and async computing at work, managing state between processes in a thread-safe way was pretty new to me (and so was the concept of a return queue). The cluster concept---having one computer run processes on another---felt really magical. I've done this in the cloud, but it feels different watching it happen in real life.
+
+I've addressed a lot of complicated topics in this article, and it's possible I've made a mistake! I'm new at a lot of this, but I don't want to shy away from complex topics because of [FOLD](https://grugbrain.dev/#grug-on-fold). If you think I should clear something up, you're probably right! Send me an email.
 
 ## References and Footnotes
