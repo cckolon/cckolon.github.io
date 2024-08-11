@@ -10,7 +10,7 @@ I am bad at taking notes, and I want to get better. There are two main obstacles
 
 **Taking notes is inconvenient.** I spend 90% of my work time in VSCode, either editing text or using the terminal, and using a note taking app requires me to context switch, load another application, and (worst of all) decide on where I'm going to store the note. Do I make another folder? Use a new note or an existing one?
 
-**Retrieving notes is hard.** It's common for me to have some "must remember" piece of information - maybe a code snippet for a common task, or a note from a meeting - and write it down on one of my many note-taking apps: Google Keep, Obsidian, Slack DM to self, etc. Then when I actually need the information later, I can't remember where I put it. This gets really hard if I don't remember when I wrote it, or what phrasing I used. Often, I find myself going through old notes by date, or searching some unrelated piece of information that I know I wrote down around the same time. If that fails, I sometimes look through old slack messages, emails, or my browser history trying to rediscover information. If I wrote it down on paper, there's a high probability that the information is gone forever.
+**Retrieving notes is hard.** It's common for me to have some "must remember" piece of information---maybe a code snippet for a common task, or a note from a meeting---and write it down on one of my many note-taking apps: Google Keep, Obsidian, Slack DM to self, etc. Then when I actually need the information later, I can't remember where I put it. This gets really hard if I don't remember when I wrote it, or what phrasing I used. Often, I find myself going through old notes by date, or searching some unrelated piece of information that I know I wrote down around the same time. If that fails, I sometimes look through old slack messages, emails, or my browser history trying to rediscover information. If I wrote it down on paper, there's a high probability that the information is gone forever.
 
 Recently, I resolved to start taking better notes, and decided to meet these challenges head on.
 
@@ -70,7 +70,7 @@ $ jrnl -contains dataclasses
 2023-12-25 02:54:41 PM Use @python dataclasses to quickly create class constructors.
 ```
 
-This is pretty good - on par with other note apps - but it can still be hard to retrieve the notes I want. In an app like Obsidian, I have a whole GUI which previews and lays out my notes, making it easier to retrieve information that I'm looking for. In jrnl, all I have is the command line. I would have to know ahead of time the exact wording or tags I used if I want to find a specific piece of information.
+This is pretty good---on par with other note apps---but it can still be hard to retrieve the notes I want. In an app like Obsidian, I have a whole GUI which previews and lays out my notes, making it easier to retrieve information that I'm looking for. In jrnl, all I have is the command line. I would have to know ahead of time the exact wording or tags I used if I want to find a specific piece of information.
 
 I had already decided I was done with Obsidian (and similar apps) precisely *because* I had to organize my notes when writing and saving them. I wanted to just take my thoughts (about anything) and throw them in a big bucket. To retrieve the notes effectively, I needed a better search strategy.
 

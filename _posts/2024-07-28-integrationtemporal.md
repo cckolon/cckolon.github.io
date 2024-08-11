@@ -2,11 +2,11 @@
 layout: post
 title: Integrating Random Functions on a Cluster with Temporal
 excerpt_separator: <!--more-->
-image: TODO
+image: /assets/media/integration/cluster.gif
 description: Using Temporal as a workflow manager to generate and integrate functions with Sympy across multiple computers.
 ---
 
-In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and was interested in applying neural networks to math. Specifically, I was interested in the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), since I had embarked on a lengthy search for one during my undergraduate research. Finding Lyapunov functions is closely related to finding integrals, and the two share a tantalizing property - they are easy to verify but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer and I got distracted with my day job; I spent over 260 days at sea in 2020.
+In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and was interested in applying neural networks to math. Specifically, I was interested in the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), since I had embarked on a lengthy search for one during my undergraduate research. Finding Lyapunov functions is closely related to finding integrals, and the two share a tantalizing property: they are easy to verify, but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer and I got distracted with my day job; I spent over 260 days at sea in 2020.
 
 Last weekend I decided to give it another shot. I've changed a lot since 2020, and now programming _is_ my day job. I found it easier this time, but I chose to write here about the parts I found hard, and what surprised me about this project.
 <!--more-->
@@ -19,9 +19,9 @@ The hard part, actually, was generating and integrating the functions in the fir
 
 - [I only care about math](#generating-random-functions)
 
-- [I only care about parallel Python code](#python-parallelism)
+- [I only care about parallel Python code](#calculating-integrals-efficiently)
 
-- [I only care about cluster computing]
+- [I only care about cluster computing](#multi-computer-parallelism)
 
 - [I like reading code, not words](https://github.com/cckolon/intclass)
 
@@ -35,7 +35,7 @@ There are some syntactical rules that we have to respect. To force this, we coul
 
 ### Functions as Trees
 
-If you are familiar with computer algebra systems, you may know that programs usually represent functions internally as _binary-unary trees_, also known as _Motzkin trees_ - a network of nodes, each of which has 0, 1, or 2 children.
+If you are familiar with computer algebra systems, you may know that programs usually represent functions internally as _binary-unary trees_, also known as _Motzkin trees_: a network of nodes, each of which has 0, 1, or 2 children.
 
 ![Binary-Unary Trees](/assets/media/integration/trees.png)
 
@@ -174,7 +174,7 @@ Now that I had a big list of random functions, I needed to integrate them symbol
 - _Integral_: Either the result of integration, or `NULL` if the integration was not successful.
 - _Success_: True if integration succeeded, false otherwise.
 
-To do the actual integration, I used Sympy again. Sympy is really special - a free and open-source computer algebra library written in pure Python. The following block of code can integrate lots of really complex functions!
+To do the actual integration, I used Sympy again. Sympy is really special---a free and open source computer algebra library written in pure Python. The following block of code can integrate lots of really complex functions!
 
 ```python
 import sympy as sp
@@ -194,13 +194,13 @@ Implementing parallelism in Python is tricky, because of the [Global Interpreter
 
 > The GIL is a major obstacle to concurrency.
 
-Because of this, Python has multiple built-in approaches to concurrency - some which simulate parallelism, and some which actually achieve it at a cost. When writing parallel Python code, understanding the differences between these approaches can help you understand what will _actually_ speed your code up.
+Because of this, Python has multiple built-in approaches to concurrency---some which simulate parallelism, and some which actually achieve it at a cost. When writing parallel Python code, understanding the differences between these approaches can help you understand what will _actually_ speed your code up.
 
 - [`threading`](https://docs.python.org/3/library/threading.html) is a module which allows multiple [threads](https://en.wikipedia.org/wiki/Thread_(computing)) to execute tasks concurrently within the same interpreter. If code is I/O-bound (that is, it spends most of its time waiting for external events, like networking or APIs to other code), threading is well-suited, since threads won't often try to access the same objects at once. If, on the other hand, the long-running tasks involve manipulating Python objects or are CPU-bound, the GIL will prevent simultaneous
 - [`asyncio`](https://docs.python.org/3/library/asyncio.html) is a module which allows _simulated concurrency_ on the same thread. Tasks run in an [event loop](https://en.wikipedia.org/wiki/Event_loop), and when one task is waiting for network or disk operations, the interpreter switches to another task and works on it. Again, this is good for I/O-bound code (it's great for web servers). It also is simpler than multithreading and more intuitive for people with async experience in other languages ([like JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)). A common cliche is that you should "use asyncio when you can, and use threading when you must." Unfortunately it suffers from a similar limitation to threading: if one task is executing Python code it will block the event loop.
 - [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) is a different approach where multiple Python interpreters are spawned in different [processes](https://en.wikipedia.org/wiki/Process_(computing)). This allows _true concurrency_ because each process has its own GIL. The processes generally run on separate CPU cores, so the number of processes is limited by your hardware, and [sharing state between processes](https://docs.python.org/3/library/multiprocessing.html#sharing-state-between-processes) is [tricky](https://peps.python.org/pep-0703/#multiprocessing).
 
-In this case, the long-running tasks were all happening in Sympy, a pure-Python program, and had no I/O component. This led me to believe that threading or asyncio would not speed things up meaningfully. Multiprocessing, on the other hand, could make things much faster. My desktop computer has 16 cores, so potentially I could speed the program up 16 times! To run the processes, I used [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html), which provides some high-level tools to run processes without needing to worry too much about cleanup. Here's a basic sketch of how to do this:
+In this case, the long-running tasks were all happening in Sympy, a pure Python program, and had no I/O component. This led me to believe that threading or asyncio would not speed things up meaningfully. Multiprocessing, on the other hand, could make things much faster. My desktop computer has 16 cores, so potentially I could speed the program up 16 times! To run the processes, I used [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html), which provides some high-level tools to run processes without needing to worry too much about cleanup. Here's a basic sketch of how to do this:
 
 ```python
 def integrate_functions_parallel(functions: list[str]) -> list[str]:
@@ -223,10 +223,10 @@ This solves the parallelism issue, but it does nothing about the hanging issue. 
 In this example, slow integrals dominate over fast ones, even though there are many more fast ones.
 {: .img-caption}
 
-So I chose to make processes time out with the [wrapt timeout decorator](https://pypi.org/project/wrapt-timeout-decorator/). Because I was concerned about integration processes hogging all the computation time, I used the [signals strategy](https://pypi.org/project/wrapt-timeout-decorator/#signals-strategy). The timeout would raise an exception if any process took longer than a specified time. If this happened, I would catch the exception and count the integration as failed.
+So I chose to make processes time out with the [wrapt timeout decorator](https://pypi.org/project/wrapt-timeout-decorator/). The timeout would raise an exception if any process took longer than a specified time. If this happened, I would catch the exception and count the integration as failed.
 
 ```python
-@timeout(INTEGRATION_TIMEOUT, use_signals=True)
+@timeout(INTEGRATION_TIMEOUT)
 def integrate(f: str) -> str:
     integral = sp.integrate(f, sp.symbols(INTEGRATION_VARIABLE_NAME))
     if integral.has(sp.Integral):
@@ -240,13 +240,166 @@ def integrate_function_with_timeout(f: str, timeout: int) -> tuple:
     try:
         integral = integrate(f)
         return (f, integral, True)
-    except Exception as e:  # incomplete integration can raise a lot of exceptions, so I used the general catch here
+    # Incomplete integration can raise a lot of different exceptions,
+    # so I used the general catch here.
+    except Exception as e:
         return (f, None, False)
 ```
 
 ### Pesky Processes
 
-When I ran these functions, though, I was surprised to see that performance barely went up! 
+When I ran these functions, though, I was surprised to see that performance barely got faster. New processes weren't getting picked up. I profiled the code with [scalene](https://github.com/plasma-umass/scalene) to figure out what was going on. Surprisingly, only about 30% of the execution time was accounted for!
 
+After some debugging, I realized that the timeout was elapsing and raising the exception, but _not_ killing the integration process. The process was continuing to run in the background and consume resources. Soon, every CPU core would hang on these long-running processes, lowering the completion rate to almost zero. 
+
+<!-- TODO: Picture -->
+
+To fix this, I had to manipulate the processes at a lower level---with the `multiprocessing` module instead of `concurrent.futures`. I used a [`multiprocessing.Queue`](https://docs.python.org/3/library/multiprocessing.html#exchanging-objects-between-processes) object to hold the return value, and used the [`timeout`](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.join) parameter to return a process early if it timed out. To make sure the process was actually dead, I would check if it was alive using [`is_alive`](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.is_alive), and [`terminate`](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.terminate) it if it was.
+
+```python
+def integrate_function(f: str, return_queue: multiprocessing.Queue) -> tuple:
+    try:
+        integral = sp.integrate(f, sp.symbols(INTEGRATION_VARIABLE_NAME))
+        if integral.has(sp.Integral):
+            raise IncompleteIntegralException(
+                f"Could not fully integrate {f}"
+            )
+        return_queue.put((f, str(integral), True))
+    except Exception as e:
+        return_queue.put((f, None, False))
+
+
+def integrate_function_with_timeout(f: str) -> tuple:
+    return_queue = multiprocessing.Queue()
+    process = multiprocessing.Process(
+        target=integrate_function, args=(f, return_queue)
+    )
+    process.start()
+    process.join(timeout=INTEGRATION_TIMEOUT)
+    if process.is_alive():
+        process.terminate()
+        process.join()
+        return (f, None, False)
+    return return_queue.get()
+```
+
+## Multi-Computer Parallelism
+
+Running the program above overnight, I generated about 12000 integrals. This was pretty good, but it paled in comparison to Lample and Charton's 100 million. I wanted to run the code on multiple computers to speed it up.
+
+### Temporal
+
+I learned how to use [Temporal](https://temporal.io/) at work, and thought it would be perfect for this. Temporal is a [runtime for durable, distributed function executions](https://docs.temporal.io/temporal). Temporal provides tooling for retries, observability, debugging, testing, scheduling, and many other things.
+
+It works by running a server (the [Temporal Service](https://docs.temporal.io/evaluate/major-components#temporal-service)) on one computer, which schedules and assigns tasks to Temporal Workers on multiple computers, which actually do the work. The server manages shared state between workers, and gives them instructions to do things. Workers can be added and removed at will, and all communication between workers and the server occurs over a network. Temporal is open source, and you can self-host or [deploy on their cloud](https://docs.temporal.io/cloud) (which is how they make money[^temporal-disclaimer]).
+
+[^temporal-disclaimer]: I'm not affiliated with Temporal, and I don't care if you use it. I do have a pretty sweet pair of Temporal socks, though.
+
+![Temporal development network topology, from the Temporal docs](/assets/media/integration/basic-platform-topology-development.svg)
+
+Temporal development network topology, from the [Temporal docs](https://docs.temporal.io/).
+{: .img-caption}
+
+To make my code run on temporal workers, I needed to separate it into [workflows and activities](https://docs.temporal.io/evaluate/development-production-features/core-application) that would run on the workers. An _activity_ is a function which is failure-prone: in my case, integration and function generation. A _workflow_ is a function which sequences and orchestrates activities. Workflows shouldn't be prone to internal failures themselves, but they should be able to handle failing activities. Making the changes to my integration code was pretty easy; all I needed to do was add the [`activity.defn`](https://docs.temporal.io/develop/python/core-application#develop-activities) decorator.
+
+```python
+@activity.defn
+def integrate_function_with_timeout(f: str) -> tuple:
+    # exact same code
+```
+
+I wrote a workflow class which would generate a batch of functions and then try to integrate them all. Workflow code is asynchronous, so I used [`asyncio.gather`](https://docs.python.org/3/library/asyncio-task.html#asyncio.gather) to allow simultaneous execution. [Setting timeouts is mandatory](https://temporal.io/blog/activity-timeouts), but I set them so that the functions' internal timeouts would terminate the processes first. At the end of the workflow, I used [`workflow.continue_as_new`](https://docs.temporal.io/workflows#continue-as-new) to start another, identical one, so that the integration process would run forever.
+
+```python
+@workflow.defn
+class GenerateAndIntegrateFunctionsWF:
+    @workflow.run
+    async def run(self, params: GenerateAndIntegrateFunctionsParams):
+        functions = await asyncio.gather(
+            *(
+                workflow.execute_activity(
+                    generate_function_with_timeout,
+                    params.function_complexity,
+                    start_to_close_timeout=timedelta(
+                        seconds=GENERATION_TIMEOUT + 1
+                    ),
+                )
+                for _ in range(params.batch_size)
+            )
+        )
+        results = await asyncio.gather(
+            *(
+                workflow.execute_activity(
+                    integrate_function_with_timeout,
+                    f,
+                    start_to_close_timeout=timedelta(
+                        seconds=INTEGRATION_TIMEOUT + 1
+                    ),
+                )
+                for f in functions
+                if f is not None
+            )
+        )
+        workflow.logger.debug(f"Results: {results}")
+        await workflow.execute_activity(
+            write_training_data,
+            results,
+            start_to_close_timeout=timedelta(seconds=10),
+        )
+        workflow.continue_as_new(params)
+```
+
+Since the activities were synchronous, running them in the asynchronous worker code required an [`activity_executor`](https://python.temporal.io/temporalio.worker.Worker.html), and since they were running on separate processes, I needed a [`shared_state_manager`](https://python.temporal.io/temporalio.worker.SharedStateManager.html) to transfer information between them. I also had to [register](https://docs.temporal.io/develop/python/core-application#register-types) my workflows and activities on each worker.
+
+```python
+async def main():
+    client = await Client.connect(f"{TEMPORAL_SERVER}:{TEMPORAL_PORT}")
+
+    worker = Worker(
+        client=client,
+        task_queue="default",
+        workflows=[GenerateAndIntegrateFunctionsWF],
+        activities=[
+            generate_function_with_timeout,
+            integrate_function_with_timeout,
+            write_training_data,
+        ],
+        activity_executor=ProcessPoolExecutor(max_workers=MAX_WORKERS),
+        shared_state_manager=SharedStateManager.create_from_multiprocessing(
+            multiprocessing.Manager()
+        ),
+        max_concurrent_activities=MAX_WORKERS,
+    )
+    await worker.run()
+```
+
+### The Cluster
+
+I ran the database and Temporal Service on my Raspberry Pi, which I've named Shasta after the [famous mountain](https://www.usgs.gov/volcanoes/mount-shasta). I ran workers on Shasta, my desktop computer, my laptop, and my wife's MacBook.
+
+![4 workers registered in the Temporal UI](/assets/media/integration/temporal_ui.jpg)
+
+All four workers registered in the Temporal UI.
+{: .img-caption}
+
+I switched from SQLite to [Postgres in docker](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/) so that all workers could access the database. Because of this, I also had to change some [ufw](https://wiki.ubuntu.com/UncomplicatedFirewall) (firewall) settings. While I was doing that I accidentally closed port 22, disabling SSH. To reenable it, I needed to actually plug a keyboard and mouse into the Raspberry Pi, something I'd avoided so far. Oh well...
+
+While only one worker would run on each computer, each worker would run a number of processes equal to its number of CPUs. This meant I could run 44 concurrent processes!
+
+![The cluster in action](/assets/media/integration/cluster.gif)
+
+The cluster in action[^censor-foot]!
+{: .img-caption}
+
+[^censor-foot]: I censored Jackie's foot in the background.
+
+Eventually I decided to suspend the worker on Shasta; running all 4 cores at 100% was too much for the [passive cooling case](https://flirc.tv/collections/case/products/raspberry-pi-5-case) I bought. Maybe someday I'll invest in a [fan](https://www.raspberrypi.com/products/raspberry-pi-5-case/)...
+
+![A hot raspberry pi](/assets/media/integration/rpi_temp.png)
+
+A little toasty...
+{: .img-caption}
+
+This setup generated functions at about three times the speed, enough to generate a dataset good enough to fine-tune a model on.
 
 ## References and Footnotes
