@@ -1,10 +1,9 @@
 repos:
   - repo: local
     hooks:
-      - id: cspell
-        name: cspell
-        entry: cspell
-        language: node
+      - id: vale
+        name: vale
+        description: Run vale on your text
+        entry: vale
+        language: golang
         types: [text]
-        files: \.(md)$
-        args: ["--no-progress"]

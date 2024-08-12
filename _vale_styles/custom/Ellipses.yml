@@ -1,0 +1,10 @@
+extends: existence
+message: "In general, don't use an ellipsis outside of a blockquote."
+nonword: true
+level: warning
+scope:
+  - ~blockquote
+action:
+  name: remove
+tokens:
+  - '\.\.\.'
