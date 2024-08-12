@@ -4,6 +4,6 @@ repos:
       - id: vale
         name: vale
         description: Run vale on your text
-        entry: bash -c 'git diff --cached --name-status | cut -f2 | xargs vale'
+        entry: vale
         language: golang
         types: [text]
