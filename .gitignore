@@ -3,3 +3,6 @@
 .bundle/
 _site/
 vendor/
+_vale_styles/*
+!_vale_styles/custom/
+!_vale_styles/config/

@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: vale
+        name: vale
+        description: Run vale on your text
+        entry: vale
+        language: golang
+        types: [text]

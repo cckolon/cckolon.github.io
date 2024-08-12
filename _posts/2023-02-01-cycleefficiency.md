@@ -23,18 +23,18 @@ Below is a simulation of a person's speed, acceleration, gear, and cadence as th
 |Wheel Diameter (mm)                |<input type = "text" id = "wheeldiameter">                         |
 |Chain Ring Teeth                   |<input type = "text" id = "chainringteeth">                        |
 |Number of Gears                    |<input type = "text" id = "gearnum">                               |
-|Rear Sprocket Teeth                |<span id="gearbox" style="display:block; max-width:9em"></span>   |
+|Rear Sprocket Teeth                |<span id="gearbox" style="display:block; max-width:9em"></span>    |
 |**Human Data**                     |                                                                   |
 |Human Weight (lbs)                 |<input type = "text" id = "humanweight">                           |
-|Optimal Cadence (\\(\nu_{\text{opt}}\\)) (RPM)|<input type = "text" id = "optrpm">                                |
+|Optimal Cadence (\\(\nu_{\text{opt}}\\)) (RPM)|<input type = "text" id = "optrpm">                     |
 |Chosen Cadence (RPM)               |<input type = "text" id = "desiredrpm">                            |
-|Max Power (\\(P_{\text{max}}\\)) (Watts)     |<input type = "text" id = "maxpower">                              |
+|Max Power (\\(P_{\text{max}}\\)) (Watts)     |<input type = "text" id = "maxpower">                    |
 |Frontal Area (m^2)                 |<input type = "text" id = "frontalarea">                           |
 |**Simulation Data**                |                                                                   |
 |Simulation Time (sec)              |<input type="text" id="simulationtime">                            |
 |Initial Speed (mph)                |<input type="text" id="initialspeed">                              |
 |Drag Coefficient                   |<input type = "text" id = "dragcoeff">                             |
-|Coefficient of Rolling Resistance|<input type = "text" id = "crr">                                   |
+|Coefficient of Rolling Resistance  |<input type = "text" id = "crr">                                   |
 |Drivetrain Loss (%)                |<input type = "text" id = "dtl">                                   |
 |Air Density (kg/m^3)               |<input type = "text" id = "airdensity">                            |
 |Grade of Hill (%)                  |<input type = "text" id = "grade">                                 |
