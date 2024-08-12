@@ -6,7 +6,7 @@ image: /assets/media/integration/cluster.gif
 description: Using Temporal as a workflow manager to generate and integrate functions with Sympy across multiple computers.
 ---
 
-In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and I thought it would be cool to apply neural networks to math. Specifically, I was interested in the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), since they were crucial to my undergraduate research. Finding Lyapunov functions is like finding integrals. The two problems share a tantalizing property: solutions are easy to verify, but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer. I was also distracted with my day job---I spent 260 days at sea in 2020.
+In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and I thought it would be cool to apply neural networks to math. One candidate was the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), which were crucial to my undergraduate research. Finding Lyapunov functions is like finding integrals. The two problems share a tantalizing property: solutions are easy to verify, but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer. I was also distracted with my day job---I spent 260 days at sea in 2020.
 
 A few weeks ago I decided to give it another shot. I've changed a lot since 2020, and now programming _is_ my day job. I experienced success this time, but I chose to write here about the parts I found hard, and what surprised me about this project.
 <!--more-->
@@ -111,11 +111,11 @@ Each step, the random decisions reduce to a single choice. Given $$n$$ remaining
 
 [^arity]: Here "arity" is the same thing as node degree; a unary node has arity 1, and a binary node has arity 2. [More on this concept](https://en.wikipedia.org/wiki/Arity).
 
-To calculate this probability, count all the possible trees. If the next node is unary, we're assigning one internal node, so $$n-1$$ remain. We're assigning $$k$$ leaves, using up one empty node, and creating another, so the remaining empty nodes are $$e-k$$.
+To calculate this probability, count all the possible trees before and after the choice. Assigning an internal node leaves $$n-1$$ remaining. If the node is unary, $$k$$ empty nodes become leaves, the unary node consumes another, but it creates a new one as its child, so the remaining empty nodes are $$e-k$$.
 
 $$P(L(e,n)=(k, \text{unary}))=\frac{\text{number of trees with $n-1$ internal nodes generated from $e-k$ nodes}}{\text{number of trees with $n$ internal nodes generated from $e$ empty nodes}}$$
 
-If the node is binary, we're creating two empty nodes, so $$e-k+1$$ remain.
+A binary node is the same, but it has two children, leaving $$e-k+1$$ empty nodes.
 
 $$P(L(e,n)=(k, \text{binary}))=\frac{\text{number of trees with $n-1$ internal nodes generated from $e-k+1$ nodes}}{\text{number of trees with $n$ internal nodes generated from $e$ empty nodes}}$$
 
@@ -123,7 +123,7 @@ To save space, use the notation:
 
 $$D(e, n)=\text{number of trees with $n$ internal nodes generated from $e$ empty nodes}$$
 
-We can calculate this number recursively using three insights.
+Calculating this number recursively is possible with the following three insights:
 
 1. If there are no more internal nodes to assign, only one tree is possible (the one you already have), so $$D(e,0)=1$$ for all $$e\geq0$$.
 
@@ -198,7 +198,7 @@ Implementing parallelism in Python is tricky, because of the [Global Interpreter
 Because of this, Python has three main built-in approaches to concurrency. Two simulate parallelism, and one actually achieves it at a cost. When writing parallel Python code, understanding the differences between these approaches can help you understand what will _actually_ speed your code up.
 
 - [`threading`](https://docs.python.org/3/library/threading.html) is a module which makes many [threads](https://en.wikipedia.org/wiki/Thread_(computing)) run tasks concurrently within the same interpreter. If code is I/O-bound (that is, it spends most of its time waiting for external events, like networking or APIs to other code), threading is well-suited, since threads won't often try to access the same objects at once. If the long-running tasks involve manipulating Python objects or are CPU-bound, though, the GIL will prevent them from running simultaneously.
-- [`asyncio`](https://docs.python.org/3/library/asyncio.html) is a module which allows _simulated concurrency_ on the same thread. Tasks run in an [event loop](https://en.wikipedia.org/wiki/Event_loop), and when one task is waiting for network or disk operations, the interpreter switches to another task and works on it. Again, this is good for I/O-bound code (it's great for web servers). It also is simpler than multithreading and more intuitive for people with asynchronous experience in other languages ([like JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)). A common cliche is that you should "use asyncio when you can, and use threading when you must." Asyncio has a similar limitation to threading: if one task is executing Python code it will block the event loop.
+- [`asyncio`](https://docs.python.org/3/library/asyncio.html) is a module for  _simulated concurrency_ on the same thread. Tasks run in an [event loop](https://en.wikipedia.org/wiki/Event_loop), and when one task is waiting for network or disk operations, the interpreter switches to another task and works on it. Again, this is good for I/O-bound code (it's great for web servers). It also is simpler than multithreading and more intuitive for people with asynchronous experience in other languages ([like JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)). A common cliche is that you should "use asyncio when you can, and use threading when you must." Asyncio has a similar limitation to threading: if one task is executing Python code it will block the event loop.
 - [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) is a different approach where [processes](https://en.wikipedia.org/wiki/Process_(computing)) spawn their own Python interpreters. _True concurrency_ is possible because each process has its own GIL. Processes typically run on separate CPU cores, so hardware limits their number, and [sharing state between processes](https://docs.python.org/3/library/multiprocessing.html#sharing-state-between-processes) is [tricky](https://peps.python.org/pep-0703/#multiprocessing).
 
 In this case, the long-running tasks were all happening in Sympy, a pure Python program, and had no I/O component. This led me to believe that threading or asyncio would not make the program faster, but multiprocessing could. My desktop computer has 16 cores, so in theory I could speed the program up 16 times! To run the processes, I used [`concurrent.futures`](https://docs.python.org/3/library/concurrent.futures.html), which provides some high-level tools to run processes without needing to worry too much about cleanup. Here's a basic sketch of how to do this:
@@ -284,7 +284,7 @@ def integrate_function_with_timeout(f: str) -> tuple:
     return return_queue.get()
 ```
 
-## Multi-Computer Parallelism
+## Multi-computer parallelism
 
 Running the program overnight, I generated about 12000 integrals. This was pretty good, but it paled in comparison to Lample and Charton's 100 million. I wanted to run the code on more computers to speed it up.
 
