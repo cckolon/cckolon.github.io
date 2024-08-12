@@ -6,7 +6,7 @@ image: /assets/media/hillcontrol.png
 description: Using PID control to move a submarine with physics in Unity.
 ---
 
-When I tried to design a movement controller for a submarine in Unity, I felt up to the challenge. After all, exerting forces on objects is my main way of interacting with the world. [I've written previously about my submarine game project](/2021/04/25/navwithfractals; essentially, I'm making a fun little game, inspired by my personal experience, where you drive a submarine around, hunt other submarines, dodge torpedos, etc. The game was never supposed to be a faithful representation of real life, it's just for fun. <!--more-->
+When I tried to design a movement controller for a submarine in Unity, I felt up to the challenge. After all, exerting forces on objects is my main way of interacting with the world. [I've written previously about my submarine game project](/2021/04/25/navwithfractals); essentially, I'm making a fun little game, inspired by my personal experience, where you drive a submarine around, hunt other submarines, dodge torpedos, etc. The game was never supposed to be a faithful representation of real life, it's just for fun. <!--more-->
 
 ## The Real World
 
