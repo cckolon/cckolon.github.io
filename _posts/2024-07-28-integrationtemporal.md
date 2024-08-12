@@ -6,12 +6,12 @@ image: /assets/media/integration/cluster.gif
 description: Using Temporal as a workflow manager to generate and integrate functions with Sympy across multiple computers.
 ---
 
-In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and was interested in applying neural networks to math. Specifically, I was interested in the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), since I had embarked on a lengthy search for one during my undergraduate research. Finding Lyapunov functions is like finding integrals. The two problems share a tantalizing property: they're easy to verify, but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer. I was also distracted with my day job---I spent over 260 days at sea in 2020.
+In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and I thought it would be cool to apply neural networks to math. Specifically, I was interested in the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), since they were crucial to my undergraduate research. Finding Lyapunov functions is like finding integrals. The two problems share a tantalizing property: solutions are easy to verify, but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer. I was also distracted with my day job---I spent 260 days at sea in 2020.
 
-Last weekend I decided to give it another shot. I've changed a lot since 2020, and now programming _is_ my day job. I found it easier this time, but I chose to write here about the parts I found hard, and what surprised me about this project.
+A few weeks ago I decided to give it another shot. I've changed a lot since 2020, and now programming _is_ my day job. I experienced success this time, but I chose to write here about the parts I found hard, and what surprised me about this project.
 <!--more-->
 
-The machine learning aspect of this project wasn't complex. In fact, my goal was less ambitious than the authors of the paper. Instead of creating a model which could perform integration, I wanted to create a model which could determine if a function was integrable. I would generate a bunch of random functions, use a computer algebra system (CAS) to try and integrate them, record which ones were integrable and which weren't, and train a text classifier to determine which was which. Training these types of classifiers is a well-studied problem, and there are plenty of tutorials online, [like this one](https://huggingface.co/docs/transformers/en/tasks/sequence_classification). Rather than training a function from scratch, I chose to fine-tune [MathBERT](https://arxiv.org/abs/2105.00377), which is available [here](https://huggingface.co/tbs17/MathBERT).
+The machine learning aspect of this project wasn't complex. In fact, my goal was less ambitious than the authors of the paper. Instead of creating a model which could perform integration, I wanted to create a model which could determine if a function was integrable. I would generate a bunch of random functions, use a computer algebra system (CAS) to try and integrate them, record which ones were integrable and which weren't, and train a text classifier to determine which was which. Training these types of classifiers is a well-studied problem, and there are [plenty of tutorials online](https://huggingface.co/docs/transformers/en/tasks/sequence_classification). Rather than training a function from scratch, I chose to fine-tune [MathBERT](https://arxiv.org/abs/2105.00377), which is available [here](https://huggingface.co/tbs17/MathBERT).
 
 The hard part, actually, was generating and integrating the functions in the first place. The authors of the original paper had a dataset of 20 million forward-generated integrals, and 100 million integrals total. While I expected my project to require less data since I was fine-tuning an existing model, dataset scale would still be a challenge.
 
@@ -31,7 +31,7 @@ To start creating my dataset, I needed to generate a lot of functions. Generatin
 
 $$\frac 3+\log(()$$
 
-One option is to generate random strings and only save the ones that are meaningful. The obvious problem with this is that it would be wasteful, and generate many useless strings. It would be preferable to generate functions and already know that they're syntactically correct.
+One option is to make random strings and only save the ones that are meaningful. The obvious problem with this is that it would waste time generating useless strings. It would be preferable to create functions and already know that they're syntactically correct.
 
 ### Functions as trees
 
@@ -50,27 +50,25 @@ To translate functions to binary-unary trees, split the functions by their opera
 
 You can see from this example that there are three types of nodes:
 
-- _Leaves_: these are nodes with no children, and they correspond to constants and variables (like $$3$$ or $$x$$).
-- _Unary Nodes_: nodes with one child, corresponding to unary operators (like $$\sin$$ or $$\arctan$$).
-- _Binary Nodes_: nodes with two children, corresponding to binary operators (like $$\times$$ or $$+$$).
+- _Leaves_ are nodes with no children, and correspond to constants and variables (like $$3$$ or $$x$$).
+- _Unary Nodes_ have one child, and correspond to unary operators (like $$\sin$$ or $$\arctan$$).
+- _Binary Nodes_ have two children, and correspond to binary operators (like $$\times$$ or $$+$$).
 
 Together, binary and unary nodes are also known as _Internal Nodes_. In other words, an internal node is a node that's _not_ a leaf.
 
 ![Labeling binary nodes, unary nodes, and leaves](/assets/media/integration/binary_unary_label.png)
 
-This is [exactly how a parser works](https://itnext.io/writing-a-mathematical-expression-parser-35b0b78f869e) in a CAS or graphing calculator.
+This is [how a parser works](https://itnext.io/writing-a-mathematical-expression-parser-35b0b78f869e) in a CAS or graphing calculator.
 
 ### Generating trees
 
-The tree representation of functions makes it easier to generate that a function is syntactically correct. To generate a function, generate a random binary-unary tree, and populate the nodes.
-
-This is a non-trivial problem, and doing it efficiently is both well-studied[^alonso1994] and a topic of current research[^lescanne2024]. Since the trees I wanted to generate aren't large, I opted for the simple algorithm presented by Lample and Charton.
+This tree representation of functions makes it certain that a function is syntactically correct. To generate a function, generate a random binary-unary tree, and populate the nodes. Even this, though, is a non-trivial problem. Generating binary-unary trees efficiently is both well-studied[^alonso1994] and a topic of current research[^lescanne2024]. Since the trees I wanted to generate aren't large, I opted for the simple algorithm presented by Lample and Charton.
 
 [^alonso1994]: [Alonso. Uniform generation of a Motzkin word. (1994). Theoretical Computer Science. 134-2: 529-536.](https://www.sciencedirect.com/science/article/pii/0304397594000867)
 
 [^lescanne2024]: [Lescanne. Holonomic equations and efficient random generation of binary trees. (2024). ArXiv: 2205.11982.](https://arxiv.org/abs/2205.11982)
 
-The algorithm works by generating unassigned or "empty" nodes, and then "filling" them by deciding if they're leaves, unary, or binary. First, decide how many internal nodes should be in the tree. An internal node is a non-leaf (a binary or unary node). In this case, suppose there should be three internal nodes.
+The algorithm works by generating unassigned or "empty" nodes, and then "filling" them by deciding if they're leaves, unary, or binary. First, decide how many internal nodes should be in the tree. In this case, suppose there should be three internal nodes.
 
 Start with an empty node.
 
@@ -80,9 +78,12 @@ Since there's only one node, it can't be a leaf, so it will either be binary or 
 
 ![A binary node and two empty children](/assets/media/integration/tree2.png)
 
-Now there are two empty nodes, we decide the location of the next internal node. In this case, either the left node is an internal node, or it's a leaf and the right node is internal. Note that to generate all possible trees with equal probability, this shouldn't be a 50/50 choice! There exist more possible trees where the left node is internal than trees where it's a leaf! I'll get back to how calculating the sampling probability shortly.
+Now that there are two empty nodes, decide the location of the next internal node. In this case, either the left node is an internal node, or it's a leaf and the right node is internal. Note that to generate all possible trees with equal probability, this shouldn't be a 50/50 choice! There exist more possible trees where the left node is internal than trees where it's a leaf! I'll get back to how calculating the sampling probability shortly.
 
 ![Compare the two tree groups](/assets/media/integration/tree_comparison.png)
+
+All possible binary-unary trees with three internal nodes.
+{: .img-caption}
 
 Suppose the left node is internal, and further suppose that it's binary. Now there are three empty nodes.
 
@@ -92,11 +93,11 @@ One more internal node remains to assign. Suppose it's unary and in position 3, 
 
 ![A binary node with two children. The left is binary. Its right child is unary. The rest of the nodes are leaves](/assets/media/integration/tree4.png)
 
-Now fill the leaves with numbers and variables, and the unary and binary nodes with unary and binary operators respectively.
+Now populate the tree with operators, variables, and numbers.
 
 ![The same tree with operators, variables, and constants assigned](/assets/media/integration/tree5.png)
 
-Which represents $$2\times(x+\sin x)$$.
+This tree represents $$2\times(x+\sin x)$$.
 
 ### Sampling with equal probability
 
@@ -104,17 +105,17 @@ When making the random decisions required to generate trees, all options can't h
 
 > Naive algorithms (such as... techniques using fixed probabilities for nodes to be leaves, unary, or binary) tend to favor deep trees over broad trees, or left-leaning over right-leaning trees.
 
-In each step, we can reduce the random choices to a single sample: given $$n$$ remaining internal nodes and $$e$$ empty nodes, assign the first $$k$$ nodes as leaves, and assign the next node as either a unary or binary node. The paper summarizes the probability of each option as:
+Each step, the random decisions reduce to a single choice. Given $$n$$ remaining internal nodes and $$e$$ empty nodes, assign the first $$k$$ nodes as leaves, and assign the next node as either a unary or binary node. The paper summarizes the probability of each option as:
 
 > $$P(L(e, n)=(k,a))$$ is the probability that the next internal node is in position $$k$$ and has arity[^arity] $$a$$.
 
 [^arity]: Here "arity" is the same thing as node degree; a unary node has arity 1, and a binary node has arity 2. [More on this concept](https://en.wikipedia.org/wiki/Arity).
 
-To calculate this probability, we can count all the possible trees. If the next node is unary, we're assigning one internal node, so $$n-1$$ remain. We're assigning $$k$$ leaves, using up one empty node, and creating another, so the remaining empty nodes are $$e-k$$.
+To calculate this probability, count all the possible trees. If the next node is unary, we're assigning one internal node, so $$n-1$$ remain. We're assigning $$k$$ leaves, using up one empty node, and creating another, so the remaining empty nodes are $$e-k$$.
 
 $$P(L(e,n)=(k, \text{unary}))=\frac{\text{number of trees with $n-1$ internal nodes generated from $e-k$ nodes}}{\text{number of trees with $n$ internal nodes generated from $e$ empty nodes}}$$
 
-If the node is binary, the formula is the same, except that we're creating two empty nodes, so $$e-k+1$$ remain.
+If the node is binary, we're creating two empty nodes, so $$e-k+1$$ remain.
 
 $$P(L(e,n)=(k, \text{binary}))=\frac{\text{number of trees with $n-1$ internal nodes generated from $e-k+1$ nodes}}{\text{number of trees with $n$ internal nodes generated from $e$ empty nodes}}$$
 
@@ -382,7 +383,7 @@ I ran the database and Temporal Service on my Raspberry Pi, which I've named Sha
 All four workers registered in the Temporal UI.
 {: .img-caption}
 
-I switched from SQLite to [Postgres in docker](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/) so that all workers could access the database. Because of this, I also had to change some [`ufw`](https://wiki.ubuntu.com/UncomplicatedFirewall) (firewall) settings. While I was doing that I closed port 22, disabling SSH. To re-enable it, I needed to actually plug a keyboard and mouse into the Raspberry Pi, something I'd avoided so far. Oh well.
+I switched from SQLite to [Postgres in docker](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/) so that all workers could access the database. To enable access over my network, I had to change some [`ufw`](https://wiki.ubuntu.com/UncomplicatedFirewall) (firewall) settings. While I was doing that I closed port 22, disabling SSH. To re-enable it, I needed to actually plug a keyboard and mouse into the Raspberry Pi, something I'd avoided so far. Oh well.
 
 While only one worker would run on each computer, each worker would run a process on each CPU. This meant I could run 44 concurrent processes!
 
@@ -422,4 +423,4 @@ I've addressed a lot of complicated topics in this article, and it's possible I'
 
 <!-- vale custom.Acronyms = YES -->
 
-## References and Footnotes
+## References and footnotes
