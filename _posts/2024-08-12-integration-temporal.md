@@ -3,7 +3,7 @@ layout: post
 title: Integrating Random Functions on a Cluster with Temporal
 excerpt_separator: <!--more-->
 image: /assets/media/integration/cluster.gif
-description: Using Temporal as a workflow manager to generate and integrate functions with Sympy across multiple computers.
+description: Using Temporal as a workflow manager to solve math problems with many computers.
 ---
 
 In 2020, I read Lample and Charton's [Deep Learning for Symbolic Mathematics](https://arxiv.org/pdf/1912.01412). I had graduated with a math degree less than two years before, and I thought it would be cool to apply neural networks to math. One candidate was the search for [Lyapunov functions](https://en.wikipedia.org/wiki/Lyapunov_function), which were crucial to my undergraduate research. Finding Lyapunov functions is like finding integrals. The two problems share a tantalizing property: solutions are easy to verify, but hard to compute. I tried to reproduce some of Lample and Charton's work on my own, but I wasn't a great programmer. I was also distracted with my day job---I spent 260 days at sea in 2020.
