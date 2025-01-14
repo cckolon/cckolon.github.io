@@ -7,6 +7,8 @@ description: Welcome to my site!
 
 I'm a Software Engineer at [Vannevar Labs](https://www.vannevarlabs.com/). I live in San Francisco. For 5 years I was a Submarine Officer in the US Navy. Before that, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Mathematics at the US Naval Academy. This is my personal website.
 
+I'm the creator of [ewatchbill.com](https://ewatchbill.com/), [jfmm.net](https://jfmm.net), and [bearingsonly.net](https://bearingsonly.net).
+
 I like to write, especially about math, coding, and the outdoors. [Take a look at some of my articles here](/blog).
 
 ![In San Francisco](/assets/media/golden_gate.jpg)
