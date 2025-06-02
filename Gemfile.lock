@@ -91,6 +91,7 @@ DEPENDENCIES
   jekyll
   jekyll-figure (~> 0.2.0)
   logger
+  rake
   webrick (~> 1.8)
 
 BUNDLED WITH
