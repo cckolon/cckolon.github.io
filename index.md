@@ -32,4 +32,4 @@ My cat is on Instagram as [@rockminsterfullerene](https://www.instagram.com/rock
 
 My wife, Jackie, is an internal medicine resident at [UCSF](https://www.ucsf.edu/).
 
-My little sister, [Nellie](https://www.linkedin.com/in/helena-nellie-kolon-8b4b3613a/), is a PhD student at [Georgia Tech](https://bme.gatech.edu/bme/) studying Biomedical Engineering.
+My little sister, [Nellie](https://nelliekolon.com), is a Master's student at [Georgia Tech](https://bme.gatech.edu/bme/) studying Biomedical Engineering.
