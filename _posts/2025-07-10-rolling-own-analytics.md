@@ -86,5 +86,16 @@ Writing queries which ignore hits based on these criteria would probably filter 
 
 I evaluated a couple other tools while I was considering moving away from Google. [Matomo](https://matomo.org/) and [Umami](https://umami.is/) seem like great options, and both allow you to self-host for free. By now, though, I was starting to get the itch to do this myself.
 
-## Requirements
+I had recently registered [cck.sh](https://cck.sh) and planned to use it as a link shortener, so I tacked my analytics service on as an extra feature.
+
+## Storing analytics events
+
+Since I already had a postgres server, I decided to use that to store the data. Originally, I wanted to use something like [Vector](https://vector.dev/) to get logs from a web server and move them to postgres, but annoyingly the vector postgres backend doesn't support SSL, which is required by DigitalOcean's hosted postgres instances. Also, the task of moving logs wasn't too hard, and 
+I decided to just write my own FastAPI server to do it.
+
+In postgres, I created two tables, `analytics_sessions` and `analytics_events`. A session was created with each new page load, while an event could represent lots of types of interactions, like link clicks and page scrolls. Each event was associated with a session, so if I wanted to see everything that a user did during a visit, I could search the event rows matching a session ID. Unlike Google, I didn't persist session IDs (or any other data) across multiple page loads. If a user visits my site twice, it's two different sessions.
+
+## Client-side code
+
+To do frontend analytics, I needed the user's browser to report events back to the server. I wrote a simple javascript IIFE (immediately invoked function expression) to do this. First, the function would send a request back to my server on page load. This would contain some basic information about the viewer's machine. Some of these things (like user-agent or referer) are visible in the server logs, but other things (like screen resolution or )
 
