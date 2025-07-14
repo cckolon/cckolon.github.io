@@ -1,9 +1,12 @@
 ---
 layout: base
 ---
-<h1>Blog</h1>
+<h1>
+  Carl Kolon
+  <span style="color: #777">- Blog</span>
+</h1>
 {% include navigation.html %}
 <hr>
 <h2>{{ page.title }}</h2>
-<h3>{{ page.date | date_to_string}}</h3>
+<h3>{{ page.date | date_to_string }}</h3>
 {{ content }}

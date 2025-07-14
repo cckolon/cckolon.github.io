@@ -6,7 +6,8 @@ image: /assets/media/rolling-analytics/dashboard-thumb.png
 description: Writing my own alternative to Google Analytics for my websites
 ---
 
-> To the extent you can, avoid letting intermediaries come between you and your audience. In some types of work this is inevitable, but it's so liberating to escape it that you might be better off switching to an adjacent type if that will let you go direct. *--- Paul Graham, [How to Do Great Work](https://www.paulgraham.com/greatwork.html)*
+> To the extent you can, avoid letting intermediaries come between you and your audience. In some types of work this is inevitable, but it's so liberating to escape it that you might be better off switching to an adjacent type if that will let you go direct. _--- Paul Graham, [How to Do Great Work](https://www.paulgraham.com/greatwork.html)_
+
 <!--more-->
 
 When I write a new article, I like to see if people are reading it. Maybe this comes from a desire for validation, and maybe that's unhealthy. I guess I shouldn't care whether the things I write have a large audience. I should be content to know that I'm putting good work out there, and doing my best. In reality, though, I think everyone who does something creative cares if people consume and appreciate it, and I'm no exception.
@@ -29,7 +30,8 @@ An approach like this works great for old-school sites running on a dedicated se
 
 ## How my sites are deployed
 
-I've been putting stuff on the web seriously since about 2020 or 2021. I have 4 websites. 
+I've been putting stuff on the web seriously since about 2020 or 2021. I have 4 websites.
+
 - This one,
 - [ewatchbill.com](https://ewatchbill.com/), a scheduler app built with React/FastAPI,
 - [bearingsonly.net](https://bearingsonly.net/), a submarine combat game built with React/NodeJS,
@@ -49,7 +51,7 @@ So back to the server logs. On their own, they won't work. Every time I deploy m
 
 Even if I did this, I'd have to face the problem of what to do about carlkolon.com. Since all the hosting infrastructure is handled centrally by GitHub, I don't have access to the server logs.
 
-Finally, there is a lot of bot traffic. [More than half of worldwide internet traffic is bots](https://www.techradar.com/pro/security/bots-now-account-for-over-half-of-all-internet-traffic). Of these, not all are malicious! For example, I want Google crawlers to index my pages. When I post an article on Facebook or Linkedin, I want those sites to fetch the meta info to make pretty banners. But I *don't* want to fool myself into thinking those hits are actual viewers. It would be nice if I could filter out as much of them as possible.
+Finally, there is a lot of bot traffic. [More than half of worldwide internet traffic is bots](https://www.techradar.com/pro/security/bots-now-account-for-over-half-of-all-internet-traffic). Of these, not all are malicious! For example, I want Google crawlers to index my pages. When I post an article on Facebook or Linkedin, I want those sites to fetch the meta info to make pretty banners. But I _don't_ want to fool myself into thinking those hits are actual viewers. It would be nice if I could filter out as much of them as possible.
 
 ## Google Analytics
 
@@ -72,7 +74,7 @@ I've used Google Analytics for years, but recently I've been tempted to move awa
 
 I also think that Google Analytics is a little too bloated for what I want. With all its features (mostly built for maximizing online revenue, which I don't make from this site) it can be hard to find the information that I actually find useful. I don't need to track "conversions" or "key events". I just want to know if anyone is reading my articles.
 
-Finally, there are things I *do* want to see that Google Analytics doesn't provide me. For example, there are a lot of subtle cues that distinguish real traffic from bots. 
+Finally, there are things I _do_ want to see that Google Analytics doesn't provide me. For example, there are a lot of subtle cues that distinguish real traffic from bots.
 
 Already, frontend analytics are more likely to ignore bot traffic than server logs, because many bots won't even execute javascript. But nowadays, lots of sites are dynamic and require javascript to function at all, so a fair number of scrapers operate virtual browsers. In this case, there are a few other giveaways. Bots tend to use Linux machines, where almost all real traffic uses Mac OS or Windows. Bots often have a screen resolution set to a low, round number (like 800x400 px), whereas the screen resolution of real devices varies significantly. Bots rarely use mobile devices, where plenty of people almost exclusively browse the web from a phone.
 
@@ -90,12 +92,180 @@ I had recently registered [cck.sh](https://cck.sh) and planned to use it as a li
 
 ## Storing analytics events
 
-Since I already had a postgres server, I decided to use that to store the data. Originally, I wanted to use something like [Vector](https://vector.dev/) to get logs from a web server and move them to postgres, but annoyingly the vector postgres backend doesn't support SSL, which is required by DigitalOcean's hosted postgres instances. Also, the task of moving logs wasn't too hard, and 
+Since I already had a postgres server, I decided to use that to store the data. Originally, I wanted to use something like [Vector](https://vector.dev/) to get logs from a web server and move them to postgres, but annoyingly the vector postgres backend doesn't support SSL, which is required by DigitalOcean's hosted postgres instances. Also, the task of moving logs wasn't too hard, and
 I decided to just write my own FastAPI server to do it.
 
 In postgres, I created two tables, `analytics_sessions` and `analytics_events`. A session was created with each new page load, while an event could represent lots of types of interactions, like link clicks and page scrolls. Each event was associated with a session, so if I wanted to see everything that a user did during a visit, I could search the event rows matching a session ID. Unlike Google, I didn't persist session IDs (or any other data) across multiple page loads. If a user visits my site twice, it's two different sessions.
 
-## Client-side code
+## Detecting user events
 
-To do frontend analytics, I needed the user's browser to report events back to the server. I wrote a simple javascript IIFE (immediately invoked function expression) to do this. First, the function would send a request back to my server on page load. This would contain some basic information about the viewer's machine. Some of these things (like user-agent or referer) are visible in the server logs, but other things (like screen resolution or )
+To do frontend analytics, I needed the user's browser to report events back to the server. I wrote a simple javascript IIFE (immediately invoked function expression) to do this. First, the function would send a request back to my server on page load. This would contain some basic information about the viewer's machine. Some of these things (like user-agent or referer) are visible in the server logs, but other things (like screen resolution or time zone) aren't. Once I had the payload, I would URL-safe base64 encode it and send it to the server in a POST request.
 
+Why base64 encode? In early iterations, I made the payload a URL query parameter, so I didn't want to send raw JSON. In the end, I standardized around a POST body, but I already had written the backend parse logic, so I kept the same string payload.
+
+My payload looks more or less like this:
+
+```js
+const baseData = {
+  u: url,
+  r: referrer,
+  pt: pageTitle,
+  p: platform,
+  ua: userAgent,
+  l: language,
+  tz: timezone,
+  sr: screenResolution,
+};
+```
+
+Then before sending I'd tack on the session ID (if it exists, which it typically didn't) and a `l` character to symbolize a page load.
+
+```js
+sendAnalyticsData({
+  ...baseData,
+  s: window.SESSION_ID || null,
+  t: "l",
+});
+```
+
+When the server received the payload, I would decode it and insert a row into `analytics_sessions`.
+
+```python
+with psycopg.connect(DATABASE_URL) as conn:
+    with conn.cursor() as cursor:
+        cursor.execute(
+            """
+            INSERT INTO analytics_sessions (
+                -- blah blah blah
+            ) VALUES (
+                -- lots of placeholders
+            )
+            ON CONFLICT (id) DO UPDATE SET
+                updated_at = CURRENT_TIMESTAMP
+            RETURNING id
+            """,
+            (
+                # lots of data
+            ),
+        )
+        session_id_row = cursor.fetchone()
+        if not session_id_row:
+            raise ValueError("Failed to insert or update session")
+        session_id = session_id_row[0]
+```
+
+The `session_id` here is a UUID which I would send back in the request. Then on the client I'd set it as a global property using the `window` object.
+
+```js
+async (response) => {
+  if (!response.ok) {
+    return;
+  }
+  const { s } = await response.json();
+  if (s) {
+    window.SESSION_ID = s;
+  }
+};
+```
+
+To track scroll events, I registered a scroll listener, which would calculate the percentage scrolled and send it to the server. To prevent sending a ton of requests, I debounced it with a 250ms timeout and only sent requests when the percentage increased by more than 10.
+
+```js
+window.addEventListener("scroll", () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+    );
+    const windowHeight = window.innerHeight;
+    const scrollDepth = Math.round(
+      ((scrollTop + windowHeight) / documentHeight) * 100,
+    );
+
+    if (scrollDepth > maxScrollDepth + 10) {
+      maxScrollDepth = scrollDepth;
+
+      const data = {
+        ...baseData,
+        s: window.SESSION_ID || null,
+        t: "s",
+        sd: scrollDepth,
+      };
+      sendAnalyticsData(data);
+    }
+  }, 250);
+});
+```
+
+### Tracking dwell time
+
+The most interesting challenge would be tracking the amount of time a user stayed on the webpage. Some analytics applications ping an "alive" request to the server every so often to ensure the page is still loaded, and these are added up server side. This is really robust, but kind of complex. I preferred tracking dwell time using the [beforeunload event](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event). This is a browser event that fires right before the page is about to be closed. When the user attempts to close the tab, the request would fire before the tab finished unloading.
+
+```js
+const startTime = now();
+
+window.addEventListener("beforeunload", () => {
+  const data = {
+    ...baseData,
+    s: window.SESSION_ID || null,
+    t: "e",
+    es: Date.now() - startTime,
+  };
+  sendAnalyticsData(data);
+});
+```
+
+With this approach, though, it was possible that the dwell time could be unnaturally long. For example, if a user started reading my article, got bored, switched to a new tab, and then closed my article an hour later. That would represent an hour of dwell time, even though the user might have only read my article for a few seconds. I was more interested in getting the user's _engaged_ time.
+
+Luckily, I could use the `visibilitychange` event and `document.visibilityState` api to solve this problem. Every time there was a `visibilitychange` event, I could check the `document.visibilityState` and pause the timer if the document wasn't visible.
+
+```js
+function handleVisibilityChange() {
+  if (document.visibilityState === "visible") {
+    lastStart = Date.now();
+  } else if (lastStart !== null) {
+    engagedTime += Date.now() - lastStart;
+    lastStart = null;
+  }
+}
+
+if (document.visibilityState === "visible") {
+  lastStart = Date.now();
+}
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
+```
+
+### Back to the server logs
+
+While I trusted the user's device to report almost all data, I still had to go to the server to get the user's IP address - client-side javascript doesn't have access to the device's IP.
+
+It's easy to screw this up. Take another look at one of the server logs from the top of the page:
+
+```
+10.244.0.218 - - [10/Jul/2025:17:01:14 +0000] "GET /a.js HTTP/1.1" 200 7046 "https://carlkolon.com/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+```
+
+The IP address - the first thing displayed in the log - is not the user's actual address. You can tell because it begins with 10, and [all IP addresses beginning with 10 are private](https://en.wikipedia.org/wiki/Private_network#Private_IPv4_addresses).
+
+In our case, this is the IP address of the Cloudflare reverse proxy between my server and the broader internet. Luckily, we can still get the original IP from the [X-Forwarded-For header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For), which reverse proxies typically tack on to the requests they forward. It contains a comma-separated list of addresses that a request passed through. The left-most one corresponds to the user's address.
+
+Even better, the FastAPI service that runs behind my Nginx server can still access this header, so we don't need to go reading the logs.
+
+```python
+@app.post("/some_endpoint")
+async def some_endpoint(
+    request: Request, body: SomeBody
+) -> SomeResponse:
+    x_forwarded_for=request.headers.get("X-Forwarded-For")
+    ip_address = x_forwarded_for.split(",")[0].strip()
+    # then do something with this information
+```
+
+## Enriching and anonymizing
+
+Once my server had the data, I wanted to get as many insights as possible from it (enrich it) and comply with [California](https://oag.ca.gov/privacy/ccpa) and [EU law](https://gdpr-info.eu/) by making sure users couldn't be identified from their sessions (anonymize it).
+
+The biggest enrichment that I wanted to apply was IP geolocation. IP addresses are a reasonably good indicator of someone's location (though they're not perfect, and you [shouldn't rely on them for determining someone's language](https://vitonsky.net/blog/2025/05/17/language-detection/)). Plenty of companies make IP geolocation APIs and databases which are updated and tweaked over time. Since I don't want to pay for access to an API, I fetch the free [GeoLite](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data/) database from MaxMind as part of my container's build process. GeoLite is a
