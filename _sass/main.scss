@@ -7,37 +7,6 @@ body {
   padding: 10px;
 }
 
-footer {
-  color: gray;
-  font-size: small;
-  font-style: italic;
-  padding-top: 10px;
-  max-width: 900px;
-  min-width: 265px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h1 {
-  color: #303030;
-}
-
-table {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid;
-  padding: 5px;
-}
-
 ul {
   list-style-type: disc;
 }
@@ -52,12 +21,13 @@ li {
 
 p,
 .left-img {
-  margin: 5pt 0cm 5pt 0cm;
+  margin: 20px 0px;
   display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+}
+
+em {
+  font-style: italic;
+  font-family: "Lora", serif;
 }
 
 nav {
@@ -114,37 +84,6 @@ input {
   font-size: 0.9em;
   font-weight: 500;
   color: darkslategray;
-}
-
-.fim {
-  margin: 1em auto;
-  position: relative;
-  display: inline-block;
-  text-align: center;
-}
-
-.fim p {
-  display: block;
-  margin: 0;
-  margin-block: 0;
-}
-
-.fim p img {
-  display: block;
-}
-
-.fim figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5rem 1rem 1rem;
-  color: rgb(255, 255, 255);
-  background: linear-gradient(
-    to top,
-    hsla(230, 40%, 5%, 0.95),
-    hsla(230, 40%, 5%, 0)
-  );
 }
 
 @media only screen and (max-width: 850px) {
@@ -249,14 +188,4 @@ input {
   margin-top: 0px;
   text-align: center;
   font-style: italic;
-}
-
-footer .license-icons img {
-  vertical-align: text-bottom;
-  display: inline-block;
-}
-
-#early-break {
-  font-size: 0;
-  position: absolute;
 }

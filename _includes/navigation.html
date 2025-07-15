@@ -1,9 +1,19 @@
 <nav>
-   - 
-    {% for item in site.data.navigation %}
-      {% assign item_link = item.link | remove: '/' %}
-      {% assign page_url = page.url | remove: '/' %}
-      <a href="{{ item.link }}" {% if page_url == item_link %}class="current"{% endif %}>{{ item.name }}</a> - 
-    {% endfor %}
-  </nav>
-  
+  -
+  {% for item in site.data.navigation %}
+    {% assign item_link = item.link | remove: '/' %}
+    {% assign page_url = page.url | remove: '/' %}
+    <a
+      href="{{ item.link }}"
+      {% if page_url == item_link %}
+        class="current"
+      {% endif %}
+      {% if item['disable-boost'] %}
+        hx-boost="false"
+      {% endif %}
+    >
+      {{- item.name -}}
+    </a>
+    -
+  {% endfor %}
+</nav>

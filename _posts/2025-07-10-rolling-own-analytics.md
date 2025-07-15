@@ -10,7 +10,7 @@ description: Writing my own alternative to Google Analytics for my websites
 
 <!--more-->
 
-When I write a new article, I like to see if people are reading it. Maybe this comes from a desire for validation, and maybe that's unhealthy. I guess I shouldn't care whether the things I write have a large audience. I should be content to know that I'm putting good work out there, and doing my best. In reality, though, I think everyone who does something creative cares if people consume and appreciate it, and I'm no exception.
+When I write a new article, I like to see if people are reading it. I guess I shouldn't care whether the things I write have a large audience, but in reality, I think everyone who does something creative cares if people consume and appreciate it, and I'm no exception.
 
 When I first started putting things on the web, I thought that this would be a pretty simple desire to fulfill. Every web server keeps some sort of log, so I could just watch it and see how many hits my articles had. My sites are hosted with nginx mostly, so here's what the logs look like:
 
@@ -264,8 +264,29 @@ async def some_endpoint(
     # then do something with this information
 ```
 
-## Enriching and anonymizing
+## Geolocating and anonymizing
 
-Once my server had the data, I wanted to get as many insights as possible from it (enrich it) and comply with [California](https://oag.ca.gov/privacy/ccpa) and [EU law](https://gdpr-info.eu/) by making sure users couldn't be identified from their sessions (anonymize it).
+IP addresses are a reasonably good indicator of someone's location (though they're not perfect, and you [shouldn't rely on them for determining someone's language](https://vitonsky.net/blog/2025/05/17/language-detection/)). Since I collect IP addresses, I could use them to generate a map of my readers' approximate locations. Plenty of companies make IP geolocation APIs and databases which are updated and tweaked over time. Since I don't want to pay for access to an API, I fetch the free [GeoLite](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data/) database from MaxMind as part of my container's build process, and update it periodically. GeoLite is an IP geolocation database with reasonable accuracy. Since I'm downloading the database and doing lookups locally, I don't have to worry about rate limiting or inadvertently sharing sensitive data.
 
-The biggest enrichment that I wanted to apply was IP geolocation. IP addresses are a reasonably good indicator of someone's location (though they're not perfect, and you [shouldn't rely on them for determining someone's language](https://vitonsky.net/blog/2025/05/17/language-detection/)). Plenty of companies make IP geolocation APIs and databases which are updated and tweaked over time. Since I don't want to pay for access to an API, I fetch the free [GeoLite](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data/) database from MaxMind as part of my container's build process. GeoLite is a
+```py
+def geolocate_ip(ip: str) -> Geolocation:
+    with geoip2.database.Reader(DB_PATH) as reader:
+        try:
+            city = reader.city(ip)
+            # access attributes like city.latitude, city.longitude, etc.
+```
+
+I also needed to comply with [California](https://oag.ca.gov/privacy/ccpa) and [EU law](https://gdpr-info.eu/) by making sure users couldn't be identified from their sessions. The locations provided by GeoLite are approximate, and [can't be used to uniquely identify visitors](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data/#understanding-ip-geolocation), but raw IP addresses themselves are a different story. While it's dubious that I could actually identify anyone uniquely from their IP address, the addresses are considered to be [personal data](https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en) in [some legal situations](https://ccdcoe.org/incyder-articles/cjeu-determines-dynamic-ip-addresses-can-be-personal-data-but-can-also-be-processed-for-operability-purposes/), so to be safe I wanted to anonymize them.
+
+Typically, IP address anonymization is done by truncating the addresses: removing some number of trailing bits. I chose the same strategy that Google uses: deleting the last byte of IPV4 addresses and the last 80 bits of IPV6 address. I represented them with subnet notation in my database so that I had a record of how much truncation I did. Truncating one byte from an IPV4 address is the same as the `/24` subnet, and truncating 80 bits from an IPV6 address is the same as the `/48` subnet.
+
+```
+                             1.23.45.67 -> 1.23.45.0/24
+2001:0db8:abcd:1234:5678:9abc:def0:1234 -> 2001:0db8:abcd::/48
+```
+
+You might ask why I need to truncate so much data from IPV6 addresses, and so little for IPV4. Surprisingly, these offer about the same amount of privacy.
+
+Because IPV4 addresses are scarce, IP address blocks are typically allocated to ISPs in fairly small blocks. For example, a small regional ISP may only get a `/22` CIDR block, which contains only 1024 addresses. It's likely that basically all of these addresses will be used. This means that there's a decent amount of ambiguity when only the last byte is truncated. Even better, many ISPs use NAT (network address translation) to allow customers to share IPs, increasing the ambiguity further. There are basically no circumstances in which I could identify a user uniquely based on their `/24` subnet.
+
+Unlike IPV4 addresses, IPV6 addresses are really numerous. There are $$2^{128}$$ of them (about 340 billion billion billion). Because of this, 

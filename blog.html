@@ -4,10 +4,18 @@ title: Blog
 image: /assets/media/blog.png
 description: My Blog.
 ---
-
 {% for post in site.posts %}
-<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-<h3>{{post.date | date_to_string}}</h3>
-<img src="{{ post.image }}" alt="{{ post.title }}" />
-<p>{{ post.excerpt }}</p>
+  <div class="blog-preview">
+    <div class="blog-header">
+      <a href="{{post.url}}" class="blog-link">
+        <h1 class="blog-title">
+          {{ post.title }}
+        </h1>
+      </a>
+      <div class="post-date">{{ post.date | date_to_string }}</div>
+      <img src="{{ post.image }}" alt="{{ post.title }}">
+      {{ post.excerpt }}
+    </div>
+  </div>
+  <hr>
 {% endfor %}

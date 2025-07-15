@@ -1,4 +1,5 @@
 ---
+title: "Carl Kolon"
 layout: default
 image: /assets/media/golden_gate.jpg
 description: Welcome to my site!

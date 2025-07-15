@@ -1,12 +1,9 @@
 ---
 layout: base
 ---
-<h1>
-  Carl Kolon
-  {% if page.title %}
-    <span style="color: #777">- {{ page.title }}</span>
-  {% endif %}
-</h1>
-{% include navigation.html %}
-<hr>
+{% if page.title == 'Carl Kolon' %}
+  {% include page_top.html %}
+{% else %}
+  {% include page_top.html sub_header=page.title %}
+{% endif %}
 {{ content }}

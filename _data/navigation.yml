@@ -8,3 +8,4 @@
   link: /navy
 - name: Resume
   link: /resume.pdf
+  disable-boost: true
