@@ -37,7 +37,7 @@ I've been putting stuff on the web seriously since about 2020 or 2021. I have 4 
 - [bearingsonly.net](https://bearingsonly.net/), a submarine combat game built with React/NodeJS,
 - [jfmm.net](https://jfmm.net/), a semantic search engine built with HTMX/Django.
 
-Since this site is static, I host it for free on [GitHub Pages](https://pages.github.com/). The other sites all require some type of backend computation, so I host them as containers on [DigitalOcean's app platform](https://vannevarlabs.atlassian.net/wiki/spaces/SE/pages/1901461507/Adding+Instagram+Areas+for+Serra). At $5 per month, this is cheaper than some approaches I've used in the past (like renting a droplet or EC2 instance), and also means that I don't have to configure HTTPS and deployment actions myself. Another nice benefit is that all my sites are hosted behind a cloudflare reverse proxy, which protects me from some types of bots and attackers (more about this later).
+Since this site is static, I host it for free on [GitHub Pages](https://pages.github.com/). The other sites all require some type of backend computation, so I host them as containers on [DigitalOcean's app platform](https://vannevarlabs.atlassian.net/wiki/spaces/SE/pages/1901461507/Adding+Instagram+Areas+for+Serra). At $5 per month, this is cheaper than some approaches I've used in the past (like renting a droplet or EC2 instance), and also means that I don't have to configure HTTPS and deployment actions myself. Another nice benefit is that all my sites are hosted behind a cloudflare reverse proxy, which protects me from some types of bots and attackers.
 
 I have one shared postgres instance on DigitalOcean with databases for the apps that require them, and another shared redis cache. I do it like this to save money. Hosted databases are expensive!!
 
@@ -289,4 +289,25 @@ You might ask why I need to truncate so much data from IPV6 addresses, and so li
 
 Because IPV4 addresses are scarce, IP address blocks are typically allocated to ISPs in fairly small blocks. For example, a small regional ISP may only get a `/22` CIDR block, which contains only 1024 addresses. It's likely that basically all of these addresses will be used. This means that there's a decent amount of ambiguity when only the last byte is truncated. Even better, many ISPs use NAT (network address translation) to allow customers to share IPs, increasing the ambiguity further. There are basically no circumstances in which I could identify a user uniquely based on their `/24` subnet.
 
-Unlike IPV4 addresses, IPV6 addresses are really numerous. There are $$2^{128}$$ of them (about 340 billion billion billion). Because of this, 
+Unlike IPV4 addresses, IPV6 addresses are really numerous. There are $$2^{128}$$ of them (about 340 billion billion billion). Because of this, IPV6 addresses contain a lot more redundancy. The entire second half (64 bits) of an IPV6 address is called the [host identifier](https://intronetworks.cs.luc.edu/1/html/ipv6.html#host-identifier), and acts as a key that identifies the device specifically. Sometimes, these host identifiers are even generated from the device's MAC address and shared between networks ([though this is now discouraged for privacy reasons](https://www.rfc-editor.org/rfc/rfc7217)).
+
+So obviously, I had to get rid of the host identifier, but even with the first 64 bits only, it would still be possible to exactly identify the network the device was connected to. Because of this I decided to remove another 16 of the least significant bits, storing only the first 48 bits and truncating the remaining 80. Just like in IPV4, I was removing the least significant quarter from the network-identifying portion of the address. This is [the same policy that Google follows](https://support.google.com/analytics/answer/2763052) in Google Analytics V3 so I felt pretty safe.
+
+I do the truncation in the FastAPI endpoint using python's [ipaddress](https://docs.python.org/3/library/ipaddress.html) library, and only store IPs to disk after they've been truncated.
+
+```python
+from ipaddress import IPv4Address, IPv6Address, ip_address, ip_network
+
+def anonymize_ip(ip_str: str) -> str:
+    ip_obj = ip_address(ip_str)
+    if isinstance(ip_obj, IPv4Address):
+        network = ip_network(f"{ip_str}/24", strict=False)
+        return str(network)
+    if isinstance(ip_obj, IPv6Address):
+        network = ip_network(f"{ip_str}/48", strict=False)
+        return str(network)
+    raise ValueError("Not a V4 or V6 IP address")
+```
+
+## Visualizing the data
+
