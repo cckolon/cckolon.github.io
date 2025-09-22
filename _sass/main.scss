@@ -189,3 +189,13 @@ input {
   text-align: center;
   font-style: italic;
 }
+
+footer .license-icons img {
+    vertical-align: text-bottom;
+    display: inline-block;
+}
+
+#early-break {
+    position: absolute;
+    left:-9999px;
+}
