@@ -1,0 +1,17 @@
+footer {
+  color: gray;
+  font-size: small;
+  font-style: italic;
+  padding-top: 10px;
+  max-width: 795px;
+  min-width: 265px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .license-icons img {
+  vertical-align: text-bottom;
+  display: inline-block;
+}

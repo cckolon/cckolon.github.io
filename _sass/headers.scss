@@ -1,0 +1,24 @@
+h1 {
+  color: #303030;
+  font-family: "Lora", serif;
+  font-weight: 700;
+}
+
+h1 .muted {
+  color: #666;
+  font-weight: 500;
+}
+
+.blog-header {
+    margin-bottom:1.5em;
+}
+
+.blog-header h1 {
+    margin-bottom: 0;
+}
+
+.blog-header .post-date {
+  margin-top: .25em;
+  color: gray;
+  font-size: small;
+}

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: My Research
+title: Research
 image: /assets/media/postersession.jpg
 description: My research in swarming and nonlinear dynamics.
 ---

@@ -1,0 +1,31 @@
+.blog-preview {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  position: relative;
+}
+
+.blog-preview a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.blog-preview:hover h1{
+  text-decoration: underline;
+}
+
+.blog-header-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.blog-header a h1 {
+  text-decoration: none;
+  color: blue;
+}

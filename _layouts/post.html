@@ -1,9 +1,14 @@
 ---
 layout: base
 ---
-<h1>Blog</h1>
+<h1>
+  Carl Kolon
+  <span class="muted">/ <a class="blog-header-link" href="/blog">Blog</a></span>
+</h1>
 {% include navigation.html %}
 <hr>
-<h2>{{ page.title }}</h2>
-<h3>{{ page.date | date_to_string}}</h3>
+<div class="blog-header">
+  <h1 class="blog-title">{{ page.title }}</h1>
+  <div class="post-date">{{ page.date | date_to_string }}</div>
+</div>
 {{ content }}
