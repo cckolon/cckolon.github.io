@@ -4,6 +4,7 @@ title: Cycling Efficiency
 excerpt_separator: <!--more-->
 image: /assets/media/cycling/acceleration-graph.png
 description: A Javascript applet to calculate the effect of gear shifts on your bicycle.
+disable-boost: True
 ---
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
