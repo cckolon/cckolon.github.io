@@ -60,7 +60,7 @@ I'm also skeptical of a pure-RL hypothesis because it seems like babies can gene
 
 ### Instinct
 
-Some of Florence's behavior is clearly, purely instinctual. When I put my finger in her hand, she grasps it reflexively. The purpose of the grasp reflex is not well known. It may be purely vestigial from our monkey days of tree-swinging, or it could serve some purpose in the development of voluntary grasping[^grasp]. Regardless, it's clearly _not_ voluntary grasping. Based on reaction time, the grasp reflex happens at the spinal cord level[^grasp].
+Some of Florence's behavior is purely instinctual. When I put my finger in her hand, she grasps it reflexively. The purpose of the grasp reflex is not well known. It may be purely vestigial from our monkey days of tree-swinging, or it could serve some purpose in the development of voluntary grasping[^grasp]. Regardless, it's clearly _not_ voluntary grasping. Based on reaction time, the grasp reflex happens at the spinal cord level[^grasp].
 
 [^grasp]: [Falkson SR, Bordoni B. Grasp Reflex. [Updated 2025 Jan 22]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2025 Jan-.](https://www.ncbi.nlm.nih.gov/books/NBK553125/)
 
