@@ -7,3 +7,4 @@ _vale_styles/*
 !_vale_styles/custom/
 !_vale_styles/config/
 node_modules/
+.DS_Store

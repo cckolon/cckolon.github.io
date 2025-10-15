@@ -61,6 +61,15 @@ blockquote {
   padding: 0.5em 10px;
 }
 
+// merge blockquotes that are adjacent
+blockquote:has(+ blockquote) {
+  margin-bottom: 0;
+}
+
+blockquote + blockquote {
+  margin-top: 0;
+}
+
 blockquote p {
   display: inline;
 }
@@ -83,7 +92,7 @@ input {
   text-align: center;
   font-size: 0.9em;
   font-weight: 500;
-  color: darkslategray;
+  color: gray;
 }
 
 @media only screen and (max-width: 850px) {
@@ -191,6 +200,10 @@ input {
 }
 
 footer .license-icons img {
-    vertical-align: text-bottom;
-    display: inline-block;
+  vertical-align: text-bottom;
+  display: inline-block;
+}
+
+.footnote {
+  margin: 0 1px;
 }
