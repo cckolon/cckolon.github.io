@@ -56,7 +56,7 @@ Flo can do better than this. Image from [Google](https://research.google/blog/sc
 
 If we tried to get Florence to solve the cart pole problem (using a joystick or inputs from her eyes) it would probably take her far more than 500 tries. To her, grasping is much easier than cart pole. For computers, it is the opposite.
 
-I'm also skeptical of RL because it seems like babies can generalize much better than any AI system that I've encountered. Florence spends most of her time grabbing little toys on the rails of her bouncer (pictured above). If you hand her a new toy in a new place, though, she doesn't need to start from scratch. This also means that Florence's advantage isn't just scale (number of neurons). If this were the case, you'd expect to observe overfitting and poor generalization. In fact, the opposite is true.
+I'm also skeptical of a pure-RL hypothesis because it seems like babies can generalize much better than any AI system that I've encountered. Florence spends most of her time grabbing little toys on the rails of her bouncer (pictured above). If you hand her a new toy in a new place, though, she doesn't need to start from scratch. This also means that Florence's advantage isn't just scale (number of neurons). If this were the case, you'd expect to observe overfitting and poor generalization. In fact, the opposite is true.
 
 ### Instinct
 
@@ -98,7 +98,7 @@ I'm convinced that this world model exists because I watch the way Florence trie
 
 [^intuitivephysics]: [Hespos, Susan J, and Kristy vanMarle. “Physics for infants: characterizing the origins of knowledge about objects, substances, and number.” Wiley interdisciplinary reviews. Cognitive science vol. 3,1 (2012): 19-27. doi:10.1002/wcs.157](https://pubmed.ncbi.nlm.nih.gov/26302470/)
 
-I think that these basic facts about how the world works are 90% of what the computer is learning during Google's camera-guided robot arm task. The remainder, "actually doing" the task, is much simpler once the agent infers the rules of the environment. It reminds me of how language models like BERT can be fine-tuned to perform many different language tasks by adding a task head to a pretrained model and training the task head alone. This works even though the pretraining is performed on largely unrelated tasks. Even in model-free methods, an RL agent still must learn a representation of the environment's rules, it's just hidden in the weights.
+I think that these basic facts about how the world works are 90% of what the computer is learning during Google's camera-guided robot arm task. The remainder, "actually doing" the task, is much simpler once the agent infers the rules of the environment. It reminds me of how language models like BERT can be [fine-tuned](https://www.tensorflow.org/tfmodels/nlp/fine_tune_bert) to perform many different language tasks by adding a task head to a pretrained model and training the task head alone. This works even though the pretraining is performed on largely unrelated tasks. Even in model-free methods, an RL agent still must learn a representation of the environment's rules, it's just hidden in the weights.
 
 ## Applications to AI
 
