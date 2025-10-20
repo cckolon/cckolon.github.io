@@ -25,7 +25,7 @@ I did a lot of math work at the Naval Academy. [You can read about it here](/res
 
 I'm on LinkedIn as [Carl Kolon](https://www.linkedin.com/in/carl-kolon)
 
-I'm on Twitter as [@CarlKolon](https://twitter.com/CarlKolon).
+I'm on Twitter as [@carlkolon](https://twitter.com/carlkolon).
 
 I'm on Github as [cckolon](https://github.com/cckolon).
 
