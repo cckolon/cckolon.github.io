@@ -25,7 +25,37 @@
       content="https://carlkolon.com{{ page.image }}"
     >
     <meta name="twitter:creator" content="@CarlKolon">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <meta name="description" content="{{ page.description }}">
+
+    <style>
+      /* Critical CSS */
+      body {
+        margin: auto;
+        max-width: 795px;
+        min-width: 265px;
+        padding: 10px;
+      }
+
+      h1 {
+        color: #303030;
+        font-weight: 700;
+      }
+
+      h1 .muted {
+        color: #666;
+        font-weight: 500;
+      }
+
+      nav {
+        margin: auto;
+        text-align: center;
+      }
+    </style>
+
+    <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="/assets/css/styles.css">
+    </noscript>
     {% if page.custom_css %}
       {% for stylesheet in page.custom_css %}
         <link
@@ -54,7 +84,15 @@
     <link rel="manifest" href="/assets/media/favicon/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
+    </noscript>
 
     {% if jekyll.environment == 'production' %}
       {% include analytics.html %}
