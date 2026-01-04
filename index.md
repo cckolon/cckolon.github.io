@@ -1,7 +1,7 @@
 ---
 title: "Carl Kolon"
 layout: default
-image: /assets/media/golden_gate.jpg
+image: /assets/media/main-page/golden_gate.webp
 description: Welcome to my site!
 ---
 
@@ -15,7 +15,7 @@ When I was in the Navy, I wished for these applications, so after I left I built
 
 I like to write, especially about math, coding, and the outdoors. [Take a look at some of my articles here](/blog).
 
-![In San Francisco](/assets/media/golden_gate.jpg)
+![In San Francisco](/assets/media/main-page/golden_gate.webp)
 
 I did a lot of math work at the Naval Academy. [You can read about it here](/research). The main topic of my research is the stability of mathematical swarm models.
 
