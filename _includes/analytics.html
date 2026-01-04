@@ -1,4 +1,3 @@
-<script src="https://cck.sh/a.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script
   async
@@ -9,22 +8,26 @@
   function gtag() {
     dataLayer.push(arguments);
   }
-  gtag("js", new Date());
+  gtag('js', new Date());
 
-  gtag("config", "G-F69Q33WE13");
+  gtag('config', 'G-F69Q33WE13');
 </script>
 <!-- Matomo -->
 <script>
-  var _paq = window._paq = window._paq || [];
+  var _paq = (window._paq = window._paq || []);
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//a.cck.sh/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
+  (function () {
+    var u = '//a.cck.sh/';
+    _paq.push(['setTrackerUrl', u + 'matomo.php']);
     _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    var d = document,
+      g = d.createElement('script'),
+      s = d.getElementsByTagName('script')[0];
+    g.async = true;
+    g.src = u + 'matomo.js';
+    s.parentNode.insertBefore(g, s);
   })();
 </script>
 <!-- End Matomo Code -->
