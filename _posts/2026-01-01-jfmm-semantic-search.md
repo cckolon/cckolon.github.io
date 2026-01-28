@@ -13,15 +13,15 @@ The Navy's governing instruction concerning QA is a book called the Joint Fleet 
 
 Tough read!
 
-As QAO, I needed to search the JFMM many times per day, but my options were limited. NAVSEA delivers the JFMM as a PDF, so I needed to use Adobe reader (or Chrome) to search page-by-page for the info I was looking for. Since the manual was so long, each query took over a minute on our slow government-furnished laptops, which were bogged down with security bloatware. This was really frustrating.
+I needed to search the JFMM many times per day, but my options were limited. The JFMM comes in PDF form, so I needed to use Adobe reader (or Chrome) to search page-by-page for the info I was looking for. Since the manual was so long, each query took over a minute on our slow government-furnished laptops, which were bogged down with security bloatware. This was really frustrating.
 
-After I left the Navy and started working in software, I learned that it was possible to create a much better search tool for the JFMM than what I had available on the boat, and so I registered [jfmm.net](https://jfmm.net) and built a semantic search engine. Here's how it works.
+After I left the Navy and started working in software, I learned that it was possible to create a much better search tool for the JFMM than what I had available on the boat, so I registered [jfmm.net](https://jfmm.net) and built a semantic search engine. Here's how it works.
 
 ## Vector similarity search
 
 On the boat, my only search option was literal text search, so if my wording didn't exactly match the manual, I would get nothing. To solve this, I needed to use semantic search.
 
-I've [written about semantic search before](/2024/01/31/jrnlsearch/). The idea is to find results matching a query's meaning, even if the text isn't a perfect match. Most modern semantic search systems are based on _vector similarity search_. In vector similarity search, a lot of text chunks are separately _embedded_: fed through a machine learning model which produces vectors. These vectors typically have hundreds or thousands of dimensions. If the embedding vectors are close for two chunks, they have similar meaning, even if they don't share many words.
+I've [written about semantic search before](/2024/01/31/jrnlsearch/). The idea is to find results matching a query's meaning, even if the text isn't a perfect match. Most modern semantic search systems are based on _vector similarity search_. In vector similarity search, a lot of text chunks are separately _embedded_: fed through a machine learning model which produces vectors. These vectors typically have hundreds or thousands of dimensions. If two chunks have close embedding vectors, they have similar meaning, even if they don't share many words.
 
 To search through the chunks, the system embeds the user's query, and then searches for the nearest neighbors among the embedded documents (usually with a [vector database](https://en.wikipedia.org/wiki/Vector_database) optimized for such queries). A nice property of semantic search is that most of the computation (embedding the chunks) can be done ahead of time, where only the single query embedding has to be done at query-time.
 
@@ -102,7 +102,7 @@ Because I was running this on the cheapest hardware possible, I noticed that rer
 
 ## Pagination
 
-Reranking like this was great for result relevance, but it had a subtle complexity cost. Imagine each page has 4 results. What happens when the user wants to see the second page?
+Reranking like this was great for result relevance, but it had a subtle cost. Imagine each page has 4 results. What happens when the user wants to see the second page?
 
 In pure vector search with PGVector, this is easy using SQL's familiar [`LIMIT` and `OFFSET` syntax](https://www.postgresql.org/docs/current/queries-limit.html). Page 1 would be:
 
@@ -157,7 +157,11 @@ ORDER BY vec_distance_cosine(e.embedding, ?)
 LIMIT 8;
 ```
 
-As we go through pages, we keep track of what IDs the user has seen and we add them to a list. When we query for the next set of candidates, we pass the list to the SQL query.
+As we go through pages, we keep track of what IDs the user has seen and we add them to a list. When we query for the next set of candidates, we pass the list to the SQL query. This is known as [exclusion or seen-ID pagination](https://bool.dev/blog/detail/pagination-strategies#exclusion-seen-id-pagination).
+
+The downside of this pagination strategy is that users can no longer jump forward to an arbitrary page. In this case, though, the user should rarely need to do that when they are looking for an answer to one of their questions. When is the last time you've jumped to page 3 of google results for a topic?
+
+To speed up processing, we can also prefetch the next page of results by running the
 
 ### Storing state
 
@@ -219,7 +223,7 @@ The solution to this complexity is to use URLs and HTML as they were originally 
 </body>
 ```
 
-In the hyperlink for the next page, we add the seen IDs in the query parameters! This information doesn't need to be stored anywhere special on the client, because it's written into the HTML itself, and Javascript is unnecessary. On the next page:
+In the hyperlink for the next page, we add the seen IDs in the query parameters! This information doesn't need to be stored anywhere special on the client, because it's written into the HTML itself. The next page might look like:
 
 ```html
 <!--url: jfmm.net/search?query=test+query&seen=2,4,6,8-->
@@ -233,6 +237,20 @@ In the hyperlink for the next page, we add the seen IDs in the query parameters!
 </body>
 ```
 
-This concept is called _Hypertext As The Engine Of Application State_, or HATEOAS. While originally proposed in WHEREVER, it has experienced a renaissance in the last couple years, driven mostly by users of the HTMX web framework. For a detailed explanation, I recommend [this essay](https://htmx.org/essays/hateoas/).
+If you're old-school, perhaps you'll think "duh, this is obviously the correct way to do it." Still, it's incredible how few websites work this way!
 
-HATEOAS is great because it fits with the original design assumptions behind web browsers. With no additional config, the results will stay the same when refreshed, the link will work when sent to friends, edge caches will store the correct information, and only one round-trip to the server is required.
+This concept is called _Hypertext As The Engine Of Application State_, or HATEOAS. HATEOAS is an essential constraint of the [REST model of web architecture](https://en.wikipedia.org/wiki/REST). REST was originally proposed in [Roy Fielding's PhD dissertation](https://roy.gbiv.com/pubs/dissertation/fielding_dissertation.pdf), and now most web APIs call themselves "RESTful", though this is [often not actually the case](https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven). HATEOAS has experienced a renaissance in the last couple years, driven mostly by users of the [HTMX web framework](https://htmx.org/). For a detailed explanation, I recommend [this essay](https://htmx.org/essays/hateoas/).
+
+HATEOAS is great because it fits with the original design assumptions behind web browsers. With no additional config, the results will stay the same when refreshed, the link will work when sent to friends, edge caches will store the correct information, and only one round-trip to the server is ever required.
+
+## Results
+
+Here are some of the biggest effects that I noticed from these changes.
+
+**More relevant search results**. This was the primary goal of these changes and I achieved it. For my test set of 20 queries, the top results were markedly more relevant after implementing reranking. This is the biggest win here because the whole point of a search website is to get users the results they are looking for.
+
+**Better dev experience**. The changes to database hosting meant that I only had to worry about a single container and a SQLite file, rather than screw around with a connection to a hosted database. Also, eliminating Python ML libraries made the images much smaller, so build and deploy times are faster.
+
+**Cheaper infrastructure**. Eliminating hosted databases saves a lot of money, and using quantized models means that my containers require less RAM and I can run them on cheaper servers. Altogether this project now costs me less than $2 per month, down from $25 or so (it's so cheap because I'm hosting multiple projects on the same VPS).
+
+**Slower queries**. Sadly, the latency added by reranking is noticeable when running in the cloud. Reranking is much faster on my MacBook because Llama.cpp runs efficiently on Apple GPUs. Getting a similarly powered GPU in the cloud is prohibitively expensive thanks to AI companies like my employer, so for now the users will have to deal with a little extra load time. The best I can do here is cache searches and profile to ensure there are no other bottlenecks.
