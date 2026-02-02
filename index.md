@@ -19,7 +19,7 @@ I like to write, especially about math, coding, and the outdoors. [Take a look a
 
 I did a lot of math work at the Naval Academy. [You can read about it here](/research). The main topic of my research is the stability of mathematical swarm models.
 
-<img src="/assets/media/contact.png" width="310" height="23" alt="contact" class="left-img">
+<img src="/assets/media/contact.png" width="310" height="23" alt="contact" style="margin: 20px 0px; display: block;">
 
 [This is my public key.](/assets/media/publickey.asc)
 
