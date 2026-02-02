@@ -1,11 +1,11 @@
 - name: Home
   link: /
 - name: Blog
-  link: /blog
+  link: /blog/
 - name: Research
-  link: /research
+  link: /research/
 - name: Navy
-  link: /navy
+  link: /navy/
 - name: Resume
   link: /resume.pdf
   disable-boost: true
