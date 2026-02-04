@@ -17,3 +17,7 @@ gem "logger"
 gem "base64"
 gem "bigdecimal"
 gem "rake"
+
+group :jekyll_plugins do
+    gem "jektex"
+end

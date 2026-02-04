@@ -17,13 +17,13 @@ Thankfully, I recognized this problem from a class I took in college about linea
 ## Linear Programming
 [Linear programming](https://en.wikipedia.org/wiki/Linear_programming) is the study of optimizing linear functions subject to constraints. The word "programming" was assigned to this problem before the widespread adoption of computer programming, and it is mostly unrelated. Linear programs typically are presented in the following format:
 
-$$\begin{align}
+$$\begin{aligned}
 &\text{find } & \mathbf{x}\\
 &\text{maximizing/minimizing } & f(\mathbf{x})\\
 &\text{subject to } & g_1(\mathbf{x}) \leq b_1\\
 && g_2(\mathbf{x}) \leq b_2\\
 && \vdots
-\end{align}$$
+\end{aligned}$$
 
 In this case, \\(\mathbf{x}\\) is a vector (a list of numbers), \\(f\\) and \\(g_i\\) are linear functions, and \\(b_i\\) are constants. In linear programming, \\(f\\) is called the *objective function*, and the statements \\(g_i(\mathbf{x}) \leq b_i\\) are called *constraints*.
 
@@ -77,21 +77,21 @@ Now we need to constrain the model. This is where we make our output make sense.
 
 First of all, only one person should be on duty per day. We can assign that with the following constraint:
 
-$$\forall d\in \text{all_days}: \sum_{i\in \{a,b,c\}} x_{in} = 1$$
+$$\forall d\in \texttt{all\_days}: \sum_{i\in \{a,b,c\}} x_{in} = 1$$
 
 In Python:
 
-{% highlight python %}
+```python
 for d in self.all_days:
     self.model.Add(sum(self.shifts[(n, d)] for n, name in enumerate(self.all_watchstanders)) == 1)
-{% endhighlight %}
+```
 
 We should also limit the number of days each watchstander works. In Alice, Bob, and Charlie's case, everyone should work one day, except one person who will have to work two. In general, we can calculate:
 
-$$\begin{align}
-\text{min_days} &= \left\lfloor \frac{\text{num_watchstanders}}{\text{num_days}}\right\rfloor\\
-\text{max_days} &= \left\lceil \frac{\text{num_watchstanders}}{\text{num_days}}\right\rceil\\
-\end{align}$$
+$$\begin{aligned}
+\texttt{min\_days} &= \left\lfloor \frac{\texttt{num\_watchstanders}}{\texttt{num\_days}}\right\rfloor\\
+\texttt{max\_days} &= \left\lceil \frac{\texttt{num\_watchstanders}}{\texttt{num\_days}}\right\rceil\\
+\end{aligned}$$
 
 In Python:
 
@@ -142,7 +142,7 @@ Suppose that Bob cannot work day 2, and Alice cannot work day 4 (maybe Alice has
 
 For every schedule conflict, I added a constraint into the model to prevent the worker from working that day.
 
-$$\forall n \in \text{all_watchstanders}: \forall d \in \text{all_days}:\\\text{if } s_{nd}, \text{ then } x_{nd} = 0$$
+$$\forall n \in \texttt{all\_watchstanders}: \forall d \in \texttt{all\_days}:\\\text{if } s_{nd}, \text{ then } x_{nd} = 0$$
 
 In Python:
 
@@ -183,10 +183,10 @@ These are somewhat arbitrary, but I'll tell you from personal experience, standi
 
 Now that we have defined how bad each watchstander's schedule is, we can calculate the unfairness of the watchbill in a couple different ways, but the simplest and most intuitive is by calculating the [variance](https://en.wikipedia.org/wiki/Variance) of each watchstander's badness score. 
 
-$$\begin{align}
+$$\begin{aligned}
 \text{Var}(\text{Schedule 1}) &= \left(4-\frac{}{3}\right)^2 + \left(5-\frac{20}{3}\right)^2 + \left(11-\frac{20}{3}\right)^2 &&= 14.3\\
 \text{Var}(\text{Schedule 2}) &= \left(4-\frac{20}{3}\right)^2 + \left(9-\frac{20}{3}\right)^2 + \left(7-\frac{20}{3}\right)^2 &&= 6.3\\
-\end{align}$$
+\end{aligned}$$
 
 This tells us, numerically, that the second watchbill is fairer than the first. In fact, it is the fairest watchbill possible subject to all other constraints.
 
@@ -212,18 +212,18 @@ In this simple case, this objective function is good enough. In other watchbills
 
 According to the `worst_deal` objective function, these schedules are equally fair. In fact, though, schedule 4 is far preferable. Look at the variances.
 
-$$\begin{align}
+$$\begin{aligned}
 \text{Var}(\text{Schedule 3}) &= \left(3-\frac{22}{3}\right)^2 + \left(9-\frac{22}{3}\right)^2 + \left(10-\frac{22}{3}\right)^2 &&= 14.3\\
 \text{Var}(\text{Schedule 4}) &= \left(5-\frac{22}{3}\right)^2 + \left(7-\frac{22}{3}\right)^2 + \left(10-\frac{22}{3}\right)^2 &&= 6.3\\
-\end{align}$$
+\end{aligned}$$
 
 A better way to solve the problem is to "squeeze" the badness scores between a maximum and minimum value. We want our objective function to minimize the difference between the best and worst deal. Crucially, this function is still linear, since it is the difference of two linear functions.
 
-$$\begin{align}
-&\text{minimize}&\text{worst_deal }-\text{best_deal}\\
-&\text{subject to}& \text{worst_deal }\geq\text{each badness}\\
-&&\text{best_deal }\leq\text{each badness}\\
-\end{align}$$
+$$\begin{aligned}
+&\text{minimize}&\texttt{worst\_deal }-\texttt{best\_deal}\\
+&\text{subject to}& \texttt{worst\_deal }\geq\text{each badness}\\
+&&\texttt{best\_deal }\leq\text{each badness}\\
+\end{aligned}$$
 
 In Python:
 

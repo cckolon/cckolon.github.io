@@ -1,3 +1,4 @@
 plugins:
   - jekyll-figure
+  - jektex
 permalink: pretty

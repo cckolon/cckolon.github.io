@@ -21,35 +21,35 @@ Nowadays, we know better. There is a simple, Newtonian treatment of projectile m
 
 In this case, the main simplifying assumption is to neglect air resistance. This makes the equation of motion simple and linear. Gravity is the only acceleration affecting the projectile. Therefore, the horizontal and vertical accelerations \\(a_x\\) and \\(a_y\\) are given by:
 
-$$\begin{align}
+$$\begin{aligned}
     a_x &= 0\\
     a_y &= -g\\
-\end{align}$$
+\end{aligned}$$
 
 Where \\(g\\) is the acceleration of gravity, 9.81m/s<sup>2</sup>. The initial horizontal and vertical velocities \\(v_x\\) and \\(v_y\\) are given by:
 
-$$\begin{align}
+$$\begin{aligned}
     v_x &= v_0\cos\theta\\
     v_y &= v_0\sin\theta\\
-\end{align}$$
+\end{aligned}$$
 
 Where \\(v_0\\) is the launch speed and \\(\theta\\) is the launch angle. If we assume that the mass starts at the location \\((0,0)\\), then this reduces to the following initial value problem:
 
-$$\begin{align}
+$$\begin{aligned}
     \frac{\mathrm{d}}{\mathrm{d}t}\left(x\right) &=v_x, &x(0) &= 0\\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(y\right) &=v_y, &y(0) &= 0\\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(v_x\right) &=0, &v_x(0) &= v_0\cos\theta\\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(v_y\right) &=-g, & v_y(0) &= v_0\sin\theta\\
-\end{align}$$
+\end{aligned}$$
 
 Integrate this, and you get a general equation for the projectile's speed and velocity.
 
-$$\begin{align}
+$$\begin{aligned}
     x(t) &= v_0t\cos\theta\\
     y(t) &= v_0t\sin\theta-\frac12gt^2\\
     v_x(t) &= v_0\cos\theta\\
     v_y(t) &= v_0\sin\theta - gt\\
-\end{align}$$
+\end{aligned}$$
 
 You can plot this parametrically, and sure enough, it is a neat parabola. 
 
@@ -59,22 +59,22 @@ If you play with the launch angle (\\(a\\) here, since \\(\theta\\) is used to p
 
 We know the target will hit the ground when \\(y=0\\). Since we have an expression for \\(y\\), we can solve this explicitly.
 
-$$\begin{align}
+$$\begin{aligned}
     y(t) =0 &= v_0t\sin\theta-\frac12gt^2\\
     &= t\left(v_0\sin\theta - \frac12gt\right)\\
     \Rightarrow 0 &=t\left(t-\frac{2v_0\sin\theta}g\right)\\
     \Rightarrow t &= 0 \text{ or } \frac{2v_0\sin\theta}g
-\end{align}$$
+\end{aligned}$$
 
 So \\(y=0\\) at launch time (when \\(t=0\\)) and at the end of the trajectory (when \\(t=\frac{2v_0\sin\theta}g\\)).
 
 Substituting this value of \\(t\\) into our equation for \\(x\\), and using the [double-angle sine identity](https://mathworld.wolfram.com/Double-AngleFormulas.html), we get:
 
-$$\begin{align}
+$$\begin{aligned}
 x(t) &= v_0t\cos\theta\\
 x\left(\frac{2v_0\sin\theta}g\right) &=\frac{2v_0^2\sin\theta\cos\theta}{g}\\
 &=\frac{v_0^2\sin(2\theta)}{g}
-\end{align}$$
+\end{aligned}$$
 
 This formula tells us a couple interesting things. First of all, the range of the projectile is indeed maximized when \\(\theta = 45^\circ\\), because \\(\sin(2\theta)=1\\), its maximum value. It also tells us that there are always two angles which give us the same range. Try varying the launch angle in the plot below.
 
@@ -149,18 +149,18 @@ For the other components of the drag equation, I could just use standard values 
 
 In a perfect, frictionless world, we can find the maximum expected height of the shell by doing a potential/kinetic energy balance. If the shell is launched perfectly upward, all its kinetic energy at launch time will be converted to potential energy at its apex.
 
-$$\begin{align}
+$$\begin{aligned}
 KE_{\text{launch}} &= PE_{\text{apex}}\\
 \frac12mv^2_{\text{launch}}&=mgh_{\text{apex}}
-\end{align}$$
+\end{aligned}$$
 
 Mass cancels, and we can rearrange to find apex height.
 
-$$\begin{align}
+$$\begin{aligned}
 h_{\text{apex}}&=\frac{v^2_\text{launch}}{2g}\\
 &=\frac{(684\text{ ms}^{-1})^2}{2\times9.81\text{ ms}^{-2}}\\
 &=23,846\text{ m}
-\end{align}$$
+\end{aligned}$$
 
 So the maximum possible height that the M198 could launch the shell is nearly 24 km in the air, in the [lower region of the stratosphere](https://commons.wikimedia.org/wiki/File:Atmosphere_layers-en.svg). At this height, the atmospheric pressure is about 1.6% of the pressure at sea level. This will affect drag a lot! Because of this, I decided it was necessary to factor in atmospheric properties at different heights.
 
@@ -174,10 +174,10 @@ There is [a formula](https://en.wikipedia.org/wiki/Barometric_formula) for atmos
 
 There are accurate formulae to calculate [sound speed](https://en.wikipedia.org/wiki/Speed_of_sound#Speed_of_sound_in_ideal_gases_and_air) and [density](https://en.wikipedia.org/wiki/Density_of_air#Dry_air) from this data.
 
-$$\begin{align}
+$$\begin{aligned}
 c &=\sqrt{\gamma\times\frac{p}{\rho}}\\
 \rho &=\frac{pM}{RT}
-\end{align}$$
+\end{aligned}$$
 
 Where \\(c\\) is the speed of sound, \\(\gamma\\) is the [heat capacity ratio](https://en.wikipedia.org/wiki/Heat_capacity_ratio) (around 1.4 for dry air), \\(p\\) is the pressure, \\(\rho\\) is the density, \\(M\\) is the molar mass of dry air (around 0.029 kg/mol), \\(R\\) is the gas constant (8.32 J/K mol), and \\(T\\) is the [absolute temperature](https://en.wikipedia.org/wiki/Thermodynamic_temperature).
 
@@ -197,12 +197,12 @@ Now that we have a reasonable model built, let's analyze some actual shell paths
 
 The differential equations from the first section have an extra drag term inserted now, which is parallel to the particle's velocity, and in the opposite direction.
 
-$$\begin{align}
+$$\begin{aligned}
     \frac{\mathrm{d}}{\mathrm{d}t}\left(x\right) &=v_x, &x(0) &= 0\\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(y\right) &=v_y, &y(0) &= 0\\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(v_x\right) &=-F_{d}\frac{v_x}{\sqrt{v_x^2+v_y^2}}, &v_x(0) &= v_0\cos\theta\\
     \frac{\mathrm{d}}{\mathrm{d}t}\left(v_y\right) &=-g-F_{d}\frac{v_y}{\sqrt{v_x^2+v_y^2}}, & v_y(0) &= v_0\sin\theta\\
-\end{align}$$
+\end{aligned}$$
 
 Where \\(F_d\\) is the force of drag, given by the drag equation from earlier.
 

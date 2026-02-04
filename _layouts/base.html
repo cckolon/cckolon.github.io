@@ -7,12 +7,10 @@
     <link rel="prefetch" href="/navy/">
     <link rel="prefetch" href="/resume.pdf">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"
     ></script>
-    <script src="/assets/scripts/reinitialize.js" defer></script>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <meta property="og:title" content="{{ page.title }}">
@@ -31,7 +29,6 @@
     >
     <meta name="twitter:creator" content="@CarlKolon">
     <meta name="description" content="{{ page.description }}">
-
     <style>
       /* Critical CSS */
       body {
@@ -104,6 +101,12 @@
         >
       {% endfor %}
     {% endif %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css"
+      integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T"
+      crossorigin="anonymous"
+    >
     <link
       rel="apple-touch-icon"
       sizes="180x180"

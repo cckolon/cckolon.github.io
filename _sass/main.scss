@@ -167,3 +167,8 @@ footer .license-icons img {
 .footnote {
   margin: 0 1px;
 }
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
