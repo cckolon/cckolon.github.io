@@ -15,7 +15,7 @@ When I was in the Navy, I wished for these applications, so after I left I built
 
 I like to write, especially about math, coding, and the outdoors. [Take a look at some of my articles here](/blog).
 
-<img src="/assets/media/main-page/golden_gate.webp" width="800" height="469" alt="In San Francisco">
+<img src="/assets/media/main-page/golden_gate.webp" width="800" height="469" alt="In San Francisco" fetchpriority="high">
 
 I did a lot of math work at the Naval Academy. [You can read about it here](/research). The main topic of my research is the stability of mathematical swarm models.
 

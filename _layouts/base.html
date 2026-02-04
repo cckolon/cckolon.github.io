@@ -90,8 +90,22 @@
     </style>
 
     <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css"
+      integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T"
+      crossorigin="anonymous"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    >
     <noscript>
       <link rel="stylesheet" href="/assets/css/styles.css">
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css"
+        integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T"
+        crossorigin="anonymous"
+      >
     </noscript>
     {% if page.custom_css %}
       {% for stylesheet in page.custom_css %}
@@ -101,12 +115,6 @@
         >
       {% endfor %}
     {% endif %}
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css"
-      integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T"
-      crossorigin="anonymous"
-    >
     <link
       rel="apple-touch-icon"
       sizes="180x180"
