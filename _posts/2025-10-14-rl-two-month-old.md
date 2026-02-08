@@ -3,6 +3,8 @@ layout: post
 title: RL for Two-Month-Olds
 excerpt_separator: <!--more-->
 image: /assets/media/florence-rl/flo-sutton-barto.webp
+image_width: 600
+image_height: 450
 description: Observations about reinforcement learning from raising a young daughter.
 ---
 

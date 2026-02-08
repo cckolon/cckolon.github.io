@@ -19,7 +19,12 @@ description: My Blog.
         </h1>
       </a>
       <div class="post-date">{{ post.date | date_to_string }}</div>
-      <img src="{{ post.image }}" alt="{{ post.title }}">
+      <img
+        src="{{ post.image }}"
+        alt="{{ post.title }}"
+        width="{{ post.image_width }}"
+        height="{{ post.image_height }}"
+      >
       {{ post.excerpt }}
     </div>
   </div>

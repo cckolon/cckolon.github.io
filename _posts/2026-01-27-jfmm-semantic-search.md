@@ -2,6 +2,8 @@
 layout: post
 title: Tuning Semantic Search on JFMM.net
 image: /assets/media/jfmm/embedding.webp
+image_width: 2164
+image_height: 1036
 description: Building a web app to search the Joint Fleet Maintenance Manual.
 ---
 
