@@ -2,7 +2,7 @@
 layout: post
 title: Seeing Underwater with Neural Networks
 excerpt_separator: <!--more-->
-image: /assets/media/tma/r1r2demo.gif
+image: /assets/media/tma/r1r2demo.webp
 description: Using recurrent neural networks to interpret passive sonar data.
 ---
 
@@ -93,7 +93,7 @@ Original image.
 
 As we vary our guesses for R1 and R2, we can use trigonometry to calculate the expected bearing trace over the 10-minute interval. If this lines up with the real trace, we likely have a good solution for the target's range.
 
-![Varying guesses for R1 and R2. The red and green lines are the expected and observed bearing traces, respectively. They overlay when our choice of R1 and R2 is correct.](/assets/media/tma/r1r2demo.gif)
+![Varying guesses for R1 and R2. The red and green lines are the expected and observed bearing traces, respectively. They overlay when our choice of R1 and R2 is correct.](/assets/media/tma/r1r2demo.webp)
 
 Varying guesses for R1 and R2. The red and green lines are the expected and observed bearing traces, respectively. They overlay when our choice of R1 and R2 is correct. Original image.
 {: .img-caption}

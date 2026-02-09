@@ -2,7 +2,7 @@
 layout: post
 title: Integrating Random Functions on a Cluster with Temporal
 excerpt_separator: <!--more-->
-image: /assets/media/integration/cluster.gif
+image: /assets/media/integration/cluster.webp
 description: Using Temporal as a workflow manager to solve math problems with many computers.
 ---
 
@@ -387,7 +387,7 @@ I switched from SQLite to [Postgres in docker](https://www.docker.com/blog/how-t
 
 While only one worker would run on each computer, each worker would run a process on each CPU. This meant I could run 44 concurrent processes!
 
-![The cluster in action](/assets/media/integration/cluster.gif)
+![The cluster in action](/assets/media/integration/cluster.webp)
 
 The cluster in action[^censor-foot]!
 {: .img-caption}
