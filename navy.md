@@ -4,7 +4,7 @@ title: Navy
 image: /assets/media/grad.webp
 image_width: 200
 image_height: 299
-description: A summary of my time as a Submarine Officer in the US Navy.
+description: A summary of Carl Kolon's time as a Submarine Officer in the US Navy.
 keywords: Navy, submarines, submarine officer, Naval Academy, military service, nuclear submarine
 ---
 
