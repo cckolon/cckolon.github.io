@@ -2,7 +2,7 @@
 layout: post
 title: Testing Torpedos Part 2
 excerpt_separator: <!--more-->
-image: /assets/media/multihits.png
+image: /assets/media/multihits.webp
 image_width: 670
 image_height: 618
 description: Testing different guidance algorithms against each other in Unity.
@@ -37,7 +37,7 @@ void CorkscrewLoop()
 }
 {% endhighlight %}
 
-![Corkscrew](/assets/media/corkscrew.png){: width="385" height="449"}
+![Corkscrew](/assets/media/corkscrew.webp){: width="385" height="449"}
 
 `depthexcursion` made the rabbit change depth between two arbitrarily selected depths (in this case, 200 and 700 feet). Whenever the submarine reached the required depth, its ordered depth would reset to 100 feet below (above) the opposite depth.
 
@@ -55,7 +55,7 @@ void DepthExcursionLoop()
 }
 {% endhighlight %}
 
-![Depth Excursion](/assets/media/depthexcursion.png){: width="840" height="366"}
+![Depth Excursion](/assets/media/depthexcursion.webp){: width="840" height="366"}
 
 Finally, `zigzag` would drive the rabbit left and right, oscillating around a line pointing North.
 
@@ -88,7 +88,7 @@ void ZigzagLoop()
 }
 {% endhighlight %}
 
-![Zigzag](/assets/media/zigzag.png){: width="548" height="432"}
+![Zigzag](/assets/media/zigzag.webp){: width="548" height="432"}
 
 I allowed the user to specify the rabbit's evasion tactic with the following snippet of code, embedded in the `FixedUpdate` loop.
 
@@ -108,7 +108,7 @@ void FixedUpdate()
 
 Since the variables were public, the user could select them from inside the Unity editor.
 
-![Evasion Selection](/assets/media/evasionselection.png){: width="377" height="107"}
+![Evasion Selection](/assets/media/evasionselection.webp){: width="377" height="107"}
 
 Like you can see in the picture, for most of the testing I selected `corkscrew` and `depthexcursion`, which worked fairly well against naive torpedos.
 
@@ -131,7 +131,7 @@ IEnumerator TestTorp()
 
 I also modified the torpedo code for testing. Rather than exploding on contact, the torpedo would hit the submarine, stop for 10 seconds, and then resume chasing it. This allowed a torpedo to hit the target multiple times during a test period, which provided a numerical measure of how good the torpedo was (rather than the binary hit/no hit measure).
 
-![Multiple hits during testing](/assets/media/multihits.png){: width="670" height="618"}
+![Multiple hits during testing](/assets/media/multihits.webp){: width="670" height="618"}
 
 The torpedo would also print a report, similar to the following, before it was destroyed at the end of a test.
 
@@ -148,7 +148,7 @@ I had a few predictions about the test, before I ran it.
 
 For each guidance method, I expected that there would be a "threshold" turn rate at which the torpedo would start achieving collisions. In other words, for each guidance method, there would exist a *critical turn rate*. Below this rate there would be zero (or close to zero) collisions per test, while above it I expected the number of collisions per test to quickly reach a maximum (where the torpedo hit the target at each pass). Graphing the results, I expected them to look like this.
 
-![Expected number of hits as a function of turn rate](/assets/media/theoreticalhitsgraph.png){: width="483" height="469"}
+![Expected number of hits as a function of turn rate](/assets/media/theoreticalhitsgraph.webp){: width="483" height="469"}
 
 Like I said earlier, I thought that 3D PN would win. In other words, it would demonstrate a consistently non-zero number of hits per test at a lower turn rate than all the other algorithms. Its critical turn rate would be less, and its total number of hits for the same turn rate would be more.
 
@@ -160,11 +160,11 @@ I thought that intercept control would outperform leading the target, which woul
 
 I ran 101 three-minute tests on each guidance method, with turn rates between 0 and 0.5 (in arbitrary units). Here are the results.
 
-![Comparison](/assets/media/controlcomparison.png){: width="1088" height="892"}
+![Comparison](/assets/media/controlcomparison.webp){: width="1088" height="892"}
 
 The blue dots represent each individual test. The red line is a 10-test moving average. I overlaid all of the moving averages below.
 
-![Overlay](/assets/media/10testavg.png){: width="800" height="510"}
+![Overlay](/assets/media/10testavg.webp){: width="800" height="510"}
 
 There are a few surprises here! The intercept algorithm performed much worse than I expected (worse than both naive and leading). Naive control works better than I expected, surpassing 2D PN and intercept control. It also achieves results with the lowest turn rate. Most distressing, the leading method is on par with the 3D PN method, and maybe a little better (since the critical turn rate appears to be less). Why isn't 3D PN outperforming the competition?
 
@@ -196,15 +196,15 @@ $$\overrightarrow{a}_P=\frac{N\cdot \overrightarrow{\mathrm{ZEM}}}{t_{go}}$$
 
 I called this *improved 3D PN control*. Here's what the results looked like.
 
-![Improved 3D PN control](/assets/media/improved3dpn.png){: width="600" height="322"}
+![Improved 3D PN control](/assets/media/improved3dpn.webp){: width="600" height="322"}
 
 Compared to the original 3D PN algorithm:
 
-![PN comparison](/assets/media/pncomparison.png){: width="800" height="510"}
+![PN comparison](/assets/media/pncomparison.webp){: width="800" height="510"}
 
 And compared to the others:
 
-![Overlay with improved 3D PN](/assets/media/10testavg-improvedpn.png){: width="800" height="510"}
+![Overlay with improved 3D PN](/assets/media/10testavg-improvedpn.webp){: width="800" height="510"}
 
 Okay, so improved 3D PN outperforms all the other methods (although naive control still demonstrates the best hit numbers at very low turn rates). I got the result I wanted (finally).
 

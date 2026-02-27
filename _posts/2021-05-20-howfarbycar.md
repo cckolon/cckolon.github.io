@@ -2,7 +2,7 @@
 layout: post
 title: How Far is That By Car?
 excerpt_separator: <!--more-->
-image: /assets/media/94613.PNG
+image: /assets/media/94613.webp
 image_width: 600
 image_height: 568
 description: Using the Google Maps API to find the distance between ZIP codes and hospitals.
@@ -18,7 +18,7 @@ Without fail, Jackie brings me new interesting problems every time she comes her
 
 She wants to take a list of zipcodes (in an excel doc or CSV file) and turn it into a list of zipcodes with added columns for distances to certain hospitals. With one or two zipcodes, it's easy. Just plug them into google maps. For example, here is the distance between a randomly selected zipcode (94613) and Benioff Children's Hospital in Oakland.
 
-![6.8 miles](https://carlkolon.com/assets/media/94613.PNG)
+![6.8 miles](https://carlkolon.com/assets/media/94613.webp)
 
 If you have a hundred (or a thousand) zipcodes, though, it might be more useful to do this with code. I thought it was an interesting problem so I decided to give it a try.
 

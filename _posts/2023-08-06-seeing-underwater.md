@@ -25,7 +25,7 @@ Active sonar is similar to radar or lidar; a sound pulse is sent out from transd
 
 Because it gives both distance and direction, active sonar can determine the exact position of a target. Despite this, it has a few drawbacks. The most important is that it is *detectable*. A submarine's chief advantage is stealth, and it's difficult to be stealthy while pinging all the time. Since sound waves attenuate on the way to *and* from the target, a submarine using active sonar can be heard at twice the range of the farthest thing it can detect.
 
-![maximum detection range of active sonar](/assets/media/tma/max_range.png){: width="600" height="212"}
+![maximum detection range of active sonar](/assets/media/tma/max_range.webp){: width="600" height="212"}
 
 Original image.
 {: .img-caption}
@@ -42,7 +42,7 @@ I'll be focusing this article on hull-mounted sonar arrays, but special types of
 
 Determining the target's position from this list of bearings is called *Target Motion Analysis*, or TMA. In particular, this problem is known as *bearings-only TMA*, to differentiate it from other TMA situations where more information is available. Bearings-only TMA essentially boils down to determining range. Since bearing is known, an accurate range is enough to determine position. If position is known over time, it is easy to determine the target's course and speed.
 
-![A bearings-only TMA visualization](/assets/media/tma/tma_nguyen.png){: width="512" height="404"}
+![A bearings-only TMA visualization](/assets/media/tma/tma_nguyen.webp){: width="512" height="404"}
 
 A bearings-only TMA visualization.[^2]
 {: .img-caption}
@@ -51,7 +51,7 @@ A bearings-only TMA visualization.[^2]
 
 There is a simple method you might consider when facing this problem: using the sound's volume (loudness). In air, sound volume mostly obeys an [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law#Sound_in_a_gas). It might make sense in air to sort sounds by volume and assume that the loudest sound comes from the closest object. This doesn't work reliably underwater; different objects give off very different noise levels, and [sound travels in exotic paths](https://www.navalgazing.net/Sound-in-the-Ocean) underwater, which can deaden or amplify noise.
 
-![Examples of underwater sound propagation paths.](/assets/media/tma/sound_prop_paths.png){: width="698" height="503"}
+![Examples of underwater sound propagation paths.](/assets/media/tma/sound_prop_paths.webp){: width="698" height="503"}
 
 Examples of underwater sound propagation paths.[^3]
 {: .img-caption}
@@ -64,7 +64,7 @@ While there are other ways to determine range, bearings-only TMA is often the be
 
 Consider the following situation. You are in a ship (or submarine) with hull-mounted sonar arrays. You are traveling North. On the right is what you see on your sonar display over 10 minutes.
 
-![a sonar trace for a ship traveling North](/assets/media/tma/ship_north.png){: width="699" height="413"}
+![a sonar trace for a ship traveling North](/assets/media/tma/ship_north.webp){: width="699" height="413"}
 
 Original image.
 {: .img-caption}
@@ -88,7 +88,7 @@ The key insight of TMA is what I call the two-range theorem.
 
 > If the target travels in a straight line at a constant speed, we can determine its entire path by determining two distances: the initial and final range (R1 and R2).
 
-![2 ranges](/assets/media/tma/2_ranges.png){: width="266" height="432"}
+![2 ranges](/assets/media/tma/2_ranges.webp){: width="266" height="432"}
 
 Original image.
 {: .img-caption}
@@ -112,7 +112,7 @@ $$\int_{t_0}^{t_1} \big\lVert\text{Observed BRG}(t)-\text{Predicted BRG}(t)\big\
 
 When we draw this contour plot here, it looks like this. Pink are areas of high error, green means low error. The small black dot is the actual value of R1 and R2.
 
-![All possible values of R1 and R2, between 0 and 20 kyd (thousand yards). The hue corresponds to each choice's error, as defined above.](/assets/media/tma/contour.png){: width="600" height="525"}
+![All possible values of R1 and R2, between 0 and 20 kyd (thousand yards). The hue corresponds to each choice's error, as defined above.](/assets/media/tma/contour.webp){: width="600" height="525"}
 
 Original image.
 {: .img-caption}
@@ -159,7 +159,7 @@ Original image.
 
 Turning the ship allows us to discriminate between the otherwise identical traces. Similarly, our contour plot now contains only one small region of low error. The true solution lies in its center.
 
-![Contour plot after a turn](/assets/media/tma/contour2.png){: width="600" height="525"}
+![Contour plot after a turn](/assets/media/tma/contour2.webp){: width="600" height="525"}
 
 Original image.
 {: .img-caption}
@@ -170,7 +170,7 @@ The second problem will prove a little less tractable, and it's to this issue th
 
 Consider the following situation. Your ship is traveling North for 5 minutes, and then turns to the Southeast for another 5 minutes. The resulting sonar trace looks like this. It's worth mentioning that the bearing trace seen here is [true bearing](https://en.wikipedia.org/wiki/Bearing_(angle)), measured from North, so it does not change when we turn.
 
-![A situation in which the straight line assumption will become problematic.](/assets/media/tma/problem2.png){: width="886" height="400"}
+![A situation in which the straight line assumption will become problematic.](/assets/media/tma/problem2.webp){: width="886" height="400"}
 
 Original image.
 {: .img-caption}
@@ -195,7 +195,7 @@ Final: -110° (or 250° for you nautical types).
 
 ### 3. Generate an R1-R2 contour plot
 
-![R1-R2 contour graph for our second situation](/assets/media/tma/contour3.png){: width="600" height="537"}
+![R1-R2 contour graph for our second situation](/assets/media/tma/contour3.webp){: width="600" height="537"}
 
 Original image.
 {: .img-caption}
@@ -204,7 +204,7 @@ Original image.
 
 R1 = 9000 yards, R2 = 4800 yards
 
-![R1-R2 contour graph for our second situation, minimum error point selected.](/assets/media/tma/contour4.png){: width="600" height="537"}
+![R1-R2 contour graph for our second situation, minimum error point selected.](/assets/media/tma/contour4.webp){: width="600" height="537"}
 
 Original image.
 {: .img-caption}
@@ -227,25 +227,25 @@ Original image.
 
 Why did our TMA algorithm fail us? Well, the 2-range theorem (and therefore our entire algorithm) relies on the assumption that the target traveled in a straight line. If the target turns or changes speed, our approach no longer works. This situation is far from unique. Here is a more complex example (it looks a little different because I simulated it in Python, not Mathematica).
 
-![Another simple range miscalculation](/assets/media/tma/python_composite.png){: width="1112" height="535"}
+![Another simple range miscalculation](/assets/media/tma/python_composite.webp){: width="1112" height="535"}
 
 The red dot on the left is the point of minimum error. This corresponds to the green line on the right. The red line is the target's actual track. Original image.
 {: .img-caption}
 
 Sometimes, the solutions proposed by this TMA method are completely wrong.
 
-![A complete miscalculation](/assets/media/tma/bad_guess_composite.png){: width="1239" height="553"}
+![A complete miscalculation](/assets/media/tma/bad_guess_composite.webp){: width="1239" height="553"}
 
 Original image.
 {: .img-caption}
 
 This is a serious problem! The accepted algorithm for TMA is based on an asymmetrical assumption: we must turn, but the target cannot. Turning targets are incredibly common, though. See this recent AIS track of a fishing vessel in San Francisco bay (Via [MarineTraffic](https://www.marinetraffic.com/)).
 
-![The Chasin' Crustacean](/assets/media/tma/chasin.png){: width="600" height="443"}
+![The Chasin' Crustacean](/assets/media/tma/chasin.webp){: width="600" height="443"}
 
 In a military context, zig-zagging has been a well-known defense against submarine attack for over 100 years!
 
-![A 1920 illustration of a convoy employing anti-submarine measures. Notice the zig-zagging destroyers on the outer edge.](/assets/media/tma/zigzag.png){: width="600" height="634"}
+![A 1920 illustration of a convoy employing anti-submarine measures. Notice the zig-zagging destroyers on the outer edge.](/assets/media/tma/zigzag.webp){: width="600" height="634"}
 
 A 1920 illustration of a convoy employing anti-submarine measures. Notice the zig-zagging destroyers on the outer edge.[^6]
 {: .img-caption}
@@ -256,7 +256,7 @@ A 1920 illustration of a convoy employing anti-submarine measures. Notice the zi
 
 The Navy has known about this problem since the introduction of straight-line TMA methods. To solve it, submarines employ 7 or 8 people at all times to look for indications of a target turning or changing speed. When this "zig" occurs, TMA models are reset and the operators start over.
 
-![A submarine sonar shack](/assets/media/tma/sonar_shack.png){: width="1440" height="810"}
+![A submarine sonar shack](/assets/media/tma/sonar_shack.webp){: width="1440" height="810"}
 
 A submarine sonar shack, manned 24/7 while at sea. Among other tasks, these Sailors look for zigs.[^7]
 {: .img-caption}
@@ -265,14 +265,14 @@ A submarine sonar shack, manned 24/7 while at sea. Among other tasks, these Sail
 
 This means that every little indication of a turn has to be identified, or else the TMA algorithms will spit out a bad (and possibly worsening) solution. In practice, it's difficult to get this right. Here is the zig from earlier, can you see the small corner? Would you reliably notice it?
 
-![Zig](/assets/media/tma/zig.png){: width="561" height="482"}
+![Zig](/assets/media/tma/zig.webp){: width="561" height="482"}
 
 Original image.
 {: .img-caption}
 
 The approach does not scale. Imagine the same small team trying to analyze this contact picture.
 
-!["Trawler Hell" North of Taiwan. The orange ships are fishing/trawling vessels, which are notoriously unpredictable.](/assets/media/tma/trawler_hell.png){: width="1143" height="632"}
+!["Trawler Hell" North of Taiwan. The orange ships are fishing/trawling vessels, which are notoriously unpredictable.](/assets/media/tma/trawler_hell.webp){: width="1143" height="632"}
 
 "Trawler Hell" North of Taiwan (via [MarineTraffic](https://www.marinetraffic.com/)).
 {: .img-caption}
@@ -281,7 +281,7 @@ Even in smaller, more controllable situations, TMA errors occur. This photo of a
 
 [^8]: [Ng. *British nuclear submarine in ‘near miss’ with packed ferry after ship sees periscope.* (2020). The Independent.](https://www.independent.co.uk/news/uk/home-news/royal-navy-nuclear-submarine-ferry-risk-collision-safety-a9621796.html)
 
-![A TMA mishap in the UK](/assets/media/tma/ferry_scope.png){: width="634" height="377"}
+![A TMA mishap in the UK](/assets/media/tma/ferry_scope.webp){: width="634" height="377"}
 
 A bad day at work.[^8]
 {: .img-caption}
@@ -294,7 +294,7 @@ For these reasons, **we need a fully automatic solution for TMA**.
 
 Intuitively, I felt like a solution without the straight-line model was possible. This seemed like an [overdetermined system](https://en.wikipedia.org/wiki/Overdetermined_system) to me: there are many bearing measurements, and comparatively few unknowns (turns).
 
-![Overdetermined system](/assets/media/tma/tma_millazo.png){: width="337" height="320"}
+![Overdetermined system](/assets/media/tma/tma_millazo.webp){: width="337" height="320"}
 
 Many bearings, few turns.[^9]
 {: .img-caption}
@@ -309,7 +309,7 @@ A RNN is a type of neural network in which output from some nodes is reintroduce
 
 My basic idea was to use a RNN to translate bearing time steps to range time steps. As the simulation continued, the model would hopefully pick up context about its situation through the recurrent link, and produce better and better predictions.
 
-![A simple TMA RNN](/assets/media/tma/simple_rnn.png){: width="1420" height="520"}
+![A simple TMA RNN](/assets/media/tma/simple_rnn.webp){: width="1420" height="520"}
 
 A simple model of a TMA RNN. The network is unfolded on the right to show how data flows between time steps. *U*, *V*, and *W* are combinations of weights and biases which are applied to process input, process output, and retain context respectively, while *h* is the system's *hidden state*, a vector which stores information up to the current time step. Original image.
 {: .img-caption}
@@ -318,7 +318,7 @@ In reality, I chose a more complex model. Bearing alone isn't enough, I needed t
 
 Simple RNNs suffer from an issue called the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem), which limits their ability to retain context over long periods. This could make it difficult to process hundreds of bearings. To fix this, I employed a type of RNN called a [Long Short-Term Memory](https://en.wikipedia.org/wiki/Long_short-term_memory) cell, or LSTM cell. An LSTM cell chooses what information to remember and what to forget, with the goal of only retaining important context.
 
-[![An illustration of an LSTM cell by Guillaume Chevalier](/assets/media/tma/lstm.png){: width="600" height="410"}](https://en.wikipedia.org/wiki/Long_short-term_memory#/media/File:LSTM_Cell.svg)
+[![An illustration of an LSTM cell by Guillaume Chevalier](/assets/media/tma/lstm.webp){: width="600" height="410"}](https://en.wikipedia.org/wiki/Long_short-term_memory#/media/File:LSTM_Cell.svg)
 
 An illustration of an LSTM cell by Guillaume Chevalier. [CC-BY-SA](https://creativecommons.org/licenses/by-sa/4.0/), no changes made.
 {: .img-caption}
@@ -331,7 +331,7 @@ I used two LSTM cells, the first with 32 output units and the second with 16. I 
 
 Here is a diagram of the network design I actually used. I'll explain the dropout layers when I talk about overfitting.
 
-![The actual architecture](/assets/media/tma/complex_rnn.png){: width="500" height="689"}
+![The actual architecture](/assets/media/tma/complex_rnn.webp){: width="500" height="689"}
 
 Original image.
 {: .img-caption}
@@ -357,14 +357,14 @@ I also varied batch size during training, which caused the spikes on the loss gr
 
 My first training run took about an hour, and looked like this.
 
-![Training the TMA network](/assets/media/tma/training_1.png){: width="640" height="480"}
+![Training the TMA network](/assets/media/tma/training_1.webp){: width="640" height="480"}
 
 Original image.
 {: .img-caption}
 
 After I stopped seeing results, I lowered the learning rate by two orders of magnitude, and that helped me cut the loss in half on my second training run.
 
-![Second training run](/assets/media/tma/training_2.png){: width="640" height="480"}
+![Second training run](/assets/media/tma/training_2.webp){: width="640" height="480"}
 
 Original image.
 {: .img-caption}
@@ -381,7 +381,7 @@ After training, I tested the model on 5000 new simulations not in the training o
 
 For MSE, the machine learning model is 2 orders of magnitude better than the conventional method. On average, the conventional method is off by over 7000 yards, while the machine learning model is within a comfy 1500 yards.
 
-![Histograms of model performance vs conventional TMA](/assets/media/tma/histograms.png){: width="1244" height="480"}
+![Histograms of model performance vs conventional TMA](/assets/media/tma/histograms.webp){: width="1244" height="480"}
 
 Histograms of the model's Mean Absolute Error on the 5000-simulation test set. If these look too similar, check the scale on the x-axis! Original image.
 {: .img-caption}
@@ -390,17 +390,17 @@ The histograms above show that the machine learning approach virtually guarantee
 
 To someone with Naval experience, this difference in performance is huge and obvious, but for the rest of us, I will show a few simulation examples to demonstrate what a MAE of 1265 yards actually looks like.
 
-![Better than average performance](/assets/media/tma/better.png){: width="1407" height="749"}
+![Better than average performance](/assets/media/tma/better.webp){: width="1407" height="749"}
 
 Better than average performance. Range accuracy is almost perfect throughout the simulation. On the left, the green line (predicted target position) overlays almost perfectly with the red line (actual target position). MAE: 873 yards. Original image.
 {: .img-caption}
 
-![Average performance](/assets/media/tma/average.png){: width="1275" height="673"}
+![Average performance](/assets/media/tma/average.webp){: width="1275" height="673"}
 
 About average performance. The model has difficulty determining target range immediately following the target's first turn, but eventually figures out the target's approximate motion path. This is an accurate enough tactical picture for most situations. MAE: 1153 yards. Original image.
 {: .img-caption}
 
-![Worse than average performance](/assets/media/tma/worse.png){: width="1541" height="463"}
+![Worse than average performance](/assets/media/tma/worse.webp){: width="1541" height="463"}
 
 Worse than average performance. The model calculates range correctly until the target turns onto a near-zero bearing-rate path. In fairness, this is a very difficult situation, and I have seen people make similar mistakes. MAE: 1814 yards. Original image.
 {: .img-caption}

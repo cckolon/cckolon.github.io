@@ -2,7 +2,7 @@
 layout: post
 title: Cycling Efficiency
 excerpt_separator: <!--more-->
-image: /assets/media/cycling/acceleration-graph.png
+image: /assets/media/cycling/acceleration-graph.webp
 image_width: 805
 image_height: 396
 description: A Javascript applet to calculate the effect of gear shifts on your bicycle.
@@ -152,7 +152,7 @@ $$F_{\text{rear wheel}} = \frac{\tau_{\text{rear sprocket}}}{r_{\text{rear wheel
 
 Here's a picture of the bicycle to help keep these terms straight:
 
-![Bicycle](/assets/media/cycling/bike.png){: width="640" height="418"}
+![Bicycle](/assets/media/cycling/bike.webp){: width="640" height="418"}
 
 For the chain ring and rear sprocket to grip the chain, the teeth must be evenly spaced. This means that the radius is proportional to the number of teeth. This means that the ratio of the chain ring to rear sprocket radius is the same as the ratio between the number of teeth in the chain ring and the number of teeth in the rear sprocket. This is called the [gear ratio](https://prevelo.com/blogs/news/bicycle-gear-ratio-gear-inches-and-gain-ratio).
 
@@ -178,11 +178,11 @@ $$F_{\text{rear wheel}} = \frac{2\tau_{\text{chain ring}}}{\text{Gear Inches}}\t
 
 The force exerted by the rider is only one of the forces acting on the bike. We also have to consider the impact of aerodynamic drag, [rolling resistance](https://en.wikipedia.org/wiki/Rolling_resistance), the force of gravity, and the reaction force from the bike's contact with the surface. See the following free-body diagram.
 
-![Free Body Diagram](/assets/media/cycling/free-body.png){: width="522" height="291"}
+![Free Body Diagram](/assets/media/cycling/free-body.webp){: width="522" height="291"}
 
 The reaction force will be equal to the force exerted by the bike on the ground, so it will cancel the perpendicular component of the gravitational force exerted by the bike, leaving only the net gravitational force along the surface. This can be calculated using very simple trigonometry.
 
-![Net Gravitational Force](/assets/media/cycling/net-gravity.png){: width="522" height="291"}
+![Net Gravitational Force](/assets/media/cycling/net-gravity.webp){: width="522" height="291"}
 
 $$F_{\text{net gravity}} = F_{\text{gravity}}\sin\left(\theta_{\text{ground}}\right) = (m_{\text{bike}}+m_{\text{human}})g\sin\left(\theta_{\text{ground}}\right)$$
 
@@ -192,7 +192,7 @@ Drag can be calculated using the drag equation. The aerodynamic properties of th
 
 [^6]: [T. Crouch et al. Riding against the wind: a review of competition cycling aerodynamics](https://link.springer.com/article/10.1007/s12283-017-0234-1)
 
-![Cyclist Aerodynamics](/assets/media/cycling/cyclist-aero.png){: width="492" height="107"}
+![Cyclist Aerodynamics](/assets/media/cycling/cyclist-aero.webp){: width="492" height="107"}
 
 Since the [Reynolds number](https://en.wikipedia.org/wiki/Reynolds_number) (\\(\text{Re}\\)) is high, we can use the drag equation for turbulent flow, which is proportional to the square of the velocity.
 

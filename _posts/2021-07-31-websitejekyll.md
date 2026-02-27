@@ -2,7 +2,7 @@
 layout: post
 title: Remaking this Website
 excerpt_separator: <!--more-->
-image: /assets/media/jekylllogo.png
+image: /assets/media/jekylllogo.webp
 image_width: 498
 image_height: 230
 description: Using Jekyll to save myself time when blogging.
@@ -16,7 +16,7 @@ I know, I know, why didn't I just use [Wordpress](https://wordpress.com/) or som
 
 I realized that this wouldn't work when I created my second article on this blog. How was I supposed to organize my posts? Would I have to update the blog main page every time I wanted to publish a new article? My main blog page looked ugly (see below), and maintaining it manually seemed like a nightmare that would only get worse as I publish more. Finally, I got over the peak of inertia and decided I would have to implement some new software.
 
-![My main blog page. Gross!](/assets/media/yuck.png){: .center-image width="668" height="430"}
+![My main blog page. Gross!](/assets/media/yuck.webp){: .center-image width="668" height="430"}
 
 I have used Wordpress in the past (although it was a while ago), but I was still hesitant to use it, or something similar. A whole new software and formatting setup would make it difficult to migrate my content over. Using semi-free commercial software is annoying, because you never know when a feature you need will be hidden behind a paywall. Plus, I didn't want to screw around with [finding a theme I liked](https://wordpress.com/themes). I want to control those things manually, so that if something irks me about my site, I can fix it (at least in theory).
 

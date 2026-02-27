@@ -2,7 +2,7 @@
 layout: post
 title: Rolling my Own Analytics
 excerpt_separator: <!--more-->
-image: /assets/media/rolling-analytics/dashboard-thumb.png
+image: /assets/media/rolling-analytics/dashboard-thumb.webp
 image_width: 2021
 image_height: 746
 description: Writing my own alternative to Google Analytics for my websites
@@ -26,7 +26,7 @@ When I first started putting things on the web, I thought that this would be a p
 
 It's hard to make sense of these by themselves, but there are plenty of log analyzers online that will help. [GoAccess](https://goaccess.io/) is one of the most popular. It has great built-in dashboards like the one below, and it can also make html pages that you can serve on your site. Plus, it's free and open source!
 
-![GoAccess dashboard](/assets/media/rolling-analytics/goaccess-dashboard.png){: width="730" height="435"}
+![GoAccess dashboard](/assets/media/rolling-analytics/goaccess-dashboard.webp){: width="730" height="435"}
 
 An approach like this works great for old-school sites running on a dedicated server, but it didn't work out-of-the-box for me, because I deploy my applications in a more "modern" (complex) way.
 
@@ -43,7 +43,7 @@ Since this site is static, I host it for free on [GitHub Pages](https://pages.gi
 
 I have one shared Postgres instance on DigitalOcean with databases for the apps that require them, and another shared Redis cache. I do it like this to save money. Hosted databases are expensive!!
 
-![A simplified diagram of my devops system](/assets/media/rolling-analytics/website-layout.png){: width="1600" height="600"}
+![A simplified diagram of my devops system](/assets/media/rolling-analytics/website-layout.webp){: width="1600" height="600"}
 
 If I were hardcore, I'd host all my sites on my own hardware at my house, but cloud hosting is more convenient for a lot of reasons. From a safety perspective, I don't want to open my home to outside traffic[^selfhosting]. From a user experience perspective, I want the uptime and speed advantages of a cloud-hosted server (and caching from Cloudflare).
 
@@ -61,7 +61,7 @@ Finally, there is a lot of bot traffic. [More than half of worldwide internet tr
 
 [Google Analytics](https://developers.google.com/analytics) is what most people use for this. It's two lines of frontend code that you can copy-paste into your site's HTML. Then you can connect to a dashboard which shows you some information about your users.
 
-![my Google Analytics dashboard](/assets/media/rolling-analytics/google-analytics.png){: width="2556" height="840"}
+![my Google Analytics dashboard](/assets/media/rolling-analytics/google-analytics.webp){: width="2556" height="840"}
 
 Google Analytics is great in some respects, and it exposes some clear benefits of frontend analytics, compared to server logs. For example, Google Analytics can tell you the following information:
 
@@ -314,15 +314,15 @@ def anonymize_ip(ip_str: str) -> str:
 
 To visualize the data, I set up a [Metabase](https://www.metabase.com/) server on my cloud instance. The server loads data from Postgres according to database queries that you can set up in their visual query builder. For example, you can get the following map with the following query:
 
-![session pinmap](/assets/media/rolling-analytics/session-pinmap.png){: width="2128" height="932"}
+![session pinmap](/assets/media/rolling-analytics/session-pinmap.webp){: width="2128" height="932"}
 
-![session pinmap query](/assets/media/rolling-analytics/session-pinmap-query.png){: width="3000" height="1570"}
+![session pinmap query](/assets/media/rolling-analytics/session-pinmap-query.webp){: width="3000" height="1570"}
 
 Or you can track user view time like this:
 
-![engagement time](/assets/media/rolling-analytics/engagement-time.png){: width="2920" height="1484"}
+![engagement time](/assets/media/rolling-analytics/engagement-time.webp){: width="2920" height="1484"}
 
-![engagement time query](/assets/media/rolling-analytics/engagement-time-query.png){: width="2950" height="1524"}
+![engagement time query](/assets/media/rolling-analytics/engagement-time-query.webp){: width="2950" height="1524"}
 
 Again, to save money, I am running Metabase in the same container as the FastAPI server and my link shortener Nginx reverse proxy. Luckily this is as simple as installing openJDK and downloading the Metabase application in my dockerfile.
 

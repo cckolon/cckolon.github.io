@@ -2,7 +2,7 @@
 layout: post
 title: A Target So Fine, We Hit It Six Times
 excerpt_separator: <!--more-->
-image: /assets/media/projectiles/ryff.jpg
+image: /assets/media/projectiles/ryff.webp
 image_width: 776
 image_height: 655
 description: Detailed modeling of the aerodynamics of a shell on a ballistic trajectory.
@@ -11,7 +11,7 @@ description: Detailed modeling of the aerodynamics of a shell on a ballistic tra
 Imagine a cannon, firing a shell into the air. What path will the shell follow? How far will it travel? How long will it remain airborne? Below is woodcut by Walther Hermann Ryff, a 16th century mathematician, examining this question. At the time, [most theorists thought](https://en.wikipedia.org/wiki/Theory_of_impetus) that cannonballs traveled in straight-line segments and circular arcs, stitched together.
 <!--more-->
 
-![A Ryff illustration of a cannonball](/assets/media/projectiles/ryff.jpg){: width="776" height="655"}
+![A Ryff illustration of a cannonball](/assets/media/projectiles/ryff.webp){: width="776" height="655"}
 
 Nowadays, we know better. There is a simple, Newtonian treatment of projectile motion which we learn in high school or early college level physics. The problem has clear analytical solutions which you'll probably recognize: projectiles travel in parabolas, there is a closed-form range and hang time equation, which you may know, etc. It reminds me of some other early physics topics, which contain a simplifying assumption which makes the problem manageable.
 
@@ -122,7 +122,7 @@ There are a few to choose from, but the long-time favorite of the US and several
 
 A common shell fired by the M198 howitzer is the [M107 projectile](https://www.gd-ots.com/munitions/artillery/155m-m107/). Even though it's since been superseded by [better projectiles](https://www.baesystems.com/en/product/shell-155mm-how-he-l15), it's still seen a fair amount of use, especially in training and testing. Here's a photo from page 3-77 of [Army TM 43-0001-28](https://books.google.com/books?id=tHk-AAAAYAAJ&printsec=frontcover#v=onepage&q&f=false).
 
-![](/assets/media/projectiles/m107.png){: width="596" height="473"}
+![](/assets/media/projectiles/m107.webp){: width="596" height="473"}
 
 Here is some data which will be important:
 
@@ -133,7 +133,7 @@ Here is some data which will be important:
 
 There's some data out there about the aerodynamics of the M107 shell, including [this paper](https://apps.dtic.mil/sti/pdfs/ADA369710.pdf) by Garner et al., which directs the reader to a [detailed analysis of the similarly-shaped M101 projectile](https://apps.dtic.mil/sti/pdfs/AD0454925.pdf) by MacAllister and Krial. If you go to figure 7 of the paper, you can find this diagram:
 
-![](/assets/media/projectiles/drag_coefficient.png){: width="810" height="559"}
+![](/assets/media/projectiles/drag_coefficient.webp){: width="810" height="559"}
 
 In case it is too tough to read (the scan quality is terrible), the x-axis is the *Mach number*, the ratio of projectile speed to the speed of sound, and the y-axis is the zero-yaw drag coefficient \\(c_{d0}\\), which is equal to \\(c_d\\) if the projectile is parallel to its flight path.
 
@@ -143,7 +143,7 @@ You can see that the graph is really nonlinear; this is the second transition. A
 
 To use this data in calculation, I used scipy's [linear interpolation](https://www.geeksforgeeks.org/how-to-implement-linear-interpolation-in-python/) function, and selected some points from the graph to plot. Here's what my drag coefficient curve looked like.
 
-![](/assets/media/projectiles/drag_coefficient_interpolation.png){: width="757" height="480"}
+![](/assets/media/projectiles/drag_coefficient_interpolation.webp){: width="757" height="480"}
 
 ## Air Properties
 
@@ -170,7 +170,7 @@ What properties, exactly? Atmospheric density will be necessary, since it factor
 
 Atmospheric pressure and temperature vary with height in a strange way, since the atmosphere is unevenly heated by sunlight. Here's a graph made by NASA in the sixties:
 
-![](/assets/media/projectiles/atmospheric_properties_nasa.jpg){: width="723" height="900"}
+![](/assets/media/projectiles/atmospheric_properties_nasa.webp){: width="723" height="900"}
 
 There is [a formula](https://en.wikipedia.org/wiki/Barometric_formula) for atmospheric pressure within the troposphere (the lowest portion of the atmosphere), but this relies on atmospheric temperature lowering linearly as height increases. From the graph above, we can see that this isn't true, even at the relatively low heights to which our projectiles will travel. Instead, I used values from [this table](https://www.engineeringtoolbox.com/elevation-speed-sound-air-d_1534.html) for both temperature and pressure, and interpolated. I converted the temperatures to Kelvin, and the pressures to Pascals, to keep everything in SI units.
 
@@ -185,11 +185,11 @@ Where \\(c\\) is the speed of sound, \\(\gamma\\) is the [heat capacity ratio](h
 
 Here's my version of NASA's graph, up to 32 km, which looks pretty much the same.
 
-![](/assets/media/projectiles/parameters_by_altitude.png){: width="640" height="654"}
+![](/assets/media/projectiles/parameters_by_altitude.webp){: width="640" height="654"}
 
 To see how the drag force will respond to altitude and speed, we can substitute these values into the drag equation, and draw a 2-d contour plot.
 
-![](/assets/media/projectiles/drag_by_alt_speed.png){: width="745" height="593"}
+![](/assets/media/projectiles/drag_by_alt_speed.webp){: width="745" height="593"}
 
 You can really see the "sound barrier" here, where drag sharply increases with shell speed. We'll come back to this diagram later, when analyzing each shell's trajectory.
 
@@ -212,17 +212,17 @@ $$F_d=\frac12\rho v^2c_dA$$
 
 This differential equation is not analytically solvable (especially considering how drag depends on speed and altitude), but we can solve it numerically, which I did with scipy's [solve_ivp](https://danielmuellerkomorowska.com/2021/02/16/differential-equations-with-scipy-odeint-or-solve_ivp/) function. Here's an example of how the trajectories look, compared to the ideal, frictionless parabolas.
 
-![](/assets/media/projectiles/all_comparisons.png){: width="1264" height="705"}
+![](/assets/media/projectiles/all_comparisons.webp){: width="1264" height="705"}
 
 Clearly, drag makes a huge difference here. To see how big a difference, we can plot the ranges with drag and without drag over the entire span of launch angles.
 
-![](/assets/media/projectiles/comparing_effects_drag.png){: width="640" height="480"}
+![](/assets/media/projectiles/comparing_effects_drag.webp){: width="640" height="480"}
 
 We can learn a few things from this angle/range plot. On the left edge of the graph, at low launch angles, the expected ranges with and without drag are much closer than on the right. This makes sense, since a shell fired at a low angle travels a shorter distance in the air, so less energy is lost to drag. It's also worth noting that the maximum range estimate given by the drag model is much closer to the real maximum range of the M198 howitzer, which is listed publicly as [18,100 m](https://www.military.com/equipment/m198-howitzer#:~:text=The%20M198%20has%20a%20sustained,97%2Dpound%20M549%20RAP%20rounds) when firing the M107 projectile.
 
 What this graph doesn't tell us, though, is what happens to the shells as they fly through the air: their speed, where they lose the most energy, etc. For this, I decided to display some trajectories on the speed/altitude graph.
 
-![](/assets/media/projectiles/trajectory_overlays.png){: width="557" height="445"}
+![](/assets/media/projectiles/trajectory_overlays.webp){: width="557" height="445"}
 
 One of the really interesting things to gain from this graph is the final speed of each projectile. The 5° projectile loses very little energy, because it travels a very short distance, but the 20° projectile has the lowest final speed, which means that it has lost the most energy to air resistance. It is a sort of compromise: it has traveled far enough to lose significant energy to air resistance, but not high enough to escape the high-drag regions.
 
@@ -232,17 +232,17 @@ It's also interesting to note that all projectiles spend a fair amount of their 
 
 Now that we have much better estimations of speed and range over a flight path, we can reexamine the time-on-target idea. When I started writing this, I was hoping that it would allow three or more shots to hit the same target without varying the initial shell speed. This is possible for certain niche values of speed, mass, and range. Here's an example:
 
-![](/assets/media/projectiles/three_elevations.png){: width="710" height="496"}
+![](/assets/media/projectiles/three_elevations.webp){: width="710" height="496"}
 
 This isn't practical, though. The shells are launched too close together, and the hang times are too similar. For most ranges and launch speeds, it doesn't work.
 
 We can use the simulation data to generate a practical graph for MRSI when varying launch speeds, though. See the following contour plot. Red lines are flight time contours, and black lines are range contours.
 
-![](/assets/media/projectiles/time_and_range.png){: width="789" height="585"}
+![](/assets/media/projectiles/time_and_range.webp){: width="789" height="585"}
 
 The M198 can reload up to 4 times in one minute (once every 15 seconds). Suppose you wanted to hit a target 5000 yards away. You can highlight speed/angle combinations which would hit the desired target, and shoot all of them, as long as they are 15 seconds or greater apart.
 
-![](/assets/media/projectiles/5kyd_time_range.png){: width="789" height="585"}
+![](/assets/media/projectiles/5kyd_time_range.webp){: width="789" height="585"}
 
 Following this plan, we could hit the target with 6 simultaneous shots!
 
@@ -257,7 +257,7 @@ Following this plan, we could hit the target with 6 simultaneous shots!
 
 All shots would arrive at time +85s. Here's a plot.
 
-![](/assets/media/projectiles/six_trajectories.png){: width="387" height="613"}
+![](/assets/media/projectiles/six_trajectories.webp){: width="387" height="613"}
 
 ## Conclusion
 

@@ -2,7 +2,7 @@
 layout: post
 title: Moving Fake Objects with Fake Forces
 excerpt_separator: <!--more-->
-image: /assets/media/hillcontrol.png
+image: /assets/media/hillcontrol.webp
 image_width: 600
 image_height: 318
 description: Using PID control to move a submarine with physics in Unity.
@@ -78,7 +78,7 @@ A PID controller tries to minimize an *error function*, \\(e(t)\\). The insight 
 * If the car starts to ascend a hill, its speed will start to decrease. Seeing this, the controller should preemptively open the throttle in order to prevent the speed from dropping too much. This action is driven by the derivative response: the rate of change of error. It is also called *anticipatory control*.
 * As the car continues up the hill, there may be a steady-state error, since it takes more engine power to maintain the same speed. Over time, the controller should see that the current speed is insufficient, and open throttles farther to compensate. This action is driven by the integral response: the "area under the curve" of the error.
 
-![Cruise Control on a Hill](/assets/media/hillcontrol.png){: width="600" height="318"}
+![Cruise Control on a Hill](/assets/media/hillcontrol.webp){: width="600" height="318"}
 
 In this case, \\(e(t)\\) is a simple function: the desired speed minus the actual speed. The *control function* \\(u(t)\\) is the position of the throttle. The control function is calculated from the error function by the following equation:
 \\[u(t) = K_p e(t) + K_i \int_0^t e(\tau) \mathrm{d}\tau + K_d e'(t)\\]
@@ -178,7 +178,7 @@ Unity uses [quaternions](https://en.wikipedia.org/wiki/Quaternion) for rotation,
 
 This was my submarine's inertia tensor and rotation:
 
-![Inertia](/assets/media/inertia.png){: width="440" height="185"}
+![Inertia](/assets/media/inertia.webp){: width="440" height="185"}
 
 You might notice that the inertia tensor rotation is really close to the identity (zero) rotation. In other words, the x, y, and z axes were almost the submarine's principal axes. This kind of makes sense, since the submarine has a lot of symmetry about those axes (although the sail is problematic).
 

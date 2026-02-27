@@ -2,7 +2,7 @@
 layout: post
 title: Navigating with Fractals
 excerpt_separator: <!--more-->
-image: /assets/media/unitymesh.PNG
+image: /assets/media/unitymesh.webp
 image_width: 764
 image_height: 758
 description: Using fractals and recursion to generate a mesh for navigation, in a submarine video game.
@@ -167,7 +167,7 @@ With a loop, I performed this subdivision a number of successive times. Then, I 
 
 In my script, I exported this mesh so that I could use it later. Then I opened that mesh in a new object, and used Unity's navigation manager to "bake" it into a NavMesh.
 
-![Image 15: Identifying Vertices](https://carlkolon.com/assets/media/justmesh.PNG)![Image 16: Deleting Triangles](https://carlkolon.com/assets/media/unitymesh.PNG)
+![Image 15: Identifying Vertices](https://carlkolon.com/assets/media/justmesh.PNG)![Image 16: Deleting Triangles](https://carlkolon.com/assets/media/unitymesh.webp)
 
 With the NavMesh baked, the AI can use Unity's built-in function [CalculatePath](https://docs.unity3d.com/ScriptReference/AI.NavMesh.CalculatePath.html) to determine the next bearing to the player, if there is land in the way. I used the Debug.Drawline gizmo to plot out the paths, so that I could see what the AI subs' planned paths were. Then, I set 5 AI subs on my trail and watched them avoid the obstacles perfectly.
 

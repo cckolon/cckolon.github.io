@@ -2,7 +2,7 @@
 layout: post
 title: Novice Backpacking
 excerpt_separator: <!--more-->
-image: /assets/media/senecalunch.jpg
+image: /assets/media/senecalunch.webp
 image_width: 1216
 image_height: 912
 description: A write-up from a backpacking trip.
@@ -12,11 +12,11 @@ Over the long weekend, I took a trip with a few friends out to [Seneca Rocks, WV
 
 I've always wanted to go ski-camping. I have a really sweet pair of [Alpine Touring](https://adventure.howstuffworks.com/outdoor-activities/snow-sports/alpine-touring.htm) (AT) skis, and I've used them to ski around a few resorts and state parks in my home state of Vermont. <!--more-->AT skis (also known as backcountry or Randonee skis) have bindings which allow the skier to switch between fixed-heel (downhill) and free-heel (telemark) modes. The fixed-heel mode operates almost exactly like a normal downhill ski, where the ski turns with the skier's foot. The free-heel mode allows the skier to climb uphill using a normal, walking motion. When there's any appreciable slope, most AT skiers attach [skins](https://en.wikipedia.org/wiki/Ski_skins) to the bottom of the ski for uphill traction. Then, at the top of the slope, we remove the skins and fix our heels, then ski down. Here's my dad holding my skis, with skins attached.
 
-![Dad Holding My Skis](/assets/media/dadskis.jpg){: width="684" height="912"}
+![Dad Holding My Skis](/assets/media/dadskis.webp){: width="684" height="912"}
 
 There are a lot of advantages to AT skiing. It's a great workout, since it involves periods of intense hiking. It allows the skier to ski in areas inaccessible by liftline, which usually means you get fresh tracks. You can usually ski at resorts for free on off days, or early in the morning. It also just feels virtuous; you ["earn your turns"](https://earnyourturns.com/). Here's a great shot (taken by me) of my dad at the top of [Sterling pond](https://www.google.com/maps/place/Sterling+Pond,+Vermont/), an area only accessible via the backcountry.
 
-![Sterling Pond](/assets/media/sterlingpond.jpg){: width="1216" height="912"}
+![Sterling Pond](/assets/media/sterlingpond.webp){: width="1216" height="912"}
 
 After a while, I started to go down the [ski](https://www.youtube.com/watch?v=bPZ0VuNRk4o&t=49s&ab_channel=WilltoRide) [camping](https://www.youtube.com/watch?v=ZHrhB0cUkfU&ab_channel=REI) [rabbit](https://www.youtube.com/watch?v=2Q8btHasbTs&ab_channel=GarretWeintrob) [hole](https://www.youtube.com/watch?v=3uSdDn7W3Sk&ab_channel=RedBullSnow) on youtube, and I've started scheming about how I can get ready for a multi-day trip. The problem is, I have never really backpacked before, or done any camping besides car camping. So this weekend at Seneca, I decided to bring all my gear, and hike with it.
 
@@ -44,7 +44,7 @@ Here's what I brought:
 
 My "wet" pack weight (with water and food) was 27 lbs, which is honestly lighter than I thought it would be. It took a while to squeeze everything into the pack, but it worked out in the end.
 
-![Packed Out Bag](/assets/media/packedoutbag.jpg){: width="569" height="733"}
+![Packed Out Bag](/assets/media/packedoutbag.webp){: width="569" height="733"}
 
 I did some planning beforehand. We would drive out on Friday and camp at [Swallow Rock campground](https://www.google.com/maps/place/Swallow+Rock+Campground/@38.7701121,-79.5556081,15z/data=!4m2!3m1!1s0x0:0xaf62e219f8f99de2?sa=X&ved=2ahUKEwiJpr2L9vfyAhX2RfEDHawjAXMQ_BJ6BAhPEAU), which is a free, primitive campground near the head of the Swallow Rock Trail. In the morning, I would hike the [Swallow Rock](https://www.hikingproject.com/trail/7038264/swallow-rock-trail-tr529) and [Seneca Creek](https://www.hikingproject.com/trail/7038261/seneca-creek-trail-tr515) trails while my friends went to climb at the rocks. We would meet back up around the Swallow Rock trailhead and camp near there that evening. To make sure I wouldn't get lost, I printed a map of the area and downloaded the entire state of West Virginia on [Hiking Project](https://www.hikingproject.com/), an awesome app similar to AllTrails (but totally free).
 
@@ -52,35 +52,35 @@ We drove out on Friday night, and ended up arriving in Seneca way past dark. Swa
 
 In the morning, I started hiking the Swallow Rock Trail. I took a picture of the map at the trailhead to keep track of where I was, and tried not to use my GPS, in an attempt to be more virtuous.
 
-![Trailhead](/assets/media/trailhead.jpg){: width="1216" height="912"}
+![Trailhead](/assets/media/trailhead.webp){: width="1216" height="912"}
 
 The Swallow Rock Trail was beautiful, and there were a few gorgeous spots along the way, especially where it intersected with the Allegheny Mountain Trail in a large clearing.
 
-![Allegheny Mountain Trail](/assets/media/allegheny.jpg){: width="1216" height="912"}
+![Allegheny Mountain Trail](/assets/media/allegheny.webp){: width="1216" height="912"}
 
 After getting to the end of the Swallow Rock Trail, I hiked North along the Seneca Creek trail, which had some gorgeous campsites and little waterfalls.
 
-![Seneca Falls](/assets/media/senecafalls.jpg){: width="1216" height="912"}
+![Seneca Falls](/assets/media/senecafalls.webp){: width="1216" height="912"}
 
 Then I looped around via the Bear Hunter Trail and Allegheny Mountain trail, until I was back at the clearing. I went a little farther so I could find a good place to eat a hot lunch. 
 
-![Lunch](/assets/media/senecalunch.jpg){: width="1216" height="912"}
+![Lunch](/assets/media/senecalunch.webp){: width="1216" height="912"}
 
 Then I hiked back to the trailhead to meet my friends. Strictly speaking, I could have left most of the stuff in my backpack with them, but I wanted to get a feel for what hiking with the pack was like. I was surprised at how easy it was. I have hiked with weight before, but this was a lot less and I barely noticed it, except on some of the more brutal uphills on the Bear Hunter trail. Of course, less weight would have been better.
 
 Here's my route:
 
-![Route](/assets/media/route.jpg){: width="684" height="912"}
+![Route](/assets/media/route.webp){: width="684" height="912"}
 
 <iframe height='405' width='590' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/activities/5909473987/embed/985342154ea66517381a01a631bdeccc6559a010'></iframe>
 
 That night, we camped a little further down the road at Swallow Rock. We found a hidden spot by the creek itself. It was gorgeous, and no one bugged us.
 
-![Campsite](/assets/media/campsite.jpg){: width="1216" height="912"}
+![Campsite](/assets/media/campsite.webp){: width="1216" height="912"}
 
 In the morning, we left in the car, and did a 5-mile hike at North Fork nearby. We also drove by the rocks so I could see them.
 
-![Seneca Rocks](/assets/media/senecarocks.jpg){: width="1216" height="912"}
+![Seneca Rocks](/assets/media/senecarocks.webp){: width="1216" height="912"}
 
 <iframe class='center' height='405' width='590' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/activities/5911705731/embed/603403c097f1a39a86e4f526ac34554e10fcf282'></iframe>
 

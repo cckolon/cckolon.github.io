@@ -2,7 +2,7 @@
 layout: post
 title: Thoughts on Leaving the Navy
 excerpt_separator: <!--more-->
-image: /assets/media/navy/iday_image_mini.jpg
+image: /assets/media/navy/iday_image_mini.webp
 image_width: 368
 image_height: 480
 ---
@@ -21,42 +21,42 @@ Some Junior Officers leave the Navy bitter, but I don't feel that way. My decisi
 
 Submarines once!
 
-{% include fim.html url="/assets/media/navy/iday_image.jpg" cap="I-Day. Summer 2014" %}
+{% include fim.html url="/assets/media/navy/iday_image.webp" cap="I-Day. Summer 2014" %}
 
-{% include fim.html url="/assets/media/navy/flag.jpg" cap="Shifting colors, underway on USS LABOON in the Black Sea. Summer 2015." %}
+{% include fim.html url="/assets/media/navy/flag.webp" cap="Shifting colors, underway on USS LABOON in the Black Sea. Summer 2015." %}
 
-{% include fim.html url="/assets/media/navy/inverted.jpg" cap="Showing the photographer how I would fly inverted during PROTRAMID. Summer 2016." %}
+{% include fim.html url="/assets/media/navy/inverted.webp" cap="Showing the photographer how I would fly inverted during PROTRAMID. Summer 2016." %}
 
-{% include fim.html url="/assets/media/navy/aaah.jpg" cap="In command of Kilo Company during Plebe Summer. Summer 2017." %}
+{% include fim.html url="/assets/media/navy/aaah.webp" cap="In command of Kilo Company during Plebe Summer. Summer 2017." %}
 
-{% include fim.html url="/assets/media/navy/sub_selects.jpg" cap="Playing cribbage, eating submarine sandwiches, and miming periscopes with my fellow submarine selects, Sam Haber and Eryn Culton, and submarine-qualified Plebe Tyler McGill. Fall 2017." %}
+{% include fim.html url="/assets/media/navy/sub_selects.webp" cap="Playing cribbage, eating submarine sandwiches, and miming periscopes with my fellow submarine selects, Sam Haber and Eryn Culton, and submarine-qualified Plebe Tyler McGill. Fall 2017." %}
 
-{% include fim.html url="/assets/media/navy/100_night.jpg" cap="Acting like a Plebe one more time on \"100s Night.\" Winter 2018." %}
+{% include fim.html url="/assets/media/navy/100_night.webp" cap="Acting like a Plebe one more time on \"100s Night.\" Winter 2018." %}
 
-{% include fim.html url="/assets/media/navy/dining_out.jpg" cap="Dining out with 20th Company, sitting with Jackie and my roommates, Tim Abunike and Andrew Maus. Spring 2018." %}
+{% include fim.html url="/assets/media/navy/dining_out.webp" cap="Dining out with 20th Company, sitting with Jackie and my roommates, Tim Abunike and Andrew Maus. Spring 2018." %}
 
-{% include fim.html url="/assets/media/navy/silent_drill.jpg" cap="The Villanova drill meet, my last event as captain of the USNA Silent Drill Team. Summer 2018." %}
+{% include fim.html url="/assets/media/navy/silent_drill.webp" cap="The Villanova drill meet, my last event as captain of the USNA Silent Drill Team. Summer 2018." %}
 
-{% include fim.html url="/assets/media/navy/trident.jpg" cap="Presenting my research at the Trident Conference. Summer 2018." %}
+{% include fim.html url="/assets/media/navy/trident.webp" cap="Presenting my research at the Trident Conference. Summer 2018." %}
 
-{% include fim.html url="/assets/media/navy/grad.jpg" cap="Graduating from the Naval Academy with Tim and Andrew. Summer 2018." %}
+{% include fim.html url="/assets/media/navy/grad.webp" cap="Graduating from the Naval Academy with Tim and Andrew. Summer 2018." %}
 
-{% include fim.html url="/assets/media/navy/prototype.jpg" cap="With my mom after graduating Prototype, where I operated my first of three reactors. Summer 2019." %}
+{% include fim.html url="/assets/media/navy/prototype.webp" cap="With my mom after graduating Prototype, where I operated my first of three reactors. Summer 2019." %}
 
-{% include fim.html url="/assets/media/navy/sobc.jpg" cap="Graduating Submarine Officer Basic Course in Groton, CT, with my roommates Michael Ross and Clinton Silver. Fall 2019." %}
+{% include fim.html url="/assets/media/navy/sobc.webp" cap="Graduating Submarine Officer Basic Course in Groton, CT, with my roommates Michael Ross and Clinton Silver. Fall 2019." %}
 
-{% include fim.html url="/assets/media/navy/jwr_wardroom.jpg" cap="With the wardroom of USS JOHN WARNER, stuck on the pier before our 2020 deployment. I’m 5th from the left. Spring 2020." %}
+{% include fim.html url="/assets/media/navy/jwr_wardroom.webp" cap="With the wardroom of USS JOHN WARNER, stuck on the pier before our 2020 deployment. I’m 5th from the left. Spring 2020." %}
 
-{% include fim.html url="/assets/media/navy/fish.jpg" cap="Being awarded my fish (and a medal) underway on USS JOHN WARNER. Awarding them is the CO, Will Wiley. Fall 2020." %}
+{% include fim.html url="/assets/media/navy/fish.webp" cap="Being awarded my fish (and a medal) underway on USS JOHN WARNER. Awarding them is the CO, Will Wiley. Fall 2020." %}
 
-{% include fim.html url="/assets/media/navy/christening.jpg" cap="Christening PCU NEW JERSEY with fellow JOs Michael Ross, J.B. Loomis, and Adam Kendrix. Fall 2021." %}
+{% include fim.html url="/assets/media/navy/christening.webp" cap="Christening PCU NEW JERSEY with fellow JOs Michael Ross, J.B. Loomis, and Adam Kendrix. Fall 2021." %}
 
-{% include fim.html url="/assets/media/navy/cno.jpg" cap="With the other submarine Junior Officers of the Year, and the Chief of Naval Operations. Spring 2022." %}
+{% include fim.html url="/assets/media/navy/cno.webp" cap="With the other submarine Junior Officers of the Year, and the Chief of Naval Operations. Spring 2022." %}
 
-{% include fim.html url="/assets/media/navy/jwr_visit.jpg" cap="Visiting USS JOHN WARNER a few years after I left. The ship was anchored near the Naval Academy, in Annapolis, and Jackie and I rode out to see it. Fall 2022." %}
+{% include fim.html url="/assets/media/navy/jwr_visit.webp" cap="Visiting USS JOHN WARNER a few years after I left. The ship was anchored near the Naval Academy, in Annapolis, and Jackie and I rode out to see it. Fall 2022." %}
 
-{% include fim.html url="/assets/media/navy/navy_game.jpg" cap="At a Navy game with Jackie. Fall 2022." %}
+{% include fim.html url="/assets/media/navy/navy_game.webp" cap="At a Navy game with Jackie. Fall 2022." %}
 
-{% include fim.html url="/assets/media/navy/wedding.jpg" cap="Marrying my best friend, Jackie. We got married in Summer 2019, but this photo is recent." %}
+{% include fim.html url="/assets/media/navy/wedding.webp" cap="Marrying my best friend, Jackie. We got married in Summer 2019, but this photo is recent." %}
 
-{% include fim.html url="/assets/media/navy/sub_ball_23.jpg" cap="With Jackie at the Submarine Birthday Ball last night in Annapolis." %}
+{% include fim.html url="/assets/media/navy/sub_ball_23.webp" cap="With Jackie at the Submarine Birthday Ball last night in Annapolis." %}

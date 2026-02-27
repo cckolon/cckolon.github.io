@@ -2,7 +2,7 @@
 layout: post
 title: Testing Torpedos Part 1
 excerpt_separator: <!--more-->
-image: /assets/media/cbdr.png
+image: /assets/media/cbdr.webp
 image_width: 661
 image_height: 303
 description: Using multiple targeting theories to design torpedos in a video game.
@@ -13,7 +13,7 @@ And it is so fun. Honestly, if I shoot and kill a sub in *Cold Waters* and they 
 
 So, when I went to design torpedo guidance in my own game, I knew it was high stakes. Even more than *Cold Waters*, I want this game to be about the interactions between submarines and torpedos. I want incoming torpedos to be smart, devious weapons which you have to be really skilled to evade. I want to replicate the sense of accomplishment that I get when I send a torpedo into the bottom in *Cold Waters*.
 
-![Dodging A Torpedo](/assets/media/dodge.png){: width="1140" height="516"}
+![Dodging A Torpedo](/assets/media/dodge.webp){: width="1140" height="516"}
 
 Guiding torpedos in real life is very hard. Most of the challenges involve the technical oolies of underwater navigation, target detection, mechanical engineering... I don't want to open that can of worms. For me, the torpedo always knows where it is, and if the target is close enough, it knows exactly where the target is. The torpedo's speed and turn rate are restricted. The torpedo runs for a set amount of time, and then explodes (failure). If it hits the target, it explodes too (success).
 
