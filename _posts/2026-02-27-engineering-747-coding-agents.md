@@ -4,7 +4,7 @@ title: 747s and Coding Agents
 image: /assets/media/747/variable-stator-vanes.webp
 image_width: 659
 image_height: 465
-description: Comparison between a career flying the 747 and a career coding with AI assistance.
+description: Comparing a career flying the 747 and a career coding with AI assistance.
 keywords: coding agents, AI, software engineering, LLM, programming, skill development, career, Boeing 747, aviation, machine learning
 ---
 
