@@ -9,6 +9,7 @@ pagination:
   permalink: '/page/:num/'
   sort_field: 'date'
   sort_reverse: true
+  title: ":title - page :num"
 permalink: pretty
 exclude:
   - CNAME

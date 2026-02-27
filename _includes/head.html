@@ -1,0 +1,83 @@
+<head>
+  <link rel="prefetch" href="/">
+  <link rel="prefetch" href="/blog/">
+  <link rel="prefetch" href="/research/">
+  <link rel="prefetch" href="/navy/">
+  <link rel="prefetch" href="/resume.pdf">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"
+  ></script>
+  <meta charset="utf-8">
+  <title>{{ page.title }}</title>
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://carlkolon.com{{ page.url }}">
+  <meta property="og:image" content="https://carlkolon.com{{ page.image }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:site_name" content="Carl Kolon">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@CarlKolon">
+  <meta name="twitter:title" content="{{ page.title }}">
+  <meta name="twitter:description" content="{{ page.description }}">
+  <meta
+    name="twitter:image"
+    content="https://carlkolon.com{{ page.image }}"
+  >
+  <meta name="twitter:creator" content="@CarlKolon">
+  <meta name="description" content="{{ page.description }}">
+  {% include inline_css.html %}
+
+  <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link
+    rel="preload"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css"
+    integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T"
+    crossorigin="anonymous"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  >
+  <noscript>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css"
+      integrity="sha384-Wsr4Nh3yrvMf2KCebJchRJoVo1gTU6kcP05uRSh5NV3sj9+a8IomuJoQzf3sMq4T"
+      crossorigin="anonymous"
+    >
+  </noscript>
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/assets/media/favicon/apple-touch-icon.png"
+  >
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/assets/media/favicon/favicon-32x32.png"
+  >
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/assets/media/favicon/favicon-16x16.png"
+  >
+  <link rel="manifest" href="/assets/media/favicon/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
+  </noscript>
+
+  {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+  {% endif %}
+</head>

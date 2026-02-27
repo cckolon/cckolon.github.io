@@ -3,6 +3,8 @@ layout: base
 ---
 {% if page.title == 'Carl Kolon' %}
   {% include page_top.html %}
+{% elsif page.title_override %}
+  {% include page_top.html sub_header=page.title_override %}
 {% else %}
   {% include page_top.html sub_header=page.title %}
 {% endif %}
