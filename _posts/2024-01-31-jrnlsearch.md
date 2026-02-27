@@ -6,6 +6,7 @@ image: /assets/media/semantic/jrnl_search_screengrab.webp
 image_width: 523
 image_height: 200
 description: Note-taking in the command line with jrnl, and semantic search with Huggingface Sentence Transformers.
+keywords: semantic search, jrnl, Python, Sentence Transformers, note-taking, NLP, command line, CLI
 ---
 
 I am bad at taking notes, and I want to get better. There are two main obstacles that I face when I write down things that I want to remember. <!--more-->

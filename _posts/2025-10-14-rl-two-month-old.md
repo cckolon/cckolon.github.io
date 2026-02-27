@@ -6,6 +6,7 @@ image: /assets/media/florence-rl/flo-sutton-barto.webp
 image_width: 600
 image_height: 450
 description: Observations about reinforcement learning from raising a young daughter.
+keywords: reinforcement learning, machine learning, parenting, infant development, Sutton and Barto, cognitive learning
 ---
 
 I've been spending the last month studying reinforcement learning. There are lots of great resources out there, and I've been focusing on [Sutton and Barto](http://incompleteideas.net/book/the-book-2nd.html) and [Spinning Up on Deep RL](https://spinningup.openai.com/en/latest/) from OpenAI. Before this, I was only really familiar with supervised and unsupervised learning. I knew that reinforcement learning meant punishing or rewarding the computer, but that was basically it.<!--more-->

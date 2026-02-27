@@ -6,6 +6,7 @@ image: /assets/media/rolling-analytics/dashboard-thumb.webp
 image_width: 2021
 image_height: 746
 description: Writing my own alternative to Google Analytics for my websites
+keywords: analytics, FastAPI, PostgreSQL, Metabase, privacy, web analytics, self-hosted, custom analytics
 ---
 
 > To the extent you can, avoid letting intermediaries come between you and your audience. In some types of work this is inevitable, but it's so liberating to escape it that you might be better off switching to an adjacent type if that will let you go direct. _--- Paul Graham, [How to Do Great Work](https://www.paulgraham.com/greatwork.html)_

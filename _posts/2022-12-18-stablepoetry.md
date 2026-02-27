@@ -6,6 +6,7 @@ image: /assets/media/diffusion/paulrevere2/3.webp
 image_width: 512
 image_height: 512
 description: Using text-to-image AI models to illustrate poetry.
+keywords: Stable Diffusion, AI art, poetry, text-to-image, machine learning, illustration, generative AI
 ---
 
 In April, OpenAI made the news again, for a new text-to-illustration tool called [Dall-E 2](https://openai.com/dall-e-2/). Dall-E 2 is a deep learning model based on a [transformer](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)) architecture. Transformers have been behind a lot of the most recent AI innovations, like [GPT-3](https://beta.openai.com/docs/models/gpt-3), a natural language processing model, which was used to generate the [famously poetic ChatGPT](https://www.npr.org/2022/12/10/1142045405/opinion-machine-made-poetry-is-here). GPT-3 was also used to create [OpenAI Codex](https://openai.com/blog/openai-codex/), the software which powers the shockingly useful [GitHub Copilot](https://github.com/features/copilot). If you're into coding and you haven't tried the free trial, you're missing out.

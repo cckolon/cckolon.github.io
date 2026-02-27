@@ -3,6 +3,7 @@ layout: poem
 title: Ozymandias
 author: Percy Bysshe Shelley
 path: ozymandias
+keywords: Percy Bysshe Shelley, Ozymandias, Romantic poetry, sonnet, hubris, Stable Diffusion, AI illustration
 excerpt_separator: <!--more-->]
 lines:
   - I met a traveller from an antique land,

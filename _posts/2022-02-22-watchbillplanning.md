@@ -6,6 +6,7 @@ image: /assets/media/watchbill/worstdeal.webp
 image_width: 476
 image_height: 186
 description: Using linear programming to write my ship's watchbill and save myself time.
+keywords: integer programming, linear programming, optimization, OR-Tools, Navy, scheduling, operations research
 ---
 
 \*\*\*Check out [GitHub](https://github.com/cckolon/watchbill) for my code!\*\*\*

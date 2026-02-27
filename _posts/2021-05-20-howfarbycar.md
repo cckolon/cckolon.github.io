@@ -6,6 +6,7 @@ image: /assets/media/94613.webp
 image_width: 600
 image_height: 568
 description: Using the Google Maps API to find the distance between ZIP codes and hospitals.
+keywords: Google Maps API, Python, healthcare, driving distance, ZIP codes, data analysis
 ---
 
 [All of this code is on Github, so check it out, if you can!](https://github.com/cckolon/zip-length)

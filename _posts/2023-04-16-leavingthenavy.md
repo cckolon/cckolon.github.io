@@ -5,6 +5,7 @@ excerpt_separator: <!--more-->
 image: /assets/media/navy/iday_image_mini.webp
 image_width: 368
 image_height: 480
+keywords: Navy, submarines, career transition, personal essay, software development, military, Naval Academy
 ---
 
 It's fitting that I spent my last day in uniform only steps from where I first put it on.

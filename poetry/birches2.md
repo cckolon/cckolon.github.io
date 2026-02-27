@@ -3,6 +3,7 @@ layout: poem
 title: Birches
 author: Robert Frost
 path: birches2
+keywords: Robert Frost, Birches, poetry, nature, American poetry, Stable Diffusion, AI illustration
 excerpt_separator: <!--more-->]
 lines:
   - When I see birches bend to left and right

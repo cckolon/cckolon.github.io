@@ -2,7 +2,10 @@
 layout: default
 title: Research
 image: /assets/media/postersession.webp
+image_width: 948
+image_height: 632
 description: My research in swarming and nonlinear dynamics.
+keywords: swarming, nonlinear dynamics, mathematics, swarm theory, Naval Academy, Trident Scholar, research papers
 ---
 
 ## Written Work

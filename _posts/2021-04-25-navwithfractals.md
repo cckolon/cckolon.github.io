@@ -6,6 +6,7 @@ image: /assets/media/unitymesh.webp
 image_width: 764
 image_height: 758
 description: Using fractals and recursion to generate a mesh for navigation, in a submarine video game.
+keywords: fractals, navigation, Unity, game development, mesh generation, recursion, submarine game, C#
 ---
 
 I caught COVID at work earlier this year, so I ended up with a few weeks at home in isolation. In order to pass the time, I decided to try and learn a bit about the [Unity game engine](https://unity.com/). I had a blast with it, and started to wonder how hard it would be to program a (simple) video game. The 3D physics simulation within Unity reminded me a lot of the phase spaces in continuous dynamics, which I have studied a fair bit, so I felt up to the challenge. <!--more-->

@@ -1,7 +1,7 @@
 [project]
 name = "cckolon-github-io"
 version = "0.1.0"
-description = "Add your description here"
+description = "Scripts for my personal website."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -6,6 +6,7 @@ image: /assets/media/cycling/acceleration-graph.webp
 image_width: 805
 image_height: 396
 description: A Javascript applet to calculate the effect of gear shifts on your bicycle.
+keywords: cycling, bicycle, JavaScript, physics simulation, gears, cadence, power output
 disable-boost: True
 ---
 

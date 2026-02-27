@@ -6,6 +6,7 @@ image: /assets/media/jekylllogo.webp
 image_width: 498
 image_height: 230
 description: Using Jekyll to save myself time when blogging.
+keywords: Jekyll, static site generator, web development, blogging, HTML, tutorial
 ---
 
 I have a confession to make. <!--more-->

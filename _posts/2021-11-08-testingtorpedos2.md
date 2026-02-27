@@ -6,6 +6,7 @@ image: /assets/media/multihits.webp
 image_width: 670
 image_height: 618
 description: Testing different guidance algorithms against each other in Unity.
+keywords: torpedo guidance, proportional navigation, Unity, game development, submarines, simulation, C#
 ---
 A while back I wrote [an article about torpedo guidance strategy](/2021/08/31/testingtorpedos1) in a submarine game. The concept was to compare five different methods of torpedo control, and to implement each in C#. In this follow-up, I test each one and compare them, to see which is most effective. <!--more-->
 

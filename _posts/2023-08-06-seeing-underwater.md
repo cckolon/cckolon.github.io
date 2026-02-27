@@ -6,6 +6,7 @@ image: /assets/media/tma/r1r2demo.webp
 image_width: 1000
 image_height: 522
 description: Using recurrent neural networks to interpret passive sonar data.
+keywords: sonar, neural networks, LSTM, target motion analysis, submarines, machine learning, passive sonar
 ---
 
 *Nothing in this article is classified. Where I refer to Navy sonar and TMA data, I have cited official DoD sources in which the data has been publicly released. If you think I've made a mistake, you can email me at the address on my homepage.*

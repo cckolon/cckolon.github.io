@@ -6,6 +6,7 @@ image: /assets/media/senecalunch.webp
 image_width: 1216
 image_height: 912
 description: A write-up from a backpacking trip.
+keywords: backpacking, hiking, Seneca Rocks, West Virginia, outdoor recreation, gear, trip report
 ---
 
 Over the long weekend, I took a trip with a few friends out to [Seneca Rocks, WV](https://www.fs.usda.gov/recarea/mnf/recarea/?recid=7051). My friends are big rock climbers, so they spent all day on the rock face. I decided to use the time to take a step towards a long-term goal.

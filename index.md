@@ -2,7 +2,10 @@
 title: "Carl Kolon"
 layout: default
 image: /assets/media/main-page/golden_gate.webp
+image_width: 800
+image_height: 469
 description: I'm Carl Kolon. I'm a Software Engineer at xAI. I live in San Francisco. For 5 years I was a Submarine Officer in the US Navy. Before that, I was a Trident Scholar in Mathematics at the US Naval Academy. This is my personal website.
+keywords: Carl Kolon, software engineer, xAI, submarines, Navy, mathematics, Naval Academy, personal website
 ---
 
 I'm a Software Engineer at [xAI](https://x.ai/). I live in San Francisco. For 5 years I was a Submarine Officer in the US Navy. Before that, I was a [Trident Scholar](https://www.usna.edu/TridentProgram/index.php) in Mathematics at the US Naval Academy. This is my personal website.

@@ -3,6 +3,7 @@ layout: poem
 title: Paul Revere's Ride
 author: Henry Wadsworth Longfellow
 path: paulrevere2
+keywords: Henry Wadsworth Longfellow, Paul Revere's Ride, American Revolution, narrative poem, Stable Diffusion, AI illustration
 excerpt_separator: <!--more-->]
 lines: 
 - |

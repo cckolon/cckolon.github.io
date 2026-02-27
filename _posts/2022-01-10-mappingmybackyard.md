@@ -6,6 +6,7 @@ image: /assets/media/backyard/home_map_scaled.webp
 image_width: 789
 image_height: 558
 description: Using GIS to map my family's property in Vermont.
+keywords: GIS, QGIS, mapping, Vermont, elevation data, cartography, property map, DEM
 ---
 I was lucky enough to get a few weeks of leave for Christmas, so I went home to my family's house in Vermont with my wife, Jackie, and [our cat](https://www.instagram.com/rockminsterfullerene/). In between camping and ski-hiking, I was looking for another little project.
 

@@ -3,6 +3,7 @@ layout: poem
 title: High Flight
 author: John Gillespie Magee
 path: highflight
+keywords: John Gillespie Magee, High Flight, aviation poetry, WWII, sonnet, Stable Diffusion, AI illustration
 excerpt_separator: <!--more-->]
 lines:
   - Oh! I have slipped the surly bonds of Earth

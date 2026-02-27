@@ -6,6 +6,7 @@ image: /assets/media/packs.webp
 image_width: 696
 image_height: 472
 description: Using web-scraping to compare backpacks by weight and volume.
+keywords: web scraping, Python, Selenium, pandas, data analysis, backpacking, Hausdorff dimension, fractal
 ---
 
 Since my last post, I've gone backpacking a few times, and each time I try to bring a little less. No, I'm not [ultralight](https://www.rei.com/learn/expert-advice/ultralight-backpacking.html) yet (often defined as [base weight](https://ridgetrekker.com/backpacking-base-weight/) under 10 pounds), but I'm pretty close. My last base weight was 12.1. 

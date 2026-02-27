@@ -1,14 +1,23 @@
----
-layout: base
----
-<h1>
-  Carl Kolon
-  <span class="muted">/ <a class="blog-header-link" href="/blog">Blog</a></span>
-</h1>
-{% include navigation.html %}
-<hr>
-<div class="blog-header">
-  <h1 class="blog-title">{{ page.title }}</h1>
-  <div class="post-date">{{ page.date | date_to_string }}</div>
-</div>
-{{ content }}
+<!doctype html>
+<html prefix="og: https://ogp.me/ns#">
+  <head>
+    {% include head.html %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  </head>
+
+  <body hx-boost="true">
+    <h1>
+      Carl Kolon
+      <span class="muted">/ <a class="blog-header-link" href="/blog">Blog</a></span>
+    </h1>
+    {% include navigation.html %}
+    <hr>
+    <div class="blog-header">
+      <h1 class="blog-title">{{ page.title }}</h1>
+      <div class="post-date">{{ page.date | date_to_string }}</div>
+    </div>
+    {{ content }}
+    {% include footer.html %}
+  </body>
+</html>

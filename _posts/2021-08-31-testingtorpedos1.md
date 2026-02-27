@@ -6,6 +6,7 @@ image: /assets/media/cbdr.webp
 image_width: 661
 image_height: 303
 description: Using multiple targeting theories to design torpedos in a video game.
+keywords: torpedo guidance, proportional navigation, game development, Unity, submarines, targeting algorithms, C#
 ---
 I've played pretty much all the big modern submarine simulations ([Dangerous Waters](https://store.steampowered.com/app/1600/Dangerous_Waters/), [688I](https://store.steampowered.com/app/2900/688I_HunterKiller/), [Silent Service](https://store.steampowered.com/app/329660/Silent_Service/), [Sub Command](https://store.steampowered.com/app/2920/Sub_Command/), etc.), and in my opinion, [*Cold Waters*](http://killerfishgames.com/) is the most fun by far. It's not the most realistic game: there is pretty much no parallel between *Cold Waters* and how sonar, tracking, classification, etc. work in real life. Damage control is pretty simplistic. Driving the submarine is easy. That's all okay, because that isn't what *Cold Waters* is about. The fun part is [dodging torpedos](https://www.youtube.com/watch?v=nAQDD9CrtxM). <!--more-->
 

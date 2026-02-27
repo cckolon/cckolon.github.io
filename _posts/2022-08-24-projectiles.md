@@ -6,6 +6,7 @@ image: /assets/media/projectiles/ryff.webp
 image_width: 776
 image_height: 655
 description: Detailed modeling of the aerodynamics of a shell on a ballistic trajectory.
+keywords: ballistics, aerodynamics, projectile motion, physics, artillery, drag coefficient, howitzer, MRSI
 ---
 
 Imagine a cannon, firing a shell into the air. What path will the shell follow? How far will it travel? How long will it remain airborne? Below is woodcut by Walther Hermann Ryff, a 16th century mathematician, examining this question. At the time, [most theorists thought](https://en.wikipedia.org/wiki/Theory_of_impetus) that cannonballs traveled in straight-line segments and circular arcs, stitched together.

@@ -5,6 +5,7 @@ image: /assets/media/jfmm/embedding.webp
 image_width: 2164
 image_height: 1036
 description: Building a web app to search the Joint Fleet Maintenance Manual.
+keywords: semantic search, Navy, JFMM, vector search, NLP, reranking, web app, embeddings
 ---
 
 During my last couple years in the Navy, I became intimately familiar with submarine quality assurance (QA). I went to QA school and became the QA officer (QAO) of PCU New Jersey. As part of my responsibilities, I had to review work packages and qualify sailors as proficient in quality maintenance.

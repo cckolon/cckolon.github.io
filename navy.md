@@ -2,7 +2,10 @@
 layout: default
 title: Navy
 image: /assets/media/grad.webp
+image_width: 200
+image_height: 299
 description: A summary of my time as a Submarine Officer in the US Navy.
+keywords: Navy, submarines, submarine officer, Naval Academy, military service, nuclear submarine
 ---
 
 Between 2018 and 2023, I spent 5 years as a [Submarine Officer](https://www.navy.com/careers/nupoc-submarine-officer) in the US Navy. I spent that time trying to become an officer that enlisted Sailors deserved.
