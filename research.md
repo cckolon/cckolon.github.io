@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Research
-image: /assets/media/postersession.jpg
+image: /assets/media/postersession.webp
 description: My research in swarming and nonlinear dynamics.
 ---
 
@@ -26,14 +26,14 @@ In 2018, I presented my work at the Trident Scholar Conference. You can watch my
 
 That year, I also presented at the [University of Maryland's Graduate Mathematics Seminar](https://www-math.umd.edu/gcal_rss.php?seminar_key=SDYN&year=2018&html#:~:text=Stability%20of%20Nonlinear%20Swarms%20on%20Flat%20and%20Curved%20Surfaces), and the Service Academy Student Mathematics Conference at the US Coast Guard Academy.
 
-![SASMC 2018](/assets/media/sasmc.png)
+![SASMC 2018](/assets/media/sasmc.webp)
 
 SASMC 2018. I'm in the middle row on the right.
 {: .img-caption}
 
 ## Trident Scholarship
 
-![Trident Poster Session](/assets/media/postersession.jpg)
+![Trident Poster Session](/assets/media/postersession.webp)
 
 My poster at the Trident poster session.
 {: .img-caption}
@@ -48,14 +48,14 @@ $$R=\sum_{i=1}^Nr_i$$
 
 Expected limit behavior is pictured below:
 
-![Typical limit behavior of the parabolic potential model](/assets/media/circularlimit.gif)
+![Typical limit behavior of the parabolic potential model](/assets/media/circularlimit.webp)
 
 Typical limit behavior of the parabolic potential model.
 {: .img-caption}
 
 Over the course of a year, we proved several new results about the stability of this system. We were fortunate to observe some behavior that has never been seen before.
 
-![Previously unobserved limit behavior in the parabolic potential model.](/assets/media/weirdlimit.gif)
+![Previously unobserved limit behavior in the parabolic potential model.](/assets/media/weirdlimit.webp)
 
 Previously unobserved limit behavior in the parabolic potential model.
 {: .img-caption}

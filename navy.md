@@ -1,19 +1,19 @@
 ---
 layout: default
 title: Navy
-image: /assets/media/grad.jpg
+image: /assets/media/grad.webp
 description: A summary of my time as a Submarine Officer in the US Navy.
 ---
 
 Between 2018 and 2023, I spent 5 years as a [Submarine Officer](https://www.navy.com/careers/nupoc-submarine-officer) in the US Navy. I spent that time trying to become an officer that enlisted Sailors deserved.
 
-<div class="outer"><div class="block"><img width="450" height="300" src="/assets/media/lastonefastone.jpg" alt="The 2017 Army-Navy Game, with my roommates."></div>
+<div class="outer"><div class="block"><img width="450" height="300" src="/assets/media/lastonefastone.webp" alt="The 2017 Army-Navy Game, with my roommates."></div>
 
-<div class="block"><img width="200" height="300" src="/assets/media/grad.jpg" alt="Graduating from the Naval Academy."></div>
+<div class="block"><img width="200" height="300" src="/assets/media/grad.webp" alt="Graduating from the Naval Academy."></div>
 
-<div class = "block"><img width = "225" height = "300" src="/assets/media/christening.jpg" alt="Christening PCU New Jersey"></div>
+<div class = "block"><img width = "225" height = "300" src="/assets/media/christening.webp" alt="Christening PCU New Jersey"></div>
 
-<div class="block"><img width="400" height="300" src="/assets/media/jwr.jpg" alt="A port call in Spain with my division of Nuclear Mechanics."></div></div>
+<div class="block"><img width="400" height="300" src="/assets/media/jwr.webp" alt="A port call in Spain with my division of Nuclear Mechanics."></div></div>
 
 In 2014, I accepted an appointment to the [US Naval Academy](https://www.usna.edu/homepage.php) in Annapolis, MD. I spent 4 years there, where I majored in Math. I graduated with distinction in 2018, commissioning as an Ensign in the US Navy.
 
@@ -25,7 +25,7 @@ After returning to Norfolk in November 2020, I served aboard [PCU New Jersey](<h
 
 Towards the end of 2021, I was selected as the Submarine Squadron 8 Junior Officer of the Year: the top officer among about 80 of my peers. Because of this, Jackie and I were able to take a trip to DC to meet Admirals and policymakers on behalf of the Submarine community. It was a great time!
 
-{% include fim.html url="/assets/media/navy/cno.jpg" cap="Meeting the Chief of Naval Operations at the Pentagon." %}
+{% include fim.html url="/assets/media/navy/cno.webp" cap="Meeting the Chief of Naval Operations at the Pentagon." %}
 
 Until 2022, I served as a division officer, leading 3 separate divisions of 9 to 11 nuclear-trained Sailors. In January 2022, I became the Assistant Engineer, second-in-charge of the nuclear reactor, 62 Sailors, and about a billion dollars of equipment. I managed these assets myself for about 3 months while the Engineer was gone. In February 2022, I took over New Jersey's quality assurance program, managing maintenance and documentation of seawater-tight systems (for example, the [SUBSAFE](https://en.wikipedia.org/wiki/SUBSAFE) program).
 
