@@ -3,6 +3,8 @@ layout: post
 title: Illustrating Poetry with AI
 excerpt_separator: <!--more-->
 image: /assets/media/diffusion/paulrevere2/3.png
+image_width: 512
+image_height: 512
 description: Using text-to-image AI models to illustrate poetry.
 ---
 
@@ -14,9 +16,9 @@ While I was messing around with DALL-E, though, I read about [Stable Diffusion](
 
 At first, I just screwed around. I used the model to generate some outlandish images, using prompts like "Saul Goodman on a submarine".
 
-![saul 1](/assets/media/diffusion/saul1.png)
+![saul 1](/assets/media/diffusion/saul1.png){: width="512" height="512"}
 
-![saul 2](/assets/media/diffusion/saul2.png)
+![saul 2](/assets/media/diffusion/saul2.png){: width="512" height="512"}
 
 But then I started thinking about how I could use this tool - a machine doing something traditionally human - and take it a step further. I decided to use Stable Diffusion to illustrate poetry.
 
@@ -30,45 +32,45 @@ The style of the images is inconsistent. Sometimes, Stable Diffusion generates a
 
 <div class = "gallery-block">
     <p class = "poem-text">After a rain. They click upon themselves</p>
-    <img src="/assets/media/diffusion/birches/7.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/7.png" class="center-image">
 </div>
 
 <div class = "gallery-block">
     <p class = "poem-text">With all her matter-of-fact about the ice-storm</p>
-    <img src="/assets/media/diffusion/birches/22.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/22.png" class="center-image">
 </div>
 
 A lot of images in the data set have text on top of them, and this makes Stable Diffusion generate artifacts that look like text, but aren't. It's easy to recognize images like this. They look like memes or motivational posters, but are a little off; they don't display real words or pictures of a real thing. Here are some examples:
 
 <div class = "gallery-block">
     <p class = "poem-text">But I was going to say when Truth broke in</p>
-    <img src="/assets/media/diffusion/birches/21.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/21.png" class="center-image">
 </div>
 
 <div class = "gallery-block">
     <p class = "poem-text">To learn about not launching out too soon</p>
-    <img src="/assets/media/diffusion/birches/33.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/33.png" class="center-image">
 </div>
 
 Sometimes, the line has clear imagery which Stable Diffusion easily picks up.
 
 <div class = "gallery-block">
     <p class = "poem-text">And climb black branches up a snow-white trunk</p>
-    <img src="/assets/media/diffusion/birches/55.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/55.png" class="center-image">
 </div>
 
 Other times, Stable Diffusion has the right idea, but doesn't really generate a realistic scene.
 
 <div class = "gallery-block">
     <p class = "poem-text">I like to think some boy’s been swinging them.</p>
-    <img src="/assets/media/diffusion/birches/3.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/3.png" class="center-image">
 </div>
 
 Sometimes, the NSFW filter would black out an image that it deemed inappropriate.
 
 <div class = "gallery-block">
     <p class = "poem-text">And not one but hung limp, not one was left</p>
-    <img src="/assets/media/diffusion/birches/31.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches/31.png" class="center-image">
 </div>
 
 (You can bypass this filter, but you don't want to see the results.)
@@ -83,17 +85,17 @@ The images follow from each other now. See the following few consecutive lines:
 
 <div class = "gallery-block">
     <p class = "poem-text">As he went out and in to fetch the cows—</p>
-    <img src="/assets/media/diffusion/birches2/24.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches2/24.png" class="center-image">
 </div>
 
 <div class = "gallery-block">
     <p class = "poem-text">Some boy too far from town to learn baseball,</p>
-    <img src="/assets/media/diffusion/birches2/25.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches2/25.png" class="center-image">
 </div>
 
 <div class = "gallery-block">
     <p class = "poem-text">Whose only play was what he found himself,</p>
-    <img src="/assets/media/diffusion/birches2/26.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches2/26.png" class="center-image">
 </div>
 
 The image in the foreground turns from a cow, to a baseball, to a rubber ball in a playroom. Further down in the poem, it turns into a stump and a bicycle helmet. Still, though, the image looks fairly consistent.
@@ -102,31 +104,31 @@ Unfortunately, this still didn't really accomplish what I wanted. There is a sim
 
 <div class = "gallery-block">
     <p class = "poem-text">Such heaps of broken glass to sweep away</p>
-    <img src="/assets/media/diffusion/birches2/12.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches2/12.png" class="center-image">
 </div>
 
 <div class = "gallery-block">
     <p class = "poem-text">You'd think the inner dome of heaven had fallen.</p>
-    <img src="/assets/media/diffusion/birches2/13.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/birches2/13.png" class="center-image">
 </div>
 
 I tried this with a few other poems, with varying success. Different poems have different levels of imagery in each line, and some of them don't quite have enough for Stable Diffusion to latch on to. I generated [a series of illustrations](http://localhost:4000/poetry/ozymandias) for Percy Bysshe Shelley's "Ozymandias" and was disappointed that the model could not interpret the Egyptian context until late in the poem. The following image isn't really "of" anything.
 
 <div class = "gallery-block">
     <p class = "poem-text">Half sunk a shattered visage lies, whose frown,</p>
-    <img src="/assets/media/diffusion/ozymandias/4.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/ozymandias/4.png" class="center-image">
 </div>
 
 The model had no problem with [John Gillespie Magee's "High Flight"](/poetry/highflight), though, and each image is fairly similar. See the following images from the beginning and end of the poem.
 
 <div class = "gallery-block">
     <p class = "poem-text">Oh! I have slipped the surly bonds of Earth</p>
-    <img src="/assets/media/diffusion/highflight/1.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/highflight/1.png" class="center-image">
 </div>
 
 <div class = "gallery-block">
     <p class = "poem-text">The high untrespassed sanctity of space,</p>
-    <img src="/assets/media/diffusion/highflight/13.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/highflight/13.png" class="center-image">
 </div>
 
 These images still didn't really accomplish what I wanted, though. They did not get a sense of the big picture: the images were not always about what the poem was about. I had settled on one illustration per line, mostly because online prompts for Stable Diffusion and DALL-E tended to be the same length, but I felt like one line did not give the model enough information to illustrate the poem. I figured that maybe feeding the model a stanza at a time, instead of a line, would give clearer image.
@@ -143,7 +145,7 @@ For a longer poem to try this on, I used Henry Wadsworth Longfellow's "Paul Reve
         Across the moon, like a prison-bar,<br>
         And a huge black hulk, that was magnified<br>
         By its own reflection in the tide.<br></p>
-    <img src="/assets/media/diffusion/paulrevere1/3.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/paulrevere1/3.png" class="center-image">
 </div>
 
 You can see the grenadiers, the shore, and the alley below. Stable Diffusion even manages to infer some elements, like the vaguely American flag displayed above the street.
@@ -157,7 +159,7 @@ You can see the grenadiers, the shore, and the alley below. Stable Diffusion eve
         And the measured tread of the grenadiers<br>
         Marching down to their boats on the shore.<br>
     </p>
-    <img src="/assets/media/diffusion/paulrevere1/4.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/paulrevere1/4.png" class="center-image">
 </div>
 
 I also felt like the style was much more consistent in this version. All the images, for example, are black and white, even though some look like sketches and others look like prints or photos. 
@@ -170,7 +172,7 @@ I also felt like the style was much more consistent in this version. All the ima
         And felt the damp of the river-fog,<br>
         That rises when the sun goes down.<br>
     </p>
-    <img src="/assets/media/diffusion/paulrevere1/10.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/paulrevere1/10.png" class="center-image">
 </div>
 
 Because the style was so similar, I decided to relax the association between images and generate the poem again with a strength of 1 (in other words, with each image unlinked from the last) the same way I had generated the original "Birches" imagery. [You can see it here](/poetry/paulrevere2). While the images aren't as consistently good, I think the best illustrations are lurking in this last implementation. In the following image, you can clearly see the Somerset, and the prickly masts and rigging which are described in the passage.
@@ -186,7 +188,7 @@ Because the style was so similar, I decided to relax the association between ima
         And a huge black hulk, that was magnified<br>
         By its own reflection in the tide.<br>
     </p>
-    <img src="/assets/media/diffusion/paulrevere2/3.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/paulrevere2/3.png" class="center-image">
 </div>
 
 It's interesting to notice what the model picks up and what it doesn't. In the following image, you can see the "gloom and the light" in the contrast between the left and right sides of the image. While the model doesn't really understand the spark metaphor, there is a flame depicted in the top left hand corner. The horse features prominently, but without a rider. It seems fitting that the image should be in black and white, but why? Is it the gloom and light description, or does Stable Diffusion interpret the old-timey language as a context cue?
@@ -201,7 +203,7 @@ It's interesting to notice what the model picks up and what it doesn't. In the f
         And the spark struck out by that steed, in his flight,<br>
         Kindled the land into flame with its heat.<br>
     </p>
-    <img src="/assets/media/diffusion/paulrevere2/8.png" class="center-image">
+    <img width="512" height="512" src="/assets/media/diffusion/paulrevere2/8.png" class="center-image">
 </div>
 
 So where could we go next? It would be interesting to use some of the features of transformers to give Stable Diffusion a concept of the themes of the poem from line to line. It would also be interesting to restrict the training data to art, matched with more abstract descriptions. For example, maybe there is a data set out there of book illustrations matched with the book content. I haven't found one yet, though.

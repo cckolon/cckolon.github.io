@@ -3,6 +3,8 @@ layout: post
 title: Hausdorff's Backpacks
 excerpt_separator: <!--more-->
 image: /assets/media/packs.png
+image_width: 696
+image_height: 472
 description: Using web-scraping to compare backpacks by weight and volume.
 ---
 
@@ -12,7 +14,7 @@ Once I went through the relatively easy phases of lightening my bag (bring small
 
 So I went window shopping on the REI site. One of the site's many cool features is the detailed table of technical specs for each pack. Here's a picture of a typical backpack info table (this one for the [Trail 40 Pack](https://www.rei.com/product/168485/rei-co-op-trail-40-pack-mens)).
 
-![Tech Specs](/assets/media/techspecs.png)
+![Tech Specs](/assets/media/techspecs.png){: width="582" height="829"}
 
 So comparing weight on REI is pretty easy. Even better, REI gives an accurate volume measurement of each pack, in cubic inches! Really cool.
 
@@ -112,11 +114,11 @@ for url in backpackurls:
 
 This part really made me feel cool. Look at the automation!
 
-![Scrapin'](/assets/media/scrapin.gif)
+![Scrapin'](/assets/media/scrapin.gif){: width="600" height="338"}
 
 To put a little damper on my enthusiasm, I realized after a day or so that REI had blocked me...
 
-![Denied](/assets/media/reidenied.png)
+![Denied](/assets/media/reidenied.png){: width="498" height="317"}
 
 ## Displaying the Data
 

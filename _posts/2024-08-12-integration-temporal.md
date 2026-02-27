@@ -3,6 +3,8 @@ layout: post
 title: Integrating Random Functions on a Cluster with Temporal
 excerpt_separator: <!--more-->
 image: /assets/media/integration/cluster.webp
+image_width: 600
+image_height: 450
 description: Using Temporal as a workflow manager to solve math problems with many computers.
 ---
 
@@ -37,7 +39,7 @@ One option is to make random strings and only save the ones that are meaningful.
 
 Typically, a CAS represents mathematical functions internally as _binary-unary trees_, also known as _Motzkin trees_: a network of nodes, each of which has 0, 1, or 2 children.
 
-![Binary-Unary Trees](/assets/media/integration/trees.png)
+![Binary-Unary Trees](/assets/media/integration/trees.png){: width="707" height="430"}
 
 Examples of binary-unary trees[^sedgewick2013].
 {: .img-caption}
@@ -46,7 +48,7 @@ Examples of binary-unary trees[^sedgewick2013].
 
 To translate functions to binary-unary trees, split the functions by their operators. Here's an example:
 
-![Decomposing a binary-unary tree](/assets/media/integration/binary_unary_decomp.png)
+![Decomposing a binary-unary tree](/assets/media/integration/binary_unary_decomp.png){: width="314" height="516"}
 
 You can see from this example that there are three types of nodes:
 
@@ -56,7 +58,7 @@ You can see from this example that there are three types of nodes:
 
 Together, binary and unary nodes are also known as _Internal Nodes_. In other words, an internal node is a node that's _not_ a leaf.
 
-![Labeling binary nodes, unary nodes, and leaves](/assets/media/integration/binary_unary_label.png)
+![Labeling binary nodes, unary nodes, and leaves](/assets/media/integration/binary_unary_label.png){: width="347" height="276"}
 
 This is [how a parser works](https://itnext.io/writing-a-mathematical-expression-parser-35b0b78f869e) in a CAS or graphing calculator.
 
@@ -72,30 +74,30 @@ The algorithm works by generating unassigned or "empty" nodes, and then "filling
 
 Start with an empty node.
 
-![One Node](/assets/media/integration/tree1.png)
+![One Node](/assets/media/integration/tree1.png){: width="84" height="84"}
 
 Since there's only one node, it can't be a leaf, so it will either be binary or unary. Suppose it's binary.
 
-![A binary node and two empty children](/assets/media/integration/tree2.png)
+![A binary node and two empty children](/assets/media/integration/tree2.png){: width="220" height="168"}
 
 Now that there are two empty nodes, decide the location of the next internal node. In this case, either the left node is an internal node, or it's a leaf and the right node is internal. Note that to generate all possible trees with equal probability, this shouldn't be a 50/50 choice! There exist more possible trees where the left node is internal than trees where it's a leaf! I'll get back to how calculating the sampling probability shortly.
 
-![Compare the two tree groups](/assets/media/integration/tree_comparison.png)
+![Compare the two tree groups](/assets/media/integration/tree_comparison.png){: width="4582" height="2155"}
 
 All possible binary-unary trees with three internal nodes.
 {: .img-caption}
 
 Suppose the left node is internal, and further suppose that it's binary. Now there are three empty nodes.
 
-![A binary node with two children. The left is binary and the right is empty](/assets/media/integration/tree3.png)
+![A binary node with two children. The left is binary and the right is empty](/assets/media/integration/tree3.png){: width="288" height="252"}
 
 One more internal node remains to assign. Suppose it's unary and in position 3, making the other positions leaves.
 
-![A binary node with two children. The left is binary. Its right child is unary. The rest of the nodes are leaves](/assets/media/integration/tree4.png)
+![A binary node with two children. The left is binary. Its right child is unary. The rest of the nodes are leaves](/assets/media/integration/tree4.png){: width="288" height="336"}
 
 Now populate the tree with operators, variables, and numbers.
 
-![The same tree with operators, variables, and constants assigned](/assets/media/integration/tree5.png)
+![The same tree with operators, variables, and constants assigned](/assets/media/integration/tree5.png){: width="288" height="336"}
 
 This tree represents $$2\times(x+\sin x)$$.
 
@@ -143,12 +145,12 @@ $$D(e,n)=D(e-1,n)+D(e,n-1)+D(e+1,n-1)$$
 
 Together, these form a recursive expression for $$D(e,n)$$. You can even calculate these values in Excel, if you want! Here's a table of the first 10 values:
 
-![A table of the first 10 values of D(e,n)](/assets/media/integration/excel_table.png)
+![A table of the first 10 values of D(e,n)](/assets/media/integration/excel_table.png){: width="841" height="264"}
 
 A table of the first 10 values of $$D(e,n)$$.
 {: .img-caption}
 
-![How the addition works.](/assets/media/integration/addition_spreadsheet.png)
+![How the addition works.](/assets/media/integration/addition_spreadsheet.png){: width="205" height="129"}
 
 How the addition works.
 {: .img-caption}
@@ -219,7 +221,7 @@ def integrate_functions_parallel(functions: list[str]) -> list[str]:
 
 This solves the parallelism issue, but I still wanted timeouts. If a function takes a long time to integrate, it can clog up the whole process! Without timeouts, I worried that each process would waste most of its time on slow integrals which would never compute.
 
-![In this example, slow integrals dominate over fast ones, even though there are many more fast ones.](/assets/media/integration/fast_and_slow_processes.png)
+![In this example, slow integrals dominate over fast ones, even though there are many more fast ones.](/assets/media/integration/fast_and_slow_processes.png){: width="631" height="574"}
 
 In this example, slow integrals dominate over fast ones, even though there are many more fast ones.
 {: .img-caption}
@@ -296,7 +298,7 @@ It works by running a server (the [Temporal Service](https://docs.temporal.io/ev
 
 [^temporal-disclaimer]: I'm not affiliated with Temporal, and I don't care if you use it. I do have a pretty sweet pair of Temporal socks, though.
 
-![Temporal development network topology, from the Temporal docs](/assets/media/integration/basic-platform-topology-development.svg)
+![Temporal development network topology, from the Temporal docs](/assets/media/integration/basic-platform-topology-development.svg){: width="1301" height="699"}
 
 Temporal development network topology, from the [Temporal docs](https://docs.temporal.io/).
 {: .img-caption}
@@ -378,7 +380,7 @@ async def main():
 
 I ran the database and Temporal Service on my Raspberry Pi, which I've named Shasta after the [famous mountain](https://www.usgs.gov/volcanoes/mount-shasta). I ran workers on Shasta, my desktop computer, my laptop, and my wife's MacBook.
 
-![4 workers registered in the Temporal UI](/assets/media/integration/temporal_ui.jpg)
+![4 workers registered in the Temporal UI](/assets/media/integration/temporal_ui.jpg){: width="496" height="445"}
 
 All four workers registered in the Temporal UI.
 {: .img-caption}
@@ -387,7 +389,7 @@ I switched from SQLite to [Postgres in docker](https://www.docker.com/blog/how-t
 
 While only one worker would run on each computer, each worker would run a process on each CPU. This meant I could run 44 concurrent processes!
 
-![The cluster in action](/assets/media/integration/cluster.webp)
+![The cluster in action](/assets/media/integration/cluster.webp){: width="600" height="450"}
 
 The cluster in action[^censor-foot]!
 {: .img-caption}
@@ -396,7 +398,7 @@ The cluster in action[^censor-foot]!
 
 Eventually I decided to suspend the worker on Shasta. Running all 4 cores at 100% was too much for the [passive cooling case](https://flirc.tv/collections/case/products/raspberry-pi-5-case) I bought. Maybe someday I'll invest in a [fan](https://www.raspberrypi.com/products/raspberry-pi-5-case/).
 
-![A hot raspberry pi](/assets/media/integration/rpi_temp.png)
+![A hot raspberry pi](/assets/media/integration/rpi_temp.png){: width="326" height="315"}
 
 A little toasty.
 {: .img-caption}

@@ -3,6 +3,8 @@ layout: post
 title: Watchbill Planning with Integer Programming
 excerpt_separator: <!--more-->
 image: /assets/media/watchbill/worstdeal.png
+image_width: 476
+image_height: 186
 description: Using linear programming to write my ship's watchbill and save myself time.
 ---
 
@@ -37,15 +39,15 @@ How does assigning a watchbill fit the criteria listed above? Let's look at an e
 
 Suppose we have to assign Alice, Bob, and Charlie on a watchbill covering 4 days. 
 
-![Blank Watchbill](/assets/media/watchbill/blank.png)
+![Blank Watchbill](/assets/media/watchbill/blank.png){: width="354" height="249"}
 
 We can assign our vector \\(\mathbf{x} = \left(x_{a1},x_{a2},\ldots\right)\\), where each \\(x\\) is a zero (not assigned) or a one (assigned).
 
-![Watchbill Variables](/assets/media/watchbill/variables.png)
+![Watchbill Variables](/assets/media/watchbill/variables.png){: width="354" height="249"}
 
 Suppose that we assign each element of \\(\mathbf{x}\\) randomly. We might get something like this:
 
-![Random Assignments](/assets/media/watchbill/random.png)
+![Random Assignments](/assets/media/watchbill/random.png){: width="354" height="249"}
 
 This is not a good watchbill, for a few reasons. On day 1, both Alice and Bob are assigned, which is unnecessary. Bob is on duty every single day. Charlie is never assigned.
 
@@ -125,7 +127,7 @@ for n, name in enumerate(self.all_watchstanders):
 
 I wrote a function called `solve_model` which would generate a `CpSolver` object with a solution satisfying the constraints. This would spit out a schedule which worked.
 
-![A basic schedule](/assets/media/watchbill/basicsolution.png)
+![A basic schedule](/assets/media/watchbill/basicsolution.png){: width="354" height="249"}
 
 This satisfies the constraints which we have set above. Namely:
 - Only one watchstander is assigned per day.
@@ -138,7 +140,7 @@ This only deals with the basic issues of scheduling, though, and a human could e
 
 Suppose that Bob cannot work day 2, and Alice cannot work day 4 (maybe Alice has a doctor's appointment, and Bob is getting married). To keep track of issues like this, I created another matrix called `schedule_conflicts`. `schedule_conflicts[i][j]` is `True` if watchstander `i` cannot stand watch on day `j`, and `False` otherwise. In our case, `schedule_conflicts` would look like this.
 
-![Conflict Matrix](/assets/media/watchbill/conflictmatrix.png)
+![Conflict Matrix](/assets/media/watchbill/conflictmatrix.png){: width="354" height="249"}
 
 For every schedule conflict, I added a constraint into the model to prevent the worker from working that day.
 
@@ -158,7 +160,7 @@ I made a similar matrix, called `locked_in_days` for days on which I required th
 
 After applying this constraint, the program might return something like the following solution.
 
-![Solution With Conflicts](/assets/media/watchbill/solutionwconflicts.png)
+![Solution With Conflicts](/assets/media/watchbill/solutionwconflicts.png){: width="354" height="249"}
 
 Looks pretty good. But what if day 4 is a day off?
 
@@ -166,7 +168,7 @@ Looks pretty good. But what if day 4 is a day off?
 
 If day 4 is a holiday, this watchbill is pretty unfair. Charlie gets screwed because he stands two full duty days, and he stands duty on a less favorable day (a holiday, which he would otherwise get off). In this case, the following watchbill would be fairer.
 
-![Fairer Solution](/assets/media/watchbill/fairersolution.png)
+![Fairer Solution](/assets/media/watchbill/fairersolution.png){: width="354" height="249"}
 
 Why? What makes this fairer? How can we teach the computer to optimize the "fairness" of the watchbill? To answer these questions, I defined a value that I called the *badness* of each schedule. Badness is defined for each watchstander. It is the sum of the *badness weights* of each duty day that watchstander stands. I defined the following badness weights:
 
@@ -178,7 +180,7 @@ Why? What makes this fairer? How can we teach the computer to optimize the "fair
 These are somewhat arbitrary, but I'll tell you from personal experience, standing duty on a Saturday is the worst.
 
 <div class = "outer">
-<div class = "block"><img style = "padding: 50px 50px 50px 50px center-image" src="/assets/media/watchbill/badness1.png" alt="First Schedule" /></div> <div class = "block"><img style = "padding: 50px 50px 50px 50px center-image" src="/assets/media/watchbill/badness2.png" alt="Second Schedule" /></div>
+<div class = "block"><img width="406" height="343" style = "padding: 50px 50px 50px 50px center-image" src="/assets/media/watchbill/badness1.png" alt="First Schedule" /></div> <div class = "block"><img width="393" height="343" style = "padding: 50px 50px 50px 50px center-image" src="/assets/media/watchbill/badness2.png" alt="Second Schedule" /></div>
 </div>
 
 Now that we have defined how bad each watchstander's schedule is, we can calculate the unfairness of the watchbill in a couple different ways, but the simplest and most intuitive is by calculating the [variance](https://en.wikipedia.org/wiki/Variance) of each watchstander's badness score. 
@@ -204,11 +206,11 @@ self.model.Minimize(worst_deal)
 
 The following diagram shows why Schedule 2 would minimize `worst_deal` in this case. The green dots represent each watchstander's badness score, on a number line.
 
-![Minimizing the worst deal](/assets/media/watchbill/worstdeal.png)
+![Minimizing the worst deal](/assets/media/watchbill/worstdeal.png){: width="476" height="186"}
 
 In this simple case, this objective function is good enough. In other watchbills, though, it could cause problems. Compare the following two badness score spreads:
 
-![The problem with selecting according to worst_deal](/assets/media/watchbill/worstdealproblem.png)
+![The problem with selecting according to worst_deal](/assets/media/watchbill/worstdealproblem.png){: width="476" height="175"}
 
 According to the `worst_deal` objective function, these schedules are equally fair. In fact, though, schedule 4 is far preferable. Look at the variances.
 
@@ -243,7 +245,7 @@ self.model.Minimize(deal_spread)
 
 Even this is not perfect, though. Consider the following two schedules.
 
-![The problem with deal_spread](/assets/media/watchbill/dealspreadproblem.png)
+![The problem with deal_spread](/assets/media/watchbill/dealspreadproblem.png){: width="476" height="195"}
 
 Again, both of these schedules have the same value of `deal_spread`, but schedule 6 is clearly fairer than schedule 5. 
 

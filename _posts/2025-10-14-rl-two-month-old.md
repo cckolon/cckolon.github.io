@@ -12,7 +12,7 @@ I've been spending the last month studying reinforcement learning. There are lot
 
 I also became a father this summer. My daughter, Florence, was born on July 23. She is a happy, healthy, beautiful girl, and watching her grow is satisfying in all the ways I expected, but also some I didn't. While I'm reading about learning, I'm also watching something similar play out in real life, right in front of me.
 
-![Florence in her bouncer, with Sutton and Barto on the table](/assets/media/florence-rl/flo-sutton-barto.webp)
+![Florence in her bouncer, with Sutton and Barto on the table](/assets/media/florence-rl/flo-sutton-barto.webp){: width="600" height="450"}
 
 ## Sutton and Dwarkesh
 
@@ -35,7 +35,7 @@ Florence has just started learning to grab things. She first tried it about a we
 
 The biggest argument against RL is that children require much less training than similar machine learning models. Take the [cart pole problem](https://gymnasium.farama.org/environments/classic_control/cart_pole/), one of the simplest control problems.
 
-![cart pole problem](/assets/media/florence-rl/cartpole-v0.gif)
+![cart pole problem](/assets/media/florence-rl/cartpole-v0.gif){: width="600" height="400"}
 The object of the cart pole problem is to keep the inverted pendulum balanced by moving the cart along the track. Image from [tensorflow.org](https://www.tensorflow.org/tutorials/reinforcement_learning/actor_critic).
 {: .img-caption}
 
@@ -49,7 +49,7 @@ Yet, when we try to use a RL algorithm to learn the solution to the cart pole pr
 
 When scientists attempt tasks of greater complexity, they often find that a lot more data is needed. For example, researchers at Google Brain trained a robot arm to grasp objects with only visual input guided by a RGB camera feed. Using off-policy Q-learning, they found that they required about 800 hours (over 580k grasp attempts) of training data to achieve good performance[^googlebrain]. The arm used was also much less complex than a human hand, which shrinks the action space substantially.
 
-![a robot hand grasping an object clumsily](/assets/media/florence-rl/grasp.gif)
+![a robot hand grasping an object clumsily](/assets/media/florence-rl/grasp.gif){: width="400" height="225"}
 
 Flo can do better than this. Image from [Google](https://research.google/blog/scalable-deep-reinforcement-learning-for-robotic-manipulation/).
 {: .img-caption}
@@ -68,7 +68,7 @@ Some of Florence's behavior is purely instinctual. When I put my finger in her h
 
 When I see Florence grab something on purpose, something very different from her reflexes is going on. It's slow and deliberate. Often, she pauses to think about the situation or observe her environment. She is also getting better at it. She started by flailing her hands, eventually brought them near her toys, and finally started figuring out how to open and close her fists. It seems less like she is revealing latent knowledge and more like her skills are developing over time.
 
-![Flo grabbing a rattle](/assets/media/florence-rl/flo-grasp.webp)
+![Flo grabbing a rattle](/assets/media/florence-rl/flo-grasp.webp){: width="500" height="459"}
 
 It's also noteworthy to observe that children with amputated or anomalous limbs typically reach milestones like grabbing around the same time as unaffected children[^amputationmilestones]. If children were hard-wired to grab things in the typical way, wouldn't children with atypical arms and hands learn to do so more slowly?
 
@@ -92,7 +92,7 @@ I think that Florence is performing model-based RL, and she was born with no ide
 
 I think that Florence was born with a model of the world already in her head, which she uses to predict the consequences of her actions. The world model is much simpler than our actual world, but it's complex enough to inform the basic task of grasping. It tells Florence that she lives in 3-dimensional space, she can observe it with her eyes, some objects are in front of others, eye parallax indicates distance, etc.
 
-![Flo's world model](/assets/media/florence-rl/world-model.webp)
+![Flo's world model](/assets/media/florence-rl/world-model.webp){: width="500" height="539"}
 
 Where did the model come from? I think it was programmed by evolution. In the BERT metaphor, evolution is pretraining, and as organisms became more complex, so did their hard-coded understanding of the world. Certain animals clearly have hard-coded behavior at birth, like zebras, who can stand up 15 minutes after they're born, and run inside an hour. In this case, the RL-instinct continuum is heavily weighted in favor of instinct, and yet you can still see a baby zebra's trial and error in their very first steps. They just converge really quickly to doing things the right way.
 

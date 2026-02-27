@@ -3,6 +3,8 @@ layout: post
 title: Thoughts on Leaving the Navy
 excerpt_separator: <!--more-->
 image: /assets/media/navy/iday_image_mini.jpg
+image_width: 368
+image_height: 480
 ---
 
 It's fitting that I spent my last day in uniform only steps from where I first put it on.

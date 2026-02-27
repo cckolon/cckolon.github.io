@@ -3,6 +3,8 @@ layout: post
 title: How to Remember Everything with Jrnl and Semantic Search
 excerpt_separator: <!--more-->
 image: /assets/media/semantic/jrnl_search_screengrab.png
+image_width: 523
+image_height: 200
 description: Note-taking in the command line with jrnl, and semantic search with Huggingface Sentence Transformers.
 ---
 
@@ -78,18 +80,18 @@ I had already decided I was done with Obsidian (and similar apps) precisely *bec
 
 Semantic search is a way to search for text by meaning, rather than by directly matching words or phrases. This is more powerful than traditional keyword search because it can find synonyms or similarities which do not use the exact same words. Modern transformer models convert text to vector embeddings: a list of numbers which represents the *meaning* of the phrase. In transformer-based semantic search, a list of phrases or sentences is converted into a list of vector embeddings.
 
-![Three phrases embedded into a vector space.](/assets/media/semantic/embeddings.png)
+![Three phrases embedded into a vector space.](/assets/media/semantic/embeddings.png){: width="600" height="488"}
 
 Three phrases embedded into a vector space. The vectors are embedded in 2-dimensional space in the image. In reality, hundreds of dimensions are typically used.
 {: .img-caption}
 
 In the above image, vector embeddings have been generated for three phrases. Closer embeddings tend to be related. Transformer-based semantic search exploits this fact by embedding the search query, and then retrieving the entries closest to the query embedding.
 
-![Vector embeddings for a question and answer.](/assets/media/semantic/questionembedding.png)
+![Vector embeddings for a question and answer.](/assets/media/semantic/questionembedding.png){: width="600" height="346"}
 
 Crucially, it doesn't matter if the question uses the exact same words, because embeddings of phrases with similar *meanings* are clustered closely, regardless of phrasing.
 
-![The same question, phrased differently.](/assets/media/semantic/phrasing.png)
+![The same question, phrased differently.](/assets/media/semantic/phrasing.png){: width="600" height="438"}
 
 Finding the closest entry is usually straightforward. Three main similarity metrics can be used. The simplest is the actual distance between the vector tips, usually called the L2 norm. More commonly, the squared L2 norm is used, because it is easier to calculate and possesses some favorable qualities. The [dot product](https://en.wikipedia.org/wiki/Dot_product) is another common option, and is calculated by taking the of the products of corresponding elements of the vectors. Normalizing the dot product (dividing by vector length) gives the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity), a measure of the angle between the two vectors. All these similarity metrics lead to similar results, but they may perform better or worse depending on how the embedding models are trained.
 
@@ -117,7 +119,7 @@ To improve execution speed, I made this process asynchronous using python's [asy
 - Search for them (the first search may take a while since the models have to download):
   - `$ jrnl-search flying animals`
 
-![a jrnl demo](/assets/media/semantic/jrnl_search.gif)
+![a jrnl demo](/assets/media/semantic/jrnl_search.gif){: width="604" height="337"}
 
 ## Development Status and Future Work
 

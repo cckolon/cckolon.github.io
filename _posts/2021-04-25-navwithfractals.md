@@ -3,6 +3,8 @@ layout: post
 title: Navigating with Fractals
 excerpt_separator: <!--more-->
 image: /assets/media/unitymesh.PNG
+image_width: 764
+image_height: 758
 description: Using fractals and recursion to generate a mesh for navigation, in a submarine video game.
 ---
 

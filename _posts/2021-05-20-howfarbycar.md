@@ -3,6 +3,8 @@ layout: post
 title: How Far is That By Car?
 excerpt_separator: <!--more-->
 image: /assets/media/94613.PNG
+image_width: 600
+image_height: 568
 description: Using the Google Maps API to find the distance between ZIP codes and hospitals.
 ---
 

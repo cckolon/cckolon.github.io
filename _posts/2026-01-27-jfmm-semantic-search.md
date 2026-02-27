@@ -27,7 +27,7 @@ I've [written about semantic search before](/2024/01/31/jrnlsearch/). The idea i
 
 To search through the chunks, the system embeds the user's query, and then searches for the nearest neighbors among the embedded documents (usually with a [vector database](https://en.wikipedia.org/wiki/Vector_database) optimized for such queries). A nice property of semantic search is that most of the computation (embedding the chunks) can happen ahead of time, and the system only needs to generate the single query embedding at query time.
 
-![Embedding chunk and query vectors](/assets/media/jfmm/embedding.webp)
+![Embedding chunk and query vectors](/assets/media/jfmm/embedding.webp){: width="2164" height="1036"}
 
 The first iteration of JFMM.net was a pure vector similarity search engine. I extracted the text from the JFMM and chunked it with [Unstructured](https://github.com/Unstructured-IO/unstructured) (the open source version of [Unstructured.io](https://unstructured.io/)'s product). Then I embedded the data with [nomic-embed-text-v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5). I set up a cloud hosted Postgres database and installed the [PGVector](https://github.com/pgvector/pgvector) vector search extension, then uploaded all the data.
 
@@ -70,7 +70,7 @@ Luckily, there is a good solution for this. Most ML models store weights as full
 
 Choosing the right quantization is a fascinating subject. Nomic includes, a table in their [Hugging Face repository](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF) which compares the mean squared error (MSE) of embedding vectors for different quantizations compared to the 32-bit version. I made a graph of the table here: you can see that the log MSE scales inversely with the size of the model.
 
-![Quantization MSE compared with model size](/assets/media/jfmm/quant_mse_vs_size.webp)
+![Quantization MSE compared with model size](/assets/media/jfmm/quant_mse_vs_size.webp){: width="1979" height="1180"}
 
 I chose an 8 bit quantization, which lowers the RAM requirements by 75% while still maintaining good precision.
 
@@ -96,7 +96,7 @@ To address irrelevant results, I decided to add a [reranker](https://www.mongodb
 
 For reranking to be effective, we retrieve a larger-than-needed number of results from the vector database, and then evaluate each one against the query to generate a relevance score. We sort by the relevance score, and discard all but the top $$N$$.
 
-![Vector search with reranking](/assets/media/jfmm/reranking.webp)
+![Vector search with reranking](/assets/media/jfmm/reranking.webp){: width="2634" height="830"}
 
 To avoid reintroducing the Python ML libraries that I had just eliminated, I used `llama.cpp` for the reranker as well. While [support for reranking is newer in `llama.cpp`](https://github.com/ggml-org/llama.cpp/issues/8555), there are still models that work, with decently small quantizations. I chose [`BAAI/bge-reranker-v2-m3`](https://huggingface.co/BAAI/bge-reranker-v2-m3) and used the 8-bit quantization.
 
@@ -140,7 +140,7 @@ Then we rerank and select the top 4. How should we select the next page?
 - If we offset by 8, we eliminate 4 good candidates and ensure that the user will never see them.
 - You might think that we could just select the 4 results not shown after reranking, but what if one of these is an irrelevant false positive and the 9th result from vector search would have outperformed it?
 
-![the problem with pagination](/assets/media/jfmm/pagination_problem.webp)
+![the problem with pagination](/assets/media/jfmm/pagination_problem.webp){: width="2128" height="954"}
 
 ### Eliminating repeated results
 
