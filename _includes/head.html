@@ -30,6 +30,42 @@
 <meta name="twitter:creator" content="@CarlKolon">
 <meta name="description" content="{{ page.description }}">
 {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Carl Kolon",
+  "url": "https://carlkolon.com"
+}
+</script>
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "image": "https://carlkolon.com{{ page.image }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "url": "https://carlkolon.com{{ page.url }}",
+  "author": {
+    "@type": "Person",
+    "name": "Carl Kolon",
+    "url": "https://carlkolon.com"
+  }
+}
+</script>
+{% else %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": "https://carlkolon.com{{ page.url }}"
+}
+</script>
+{% endif %}
 {% include inline_css.html %}
 
 <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
