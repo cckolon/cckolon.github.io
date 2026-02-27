@@ -2,3 +2,9 @@ plugins:
   - jekyll-figure
   - jektex
 permalink: pretty
+exclude:
+  - CNAME
+  - CONTRIBUTING.md
+  - pyproject.toml
+  - README.md
+  - uv.lock

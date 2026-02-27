@@ -8,3 +8,5 @@ _vale_styles/*
 !_vale_styles/config/
 node_modules/
 .DS_Store
+.venv/
+__pycache__/
