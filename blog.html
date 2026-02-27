@@ -30,6 +30,7 @@ pagination:
         alt="{{ post.title }}"
         width="{{ post.image_width }}"
         height="{{ post.image_height }}"
+        {% if forloop.first %}fetchpriority="high"{% endif %}
       >
       {{ post.excerpt }}
     </div>
