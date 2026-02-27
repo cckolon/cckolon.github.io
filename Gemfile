@@ -20,4 +20,5 @@ gem "rake"
 
 group :jekyll_plugins do
     gem "jektex"
+    gem "jekyll-paginate-v2"
 end

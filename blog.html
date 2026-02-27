@@ -3,8 +3,10 @@ layout: default
 title: Blog
 image: /assets/media/blog.png
 description: My Blog.
+pagination:
+  enabled: true
 ---
-{% for post in site.posts %}
+{% for post in paginator.posts %}
   <div class="blog-preview">
     <div class="blog-header">
       <a
@@ -30,3 +32,56 @@ description: My Blog.
   </div>
   <hr>
 {% endfor %}
+
+{% if paginator.total_pages > 1 %}
+  {% comment %}
+    Compute base path: on page 2+, page.url is /blog/page/N/..., split off the /page/ suffix.
+    On page 1, page.url is /blog/index.html, strip index.html then normalize.
+  {% endcomment %}
+  {% assign url_parts = page.url | split: '/page/' %}
+  {% if url_parts.size > 1 %}
+    {% assign base_path = url_parts[0] | append: '/' %}
+  {% else %}
+    {% assign base_path = url_parts[0]
+      | split: 'index.html'
+      | first
+      | remove: '.html'
+      | append: '/'
+      | replace: '//', '/'
+    %}
+  {% endif %}
+
+  {% assign cur = paginator.page %}
+  {% assign total = paginator.total_pages %}
+  {% assign range_start = cur | minus: 1 %}
+  {% assign range_end = cur | plus: 1 %}
+  {% if range_start < 1 %}{% assign range_start = 1 %}{% endif %}
+  {% if range_end > total %}{% assign range_end = total %}{% endif %}
+
+  <nav class="pagination">
+    {% if range_start > 1 %}
+      <a href="{{ base_path }}" class="pagination-page">1</a>
+      {% if range_start > 2 %}
+        <span class="pagination-ellipsis">&hellip;</span>
+      {% endif %}
+    {% endif %}
+
+    {% for i in (range_start..range_end) %}
+      {% if i == cur %}
+        <span class="pagination-page pagination-current">{{ i }}</span>
+      {% elsif i == 1 %}
+        <a href="{{ base_path }}" class="pagination-page">{{ i }}</a>
+      {% else %}
+        <a href="{{ base_path }}page/{{ i }}/" class="pagination-page">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if range_end < total %}
+      {% assign total_minus_1 = total | minus: 1 %}
+      {% if range_end < total_minus_1 %}
+        <span class="pagination-ellipsis">&hellip;</span>
+      {% endif %}
+      <a href="{{ base_path }}page/{{ total }}/" class="pagination-page">{{ total }}</a>
+    {% endif %}
+  </nav>
+{% endif %}

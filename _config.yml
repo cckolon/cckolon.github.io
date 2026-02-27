@@ -1,6 +1,14 @@
 plugins:
   - jekyll-figure
   - jektex
+  - jekyll-paginate-v2
+
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+  sort_field: 'date'
+  sort_reverse: true
 permalink: pretty
 exclude:
   - CNAME

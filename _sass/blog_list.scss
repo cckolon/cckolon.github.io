@@ -12,3 +12,36 @@
 .blog-preview:hover h1{
   text-decoration: underline;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.pagination-current {
+  font-weight: bolder;
+  cursor: default;
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  letter-spacing: 0.05em;
+}
