@@ -38,6 +38,6 @@ I'm on Github as [cckolon](https://github.com/cckolon).
 
 My cat is on Instagram as [@rockminsterfullerene](https://www.instagram.com/rockminsterfullerene/).
 
-My wife, Jackie, is an internal medicine resident at [UCSF](https://www.ucsf.edu/).
+My wife, [Jackie](https://jackielin.com), is an internal medicine resident at [UCSF](https://www.ucsf.edu/). We welcomed our first daughter [Florence](https://florencekolon.com) in summer, 2025.
 
 My little sister, [Nellie](https://nelliekolon.com), is a Master's student at [Georgia Tech](https://bme.gatech.edu/bme/) studying Biomedical Engineering.
