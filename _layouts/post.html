@@ -8,21 +8,26 @@
   </head>
 
   <body hx-boost="true">
-    <h1 class="page-title">
-      Carl Kolon
-      <span class="muted">/ <a class="blog-header-link" href="/blog">Blog</a></span>
-    </h1>
-    <p class="x-link">
-      <a href="https://x.com/carlkolon" class="muted">@carlkolon</a>
-    </p>
-
+    <header>
+      <p class="blog-page-header">
+        Carl Kolon
+        <span class="muted">/ <a class="blog-header-link" href="/blog">Blog</a></span>
+      </p>
+      <p class="x-link">
+        <a href="https://x.com/carlkolon" class="muted">@carlkolon</a>
+      </p>
+    </header>
     {% include navigation.html %}
     <hr>
-    <div class="blog-header">
-      <h1 class="blog-title">{{ page.title }}</h1>
-      <div class="post-date">{{ page.date | date_to_string }}</div>
-    </div>
-    {{ content }}
+    <header>
+      <div class="blog-header">
+        <h1 class="blog-title">{{ page.title }}</h1>
+        <div class="post-date">{{ page.date | date_to_string }}</div>
+      </div>
+    </header>
+    <main>
+      {{ content }}
+    </main>
     {% include footer.html %}
   </body>
 </html>
