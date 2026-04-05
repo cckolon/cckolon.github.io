@@ -10,7 +10,7 @@ keywords: swarming, nonlinear dynamics, mathematics, swarm theory, Naval Academy
 
 ## Written Work
 
-A preprint of my most recent paper, submitted to the [Journal of Differential Equations](https://www.sciencedirect.com/journal/journal-of-differential-equations) for peer review: [On the stability of Rotating States in Second-Order Self-Propelled Multi-Particle Systems](https://arxiv.org/abs/2105.11419)
+A preprint of my most recent paper, accepted by [Advances in Differential Equations](https://projecteuclid.org/journals/advances-in-differential-equations): [On the stability of Rotating States in Second-Order Self-Propelled Multi-Particle Systems](https://arxiv.org/abs/2105.11419)
 
 My Trident Paper: [Stability of Nonlinear Swarms on Flat and Curved Surfaces](https://apps.dtic.mil/sti/citations/AD1054413)
 
