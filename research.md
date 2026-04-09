@@ -77,4 +77,4 @@ In the course of my work on swarming, I researched applications to unmanned syst
 
 ## Awards
 
-In 2018, I received the [Julian Clancy Frazier Award](https://www.usna.edu/MathDept/about/awards/index.php#panel5JulianClancyFrazierAwardforExcellenceinMathematics) for excellence in Mathematics.
+In 2018, I received the [Julian Clancy Frazier Award](https://www.usna.edu/MathDept/Majors/awards_for_midshipmen.php#panel5JulianClancyFrazierAwardforExcellenceinMathematics) for excellence in Mathematics.
