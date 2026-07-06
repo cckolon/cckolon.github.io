@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "Pillow",
+# ]
+# ///
 """Convert images referenced in _posts/ to WebP format.
 
 Handles:
@@ -35,9 +41,7 @@ SKIP_EXTENSIONS = {".webp", ".gif", ".svg"}
 def is_local_image(path: str) -> bool:
     """Return True if path is a local asset reference (not an external URL)."""
     return (
-        path.startswith("/assets/")
-        and not path.startswith("//")
-        and "://" not in path
+        path.startswith("/assets/") and not path.startswith("//") and "://" not in path
     )
 
 
@@ -94,7 +98,9 @@ def extract_image_paths(content: str) -> set[str]:
         paths.add(m.group(1))
 
     # --- 3. HTML <img> tags ---
-    for m in re.finditer(r"<img\b[^>]+\bsrc=['\"]([^'\"]+)['\"]", content, re.IGNORECASE):
+    for m in re.finditer(
+        r"<img\b[^>]+\bsrc=['\"]([^'\"]+)['\"]", content, re.IGNORECASE
+    ):
         paths.add(m.group(1))
 
     # --- 4. Jekyll includes with a url= parameter (e.g. fim.html) ---
