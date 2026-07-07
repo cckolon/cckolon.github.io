@@ -17,3 +17,5 @@ exclude:
   - pyproject.toml
   - README.md
   - uv.lock
+include:
+  - _headers
