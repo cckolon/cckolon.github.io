@@ -10,9 +10,6 @@
     {% else %}
       <a
         href="{{ item.link }}"
-        {% if item['disable-boost'] %}
-          hx-boost="false"
-        {% endif %}
       >
         {{- item.name -}}
       </a>

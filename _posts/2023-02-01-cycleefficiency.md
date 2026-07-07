@@ -7,7 +7,6 @@ image_width: 805
 image_height: 396
 description: A Javascript applet to calculate the effect of gear shifts on your bicycle.
 keywords: cycling, bicycle, JavaScript, physics simulation, gears, cadence, power output
-disable-boost: True
 ---
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>

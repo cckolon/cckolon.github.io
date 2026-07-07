@@ -17,9 +17,6 @@ pagination:
       <a
         href="{{post.url}}"
         class="blog-link"
-        {% if post['disable-boost'] %}
-          hx-boost="false"
-        {% endif %}
       >
         <h1 class="blog-title">
           {{ post.title }}
