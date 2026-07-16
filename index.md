@@ -30,9 +30,9 @@ I did a lot of math work at the Naval Academy. [You can read about it here](/res
 
 [This is my public key.](/assets/media/publickey.asc)
 
-I'm on LinkedIn as [Carl Kolon](https://www.linkedin.com/in/carl-kolon)
+I use X as my main social media. My handle is [@carlkolon](https://twitter.com/carlkolon).
 
-I'm on Twitter as [@carlkolon](https://twitter.com/carlkolon).
+I'm on LinkedIn as [Carl Kolon](https://www.linkedin.com/in/carl-kolon)
 
 I'm on Github as [cckolon](https://github.com/cckolon).
 
