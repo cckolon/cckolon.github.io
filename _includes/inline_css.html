@@ -1,8 +1,7 @@
 <style>
-  /* Critical CSS */
   body {
     background-color: white;
-    font-family: 'Lora', 'Lora Fallback', serif;
+    font-family: "Lora", "Lora Fallback", serif;
     margin: auto;
     max-width: 795px;
     min-width: 265px;
@@ -10,8 +9,8 @@
   }
 
   @font-face {
-    font-family: 'Lora Fallback';
-    src: local('Georgia');
+    font-family: "Lora Fallback";
+    src: local("Georgia");
     size-adjust: 104%;
     ascent-override: 92%;
     descent-override: 30%;
@@ -35,9 +34,17 @@
     text-align: center;
   }
 
-  @media only screen and (max-width: 350px) {
-    nav {
-      font-size: 12px;
+  nav.narrow-nav {
+    display: none;
+  }
+
+  @media only screen and (max-width: 430px) {
+    nav.narrow-nav {
+      display: block;
+    }
+
+    nav.wide-nav {
+      display: none;
     }
   }
 
@@ -71,11 +78,6 @@
     font-weight: 500;
   }
 
-  nav {
-    margin: auto;
-    text-align: center;
-  }
-
   .blog-header a h1 {
     text-decoration: none;
     color: blue;
@@ -105,5 +107,11 @@
   .blog-preview a {
     text-decoration: none;
     color: inherit;
+  }
+
+  nav .current {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
   }
 </style>

@@ -1,5 +1,5 @@
-<nav>
-  {% assign page_url = page.url | remove: 'index.html' | remove: '/' %}
+{% assign page_url = page.url | remove: 'index.html' | remove: '/' %}
+<nav class="wide-nav">
   -
   {% for item in site.data.navigation %}
     {% assign item_link = item.link | remove: '/' %}
@@ -15,5 +15,28 @@
       </a>
     {% endif %}
     -
+  {% endfor %}
+</nav>
+
+<nav class="narrow-nav">
+  -
+  {% assign mid = site.data.navigation.size | divided_by: 2 %}
+  {% for item in site.data.navigation %}
+    {% assign item_link = item.link | remove: '/' %}
+    {% if page_url == item_link %}
+      <span class="current">
+        {{- item.name -}}
+      </span>
+    {% else %}
+      <a
+        href="{{ item.link }}"
+      >
+        {{- item.name -}}
+      </a>
+    {% endif %}
+    -
+    {% if forloop.index == mid %}
+      <br> -
+    {% endif %}
   {% endfor %}
 </nav>
