@@ -70,7 +70,9 @@ This is the best essay against ORMs that I have read and, even though it's long,
 Some more ammo in my anti-ORM crusade. This is more technical but more succinct, so if you're just looking for the bullet points I'd read this.
 
 ### [Introduction to PostGIS - Geography](https://postgis.net/workshops/postgis-intro/geography.html)
-PostGIS (and geospatial databases) require a little getting used to. It's good to understand the new data types you're working with when you build a map-based data visualizer. PostGIS is a great database and its foundational data type is `geography`. 
+PostGIS (and geospatial databases) require a little getting used to. It's good to understand the new data types you're working with when you build a map-based data visualizer. PostGIS is a great database and its foundational data type is `geography`[^geography-datatype].
+
+[^geography-datatype]: This is actually not correct, as [seabre pointed out](https://news.ycombinator.com/item?id=49217184) on Hacker News. The foundational data type in PostGIS is `geometry`, which you can read about [here](https://postgis.net/workshops/postgis-intro/geometries.html). It's still good to learn about `geography` though, and the intro page is a little more accessible.
 
 ### [Postgres Docs Chapter 14 - Performance Tips](https://www.postgresql.org/docs/current/performance-tips.html)
 This is a great article to _have read_ when your database starts slowing down. Knowing how to use `EXPLAIN` and `EXPLAIN ANALYZE` is on par with knowing how to use a debugger, in my opinion.
@@ -114,3 +116,5 @@ While this book is a little hardcore, it's the best intro to category theory tha
 ### The Mythical Man-Month ([Amazon](https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959))
 
 This book was published in 1975 (!!) and revised most recently in 1995, but it is still incredibly relevant. In fact, as programmers become armed with AI tools, some of the chapters (like chapter 4, Aristocracy and Democracy in System Design) seem more applicable now than they were in 1995. Read this if you want to manage a programming project and have it succeed.
+
+## Footnotes
