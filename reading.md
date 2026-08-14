@@ -54,7 +54,7 @@ The biggest problem I see when people move from writing backend code to writing 
 ### [Understanding useMemo and useCallback](https://www.joshwcomeau.com/react/usememo-and-usecallback/)
 `useMemo` and `useCallback` are the most misused hooks in React (besides maybe `useEffect`), and both agents and humans love to throw them in everywhere. This article is a guide to where they are actually necessary.
 
-### [Hypermedia Systems - Components of a Hypermedia System](https://hypermedia.systems/components-of-a-hypermedia-system/)
+### [Hypermedia Systems---Components of a Hypermedia System](https://hypermedia.systems/components-of-a-hypermedia-system/)
 If you want to write a good frontend, it is very valuable to understand the model around which HTML is based. This is a great chapter of a great book which will help you maximize your use of the browser's design, rather than seeing HTML as "an awkward, legacy markup language that must be grudgingly used to build user interfaces in what are increasingly entirely JavaScript-based web applications."
 
 ## Databases
@@ -66,15 +66,15 @@ I am a certified ORM-hater. I think they are seductive for new projects, but qui
 
 This is the best essay against ORMs that I have read and, even though it's long, I recommend it highly.
 
-### [Wikipedia - The Object-Relational Impedence Mismatch](https://en.wikipedia.org/wiki/Object%E2%80%93relational_impedance_mismatch)
+### [Wikipedia---The Object-Relational Impedence Mismatch](https://en.wikipedia.org/wiki/Object%E2%80%93relational_impedance_mismatch)
 Some more ammo in my anti-ORM crusade. This is more technical but more succinct, so if you're just looking for the bullet points I'd read this.
 
-### [Introduction to PostGIS - Geography](https://postgis.net/workshops/postgis-intro/geography.html)
+### [Introduction to PostGIS---Geography](https://postgis.net/workshops/postgis-intro/geography.html)
 PostGIS (and geospatial databases) require a little getting used to. It's good to understand the new data types you're working with when you build a map-based data visualizer. PostGIS is a great database and its foundational data type is `geography`[^geography-datatype].
 
 [^geography-datatype]: This is actually not correct, as [seabre pointed out](https://news.ycombinator.com/item?id=49217184) on Hacker News. The foundational data type in PostGIS is `geometry`, which you can read about [here](https://postgis.net/workshops/postgis-intro/geometries.html). It's still good to learn about `geography` though, and the intro page is a little more accessible.
 
-### [Postgres Docs Chapter 14 - Performance Tips](https://www.postgresql.org/docs/current/performance-tips.html)
+### [Postgres Docs Chapter 14---Performance Tips](https://www.postgresql.org/docs/current/performance-tips.html)
 This is a great article to _have read_ when your database starts slowing down. Knowing how to use `EXPLAIN` and `EXPLAIN ANALYZE` is on par with knowing how to use a debugger, in my opinion.
 
 ### [Paging Through Results](https://use-the-index-luke.com/sql/partial-results/fetch-next-page)

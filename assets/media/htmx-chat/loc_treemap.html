@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lines of Code</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: #f7f7f5;
+      color: #1a1a1a;
+    }
+    #chart {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+  <script>
+    const treeData = [{"children": [{"children": [{"children": [{"name": "main.py", "path": "htmx_app/src/app/main.py", "value": 275}, {"name": "db.py", "path": "htmx_app/src/app/db.py", "value": 114}, {"children": [{"children": [{"name": "messages.html", "path": "htmx_app/src/app/templates/partials/messages.html", "value": 10}, {"name": "message_assistant_stream.html", "path": "htmx_app/src/app/templates/partials/message_assistant_stream.html", "value": 9}, {"name": "chat_list_item.html", "path": "htmx_app/src/app/templates/partials/chat_list_item.html", "value": 3}, {"name": "chat_title_oob.html", "path": "htmx_app/src/app/templates/partials/chat_title_oob.html", "value": 2}, {"name": "message_pair.html", "path": "htmx_app/src/app/templates/partials/message_pair.html", "value": 2}, {"name": "message_assistant.html", "path": "htmx_app/src/app/templates/partials/message_assistant.html", "value": 1}, {"name": "message_user.html", "path": "htmx_app/src/app/templates/partials/message_user.html", "value": 1}], "name": "partials", "path": "htmx_app/src/app/templates/partials/", "value": 28}, {"name": "chat.html", "path": "htmx_app/src/app/templates/chat.html", "value": 20}, {"name": "index.html", "path": "htmx_app/src/app/templates/index.html", "value": 17}, {"name": "base.html", "path": "htmx_app/src/app/templates/base.html", "value": 14}], "name": "templates", "path": "htmx_app/src/app/templates/", "value": 79}, {"name": "__main__.py", "path": "htmx_app/src/app/__main__.py", "value": 9}], "name": "app", "path": "htmx_app/src/app/", "value": 477}], "name": "src", "path": "htmx_app/src/", "value": 477}, {"name": "pyproject.toml", "path": "htmx_app/pyproject.toml", "value": 23}, {"name": "Dockerfile", "path": "htmx_app/Dockerfile", "value": 22}, {"name": "start.sh", "path": "htmx_app/start.sh", "value": 4}], "name": "HTMX", "path": "htmx_app/", "value": 526}, {"children": [{"children": [{"name": "main.py", "path": "react_app/server/main.py", "value": 301}, {"name": "db.py", "path": "react_app/server/db.py", "value": 107}, {"name": "pyproject.toml", "path": "react_app/server/pyproject.toml", "value": 13}], "name": "server", "path": "react_app/server/", "value": 421}, {"children": [{"children": [{"name": "ChatPage.tsx", "path": "react_app/src/pages/ChatPage.tsx", "value": 137}, {"name": "ChatListPage.tsx", "path": "react_app/src/pages/ChatListPage.tsx", "value": 68}], "name": "pages", "path": "react_app/src/pages/", "value": 205}, {"name": "api.ts", "path": "react_app/src/api.ts", "value": 83}, {"name": "types.ts", "path": "react_app/src/types.ts", "value": 14}, {"name": "App.tsx", "path": "react_app/src/App.tsx", "value": 12}, {"name": "main.tsx", "path": "react_app/src/main.tsx", "value": 12}, {"children": [{"name": "Markdown.tsx", "path": "react_app/src/components/Markdown.tsx", "value": 6}], "name": "components", "path": "react_app/src/components/", "value": 6}, {"name": "vite-env.d.ts", "path": "react_app/src/vite-env.d.ts", "value": 1}], "name": "src", "path": "react_app/src/", "value": 333}, {"name": "Dockerfile", "path": "react_app/Dockerfile", "value": 39}, {"name": "package.json", "path": "react_app/package.json", "value": 32}, {"name": "vite.config.ts", "path": "react_app/vite.config.ts", "value": 32}, {"name": "tsconfig.json", "path": "react_app/tsconfig.json", "value": 22}, {"name": "index.html", "path": "react_app/index.html", "value": 13}, {"name": "start.sh", "path": "react_app/start.sh", "value": 4}], "name": "React", "path": "react_app/", "value": 896}];
+    const title = "Lines of Code";
+
+    const el = document.getElementById("chart");
+    const chart = echarts.init(el, null, { renderer: "canvas" });
+
+    chart.setOption({
+      title: {
+        text: title,
+        left: "center",
+        top: 12,
+        textStyle: { fontSize: 16, fontWeight: 600, color: "#1a1a1a" },
+      },
+      tooltip: {
+        formatter(info) {
+          const d = info.data || {};
+          const path = d.path || d.name || "";
+          const value = d.value ?? 0;
+          const kind = d.children && d.children.length ? "directory" : "file";
+          return `<b>${path}</b><br/>${value.toLocaleString()} lines (${kind})`;
+        },
+      },
+      series: [
+        {
+          type: "treemap",
+          data: treeData,
+          width: "96%",
+          height: "88%",
+          top: 48,
+          left: "2%",
+          roam: false,
+          nodeClick: false,
+          breadcrumb: { show: false },
+          label: {
+            show: true,
+            formatter: "{b}\n{c} lines",
+            fontSize: 11,
+            color: "#111",
+          },
+          upperLabel: {
+            show: true,
+            height: 18,
+            formatter: "{b} ({c} lines)",
+            color: "#222",
+            fontSize: 11,
+          },
+          itemStyle: {
+            borderColor: "#fff",
+            borderWidth: 1,
+            gapWidth: 1,
+          },
+          levels: [
+            {
+              itemStyle: { borderWidth: 0, gapWidth: 4 },
+              upperLabel: { show: true, height: 22 },
+            },
+            {
+              itemStyle: {
+                borderColor: "#73736b",
+                borderWidth: 1,
+                gapWidth: 1,
+              },
+              upperLabel: { show: true },
+            },
+            {
+              colorSaturation: [0.35, 0.55],
+              itemStyle: {
+                borderWidth: 1,
+                gapWidth: 1,
+                borderColorSaturation: 0.6,
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    new ResizeObserver(() => chart.resize()).observe(el);
+  </script>
+</body>
+</html>
