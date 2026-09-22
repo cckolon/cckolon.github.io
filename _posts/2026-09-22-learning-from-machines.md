@@ -2,6 +2,8 @@
 layout: post
 title: It's Hard to Learn from Machines
 image: /assets/media/learning-from-machines/lee-sedol-vs-alphago-game-4.webp
+image_width: 557
+image_height: 614
 description: We can memorize what AI does, but we can't easily learn why it does it. This probably applies to more than Go.
 keywords: AlphaGo, Go, chess, reinforcement learning, interpretability, LLMs, heuristics, value network, Lee Sedol
 ---
@@ -10,7 +12,7 @@ Teaching Go or chess involves lots of heuristics or proverbs that are learned fr
 
 AI has these too. The value network in AlphaGo assigns "goodness" to board positions based entirely on learned weights. In a sense this network is made of heuristics. Unfortunately it is hard to learn good play from the weights of the value network itself because machines and people have different notions of simplicity. Instead we have to watch what the machines do and try to distill their actions into rules that make sense to us. This works to some extent (early 3-3 invasion is an example) but it's much weaker than learning the principles directly from a teacher.
 
-![Game 4 of Lee Sedol vs AlphaGo, the only game Lee won. Image from Wikimedia Commons, TODO-AUTHOR, TODO-LICENSE.](/assets/media/learning-from-machines/lee-sedol-vs-alphago-game-4.webp)
+![Board diagram of game 4 between Lee Sedol (white) and AlphaGo (black), the only game Lee won. Image by Wesalius via Wikimedia Commons, CC BY-SA 4.0.](/assets/media/learning-from-machines/lee-sedol-vs-alphago-game-4.webp){: width="557" height="614"}
 Game 4 of Lee Sedol vs AlphaGo, the only game Lee won.
 {: .img-caption}
 
